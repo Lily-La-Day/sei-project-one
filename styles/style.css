@@ -1,3 +1,36 @@
-html {
-  background-color: red;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.grid {
+  align-content: space-around;
+  margin-top: 50px;
+  width: 250px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.grid-item {
+  width: 25px;
+  height: 25px;
+  border: 1px dashed black;
+}
+
+div.grid-item.player {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
