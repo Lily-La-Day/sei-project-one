@@ -34,3 +34,7 @@ div.grid-item.player {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.fixed {
+  background-color: HotPink !important;
+}

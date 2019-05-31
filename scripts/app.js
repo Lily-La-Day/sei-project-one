@@ -195,14 +195,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         squares[playerPos[1]].classList.add('player')
         squares[playerPos[2]].classList.add('player')
         squares[playerPos[3]].classList.add('player')
-        // } else {
-        //   // console.log(onBoardCheck(playerPos))
-        //   // squares[playerPos[0]].classList.add('player fixed')
-        //   // squares[playerPos[1]].classList.add('player fixed')
-        //   // squares[playerPos[2]].classList.add('player fixed')
-        //   // squares[playerPos[3]].classList.add('player fixed')
-        //
-        // return
+        } else {
+
+          squares[playerPos[0]].classList.add('fixed')
+          squares[playerPos[1]].classList.add('fixed')
+          squares[playerPos[2]].classList.add('fixed')
+          squares[playerPos[3]].classList.add('fixed')
+
+        
 
 
 
