@@ -2,28 +2,38 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const width = 10
   const squares = []
-  let playerIndex = 25
+  let playerIndex = 14
   let playerPos = [0,0,0,0]
   let newPos = [0,0,0,0]
 
 
+
   function movePlayer() {
-    // console.log(playerPos)
     clear()
-    // squares.forEach(square => square.classList.remove('player'))
-    // console.log(newPos)
-    // squares[playerIndex].classList.add('player')
     squares[playerPos[0]].classList.add('player')
     squares[playerPos[1]].classList.add('player')
     squares[playerPos[2]].classList.add('player')
     squares[playerPos[3]].classList.add('player')
-    // console.log(`the player should now move to position ${playerIndex}`)
+    }
 
-  }
+
   const clear = () => {
     squares.forEach(square =>
       square.classList.remove('player')
     )
+  }
+
+  const makeTee = (playerIndex) => {
+
+    squares[playerIndex].classList.add('player')
+    squares[playerIndex - 11].classList.add('player')
+    squares[playerIndex - 1].classList.add('player')
+    squares[playerIndex + 9].classList.add('player')
+    playerPos = [playerIndex, playerIndex - 11, playerIndex - 1, playerIndex + 9 ]
+    playerIndex = playerPos[0]
+    return playerIndex
+    console.log(playerIndex)
+
   }
 
   const teeRight = () => {
@@ -32,7 +42,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     squares[playerIndex - 1].classList.add('player')
     squares[playerIndex + 9].classList.add('player')
     playerPos = [playerIndex, playerIndex - 11, playerIndex - 1, playerIndex + 9 ]
-    return playerPos
+    playerIndex = playerPos[0]
+    console.log(playerIndex)
+    return playerIndex
+
   }
 
   const teeLeft = () => {
@@ -41,16 +54,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
     squares[playerIndex + 1].classList.add('player')
     squares[playerIndex + 11].classList.add('player')
     playerPos = [playerIndex, playerIndex - 9, playerIndex + 1, playerIndex + 11 ]
-    return playerPos
+    playerIndex = playerPos[0]
+    console.log(playerIndex)
+    return playerIndex
+
   }
 
   const teeDown = () => {
     squares[playerIndex].classList.add('player')
+    console.log(playerIndex)
     squares[playerIndex - 1].classList.add('player')
     squares[playerIndex  + 1].classList.add('player')
     squares[playerIndex + 10].classList.add('player')
     playerPos = [playerIndex, playerIndex - 1, playerIndex + 1, playerIndex + 10 ]
-    return playerPos
+    playerIndex = playerPos[0]
+    console.log(playerIndex)
+    return playerIndex
   }
 
   const teeUp = () => {
@@ -62,7 +81,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     playerPos[1] = playerIndex - 1
     playerPos[2] = playerIndex + 1
     playerPos[3] = playerIndex -10
-    return playerPos
+    playerIndex = playerPos[0]
+    console.log(playerIndex)
+    return playerIndex
   }
 
   function rotatePress(e) {
@@ -159,21 +180,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
   function init() {
 
 
-
-    const grid = document.querySelector('.grid')
-
-
-
-
-    for (let i = 0; i < width * (width*2); i ++) {
+  const grid = document.querySelector('.grid')
+  for (let i = 0; i < width * (width*2); i ++) {
       const square = document.createElement('div')
       square.classList.add('grid-item')
       square.innerHTML = i
       squares.push(square)
       grid.append(square)
 
-    }
 
+    }
+    makeTee(playerIndex)
     // const onBoardCheck = (playerPos) => {
     //   return playerPos.every(pos =>
     //     pos >= 0 && pos < 190
@@ -195,6 +212,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         squares[playerPos[1]].classList.add('player')
         squares[playerPos[2]].classList.add('player')
         squares[playerPos[3]].classList.add('player')
+        playerIndex = playerPos[0]
+        return playerPos
         } else {
 
           squares[playerPos[0]].classList.add('fixed')
@@ -202,7 +221,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           squares[playerPos[2]].classList.add('fixed')
           squares[playerPos[3]].classList.add('fixed')
 
-        
+
 
 
 
