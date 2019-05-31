@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let playerIndex = 14
   let playerPos = [0,0,0,0]
   let newPos = [0,0,0,0]
+  const fixedSquares = []
 
 
 
@@ -32,7 +33,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     playerPos = [playerIndex, playerIndex - 11, playerIndex - 1, playerIndex + 9 ]
     playerIndex = playerPos[0]
     return playerIndex
-    console.log(playerIndex)
+
 
   }
 
@@ -131,6 +132,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     )
   }
+// //function to check if player pos is same as index of any div with the class fixed
+  const spaceCheck = (playerPos) => {
+    return playerPos.every(pos =>
+      pos !== fixedSquares[0] &&
+     pos !== fixedSquares[1] &&
+     pos !== fixedSquares[2] &&
+     pos !== fixedSquares[3] &&
+     pos !== fixedSquares[4]
+    )
+  }
 
 
 
@@ -191,12 +202,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     }
     makeTee(playerIndex)
-    // const onBoardCheck = (playerPos) => {
-    //   return playerPos.every(pos =>
-    //     pos >= 0 && pos < 190
-    //
-    //   )
-    // }
 
     const moveDown = () => {
 
@@ -214,12 +219,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         squares[playerPos[3]].classList.add('player')
         playerIndex = playerPos[0]
         return playerPos
-        } else {
+      } else {
 
-          squares[playerPos[0]].classList.add('fixed')
-          squares[playerPos[1]].classList.add('fixed')
-          squares[playerPos[2]].classList.add('fixed')
-          squares[playerPos[3]].classList.add('fixed')
+        squares[playerPos[0]].classList.add('fixed')
+        squares[playerPos[1]].classList.add('fixed')
+        squares[playerPos[2]].classList.add('fixed')
+        squares[playerPos[3]].classList.add('fixed')
+        fixedSquares.concat(playerPos)
+        //Call function to make new tetronimo
+        makeTee(14)
 
 
 
@@ -233,7 +241,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     }
 
-    setInterval(moveDown, 1000)
+    setInterval(moveDown, 10000)
 
 
     // setInterval(moveDown, 100)
