@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
       {
         zero: [0, -10, -11, 1],
         ninety: [0, 1, +10, -9],
-        twoSeventy: [0, -1, +10, + 11],
+        twoSeventy: [0, -1, +10, +11],
         threeSixty: [0, -10, -1, +9]
       },
 
@@ -76,9 +76,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
      {
         zero: [0, -10, -9, -1],
-        ninety: [0, -10, +1, + 9],
+        ninety: [0, -10, +1, +9],
         twoSeventy: [0, +1, +10, +9],
-        threeSixty: [0, -10, +1, + 11]
+        threeSixty: [0, -10, +1, +11]
 
       },
 
@@ -107,14 +107,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     const makeShape = (playerIndex) => {
 let rando = 0
-let randoShape 
+let randoShape
 let adder = 0
+const randomNum = Math.round(Math.random()*6)
       for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
 
  // adder = TLZISJ0[0].zero[i]
 squares[playerIndex + adder].classList.add('player')
-rando = TLZISJ0[Math.floor(Math.random()*7)].zero[i]
 
+rando = TLZISJ0[randomNum].zero[i]
+console.log(randomNum)
+console.log(rando)
 randoShape = squares[playerIndex + rando].classList.add('player')
 }
       // squares[playerIndex + TLZISJ0[1].zero[i].classList.add('player')]
