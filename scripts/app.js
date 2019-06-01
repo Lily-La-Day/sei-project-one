@@ -105,22 +105,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     ]
 
-    const makeElle = (playerIndex) => {
+    const makeShape = (playerIndex) => {
+let rando = 0
+let randoShape 
 let adder = 0
       for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
- adder = TLZISJ0[3].zero[i]
-squares[playerIndex + adder].classList.add('player')
 
+ // adder = TLZISJ0[0].zero[i]
+squares[playerIndex + adder].classList.add('player')
+rando = TLZISJ0[Math.floor(Math.random()*7)].zero[i]
+
+randoShape = squares[playerIndex + rando].classList.add('player')
+}
       // squares[playerIndex + TLZISJ0[1].zero[i].classList.add('player')]
 
-      }
+
 
       // squares[playerIndex].classList.add('player')
       // squares[playerIndex - 10].classList.add('player')
       // squares[playerIndex - 11].classList.add('player')
       // squares[playerIndex + 10].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 10, playerIndex - 11, playerIndex + 9 ]
+      playerPos = [playerIndex, playerIndex - 10, playerIndex - 11,
+         playerIndex + 9 ]
       playerIndex = playerPos[0]
+
 
       return playerIndex
 
@@ -447,7 +455,7 @@ squares[playerIndex + adder].classList.add('player')
 
 
       }
-      makeElle(playerIndex)
+      makeShape(playerIndex)
 
 
 
