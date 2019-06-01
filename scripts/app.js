@@ -24,9 +24,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     )
   }
 
-  // const randoTetronimo = () => {
-  //
-  // }
+
 
   const makeTee = (one, two, three, four) => {
     one = 0
@@ -74,7 +72,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         threeSixty: [0, -10, +10, +20]
       },
 
-     {
+      {
         zero: [0, -10, -9, -1],
         ninety: [0, -10, +1, +9],
         twoSeventy: [0, +1, +10, +9],
@@ -91,7 +89,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
       },
 
-       {
+      {
 
         zero: [0, -1, -10, -11],
         ninety: [0, -1, -10, -11],
@@ -106,196 +104,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
     ]
 
     const makeShape = (playerIndex) => {
-let rando = 0
-let randoShape
-let adder = 0
-const randomNum = Math.round(Math.random()*6)
+      let rando = 0
+      let randoShape
+      let adder = 0
+
+      const randomNum = Math.round(Math.random()*6)
       for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
 
- // adder = TLZISJ0[0].zero[i]
-squares[playerIndex + adder].classList.add('player')
+        squares[playerIndex + adder].classList.add('player')
 
-rando = TLZISJ0[randomNum].zero[i]
-console.log(randomNum)
-console.log(rando)
-randoShape = squares[playerIndex + rando].classList.add('player')
+        rando = TLZISJ0[randomNum].zero[i]
+
+
+        randoShape = squares[playerIndex + rando].classList.add('player')
+
+        playerPos.unshift(playerIndex+rando)
+        playerPos = playerPos.slice(0,4)
+      }
+      playerIndex = playerPos[3]
+      console.log(playerPos)
+    }
+
+function rotate90(playerIndex) {
+for (let i = 0; i < TLZISJ0.length; i ++)  {
+  console.log(TLZISJ0[i].ninety)
+
 }
-      // squares[playerIndex + TLZISJ0[1].zero[i].classList.add('player')]
+}
 
-
-
-      // squares[playerIndex].classList.add('player')
-      // squares[playerIndex - 10].classList.add('player')
-      // squares[playerIndex - 11].classList.add('player')
-      // squares[playerIndex + 10].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 10, playerIndex - 11,
-         playerIndex + 9 ]
-      playerIndex = playerPos[0]
-
-
-      return playerIndex
-
-
-    }
-
-
-
-
-    const teeRight = (shapes) => {
-      one = tee.right[0]
-      two = tee.right[1]
-      three = tee.right[2]
-      four = tee.right[3]
-      squares[playerIndex + one].classList.add('player')
-      squares[playerIndex + two].classList.add('player')
-      // Elle + 1
-      squares[playerIndex + three].classList.add('player')
-      // Elle -1
-      squares[playerIndex + four].classList.add('player')
-      // Elle -10
-      playerPos = [playerIndex + one, playerIndex + two, playerIndex + three , playerIndex + four]
-      playerIndex = playerPos[0]
-      // console.log(playerIndex)
-      return playerIndex
-
-    }
-
-
-    // const makeTee = (playerIndex) => {
-    //
-    //   squares[playerIndex].classList.add('player')
-    //   squares[playerIndex - 11].classList.add('player')
-    //   squares[playerIndex - 1].classList.add('player')
-    //   squares[playerIndex + 9].classList.add('player')
-    //   playerPos = [playerIndex, playerIndex - 11, playerIndex - 1, playerIndex + 9 ]
-    //   playerIndex = playerPos[0]
-    //
-    //   return playerIndex
-    //
-    //
-    // }
-
-    // const makeElle = (playerIndex) => {
-    //
-    //   squares[playerIndex].classList.add('player')
-    //   squares[playerIndex - 10].classList.add('player')
-    //   squares[playerIndex - 11].classList.add('player')
-    //   squares[playerIndex + 10].classList.add('player')
-    //   playerPos = [playerIndex, playerIndex - 10, playerIndex - 11, playerIndex + 9 ]
-    //   playerIndex = playerPos[0]
-    //
-    //   return playerIndex
-    //
-    //
-    // }
-
-    const makeZed = (playerIndex) => {
-
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 1].classList.add('player')
-      squares[playerIndex + 10].classList.add('player')
-      squares[playerIndex + 11].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 1, playerIndex - 10, playerIndex + 11 ]
-      playerIndex = playerPos[0]
-
-      return playerIndex
-
-
-    }
-
-    const makeEye = (playerIndex) => {
-
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 1].classList.add('player')
-      squares[playerIndex - 2].classList.add('player')
-      squares[playerIndex + 1].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 1, playerIndex - 2, playerIndex + 1 ]
-      playerIndex = playerPos[0]
-
-      return playerIndex
-
-
-    }
-
-
-    const makeOh = (playerIndex) => {
-
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 1].classList.add('player')
-      squares[playerIndex - 10].classList.add('player')
-      squares[playerIndex - 11].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 1, playerIndex - 10, playerIndex + 11 ]
-      playerIndex = playerPos[0]
-
-      return playerIndex
-
-
-    }
-
-
-
-
-    //0, -11, -1, 9
-    //0, -1, +1, 10
-    //0, -9, +1, +11
-    //0, -1, +1, -10
-
-
-    const teeDown = () => {
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 1].classList.add('player')
-      squares[playerIndex  + 1].classList.add('player')
-      squares[playerIndex + 10].classList.add('player')
-      playerPos = [playerIndex, playerIndex - 1, playerIndex + 1, playerIndex + 10 ]
-      playerIndex = playerPos[0]
-      // console.log(playerIndex)
-      return playerIndex
-    }
-
-    const teeLeft = () => {
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 9].classList.add('player')
-      // Elle + 1
-      squares[playerIndex + 1].classList.add('player')
-      // Elle -1
-      squares[playerIndex + 11].classList.add('player')
-      // Elle - 9
-      playerPos = [playerIndex, playerIndex - 9, playerIndex + 1, playerIndex + 11 ]
-      playerIndex = playerPos[0]
-      // console.log(playerIndex)
-      return playerIndex
-
-    }
-
-
-
-    const teeUp = () => {
-      squares[playerIndex].classList.add('player')
-      squares[playerIndex - 1].classList.add('player')
-      squares[playerIndex  + 1].classList.add('player')
-      squares[playerIndex -10 ].classList.add('player')
-      playerPos[0] = playerIndex
-      playerPos[1] = playerIndex - 1
-      playerPos[2] = playerIndex + 1
-      playerPos[3] = playerIndex -10
-      playerIndex = playerPos[0]
-      // console.log(playerIndex)
-      return playerIndex
-    }
 
     function rotatePress(e) {
 
       switch(e.keyCode) {
         case 49:
-        // console.log(playerPos)
+
 
         clear()
-        teeRight()
+        rotate90()
 
         break
 
         case 50:
-        // console.log(playerPos)
+
         clear()
         teeDown()
 
@@ -303,7 +153,7 @@ randoShape = squares[playerIndex + rando].classList.add('player')
 
 
         case 51:
-        // console.log(playerPos)
+
         clear()
         teeLeft()
 
@@ -313,11 +163,8 @@ randoShape = squares[playerIndex + rando].classList.add('player')
         case 52:
         clear()
         teeUp()
-        // console.log(playerPos)
+
         break
-
-
-
       }
     }
 
@@ -409,16 +256,10 @@ randoShape = squares[playerIndex + rando].classList.add('player')
         switch(e.keyCode) {
           case 39:
           if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPos))){
-            // console.log(playerIndex)
-            // console.log(playerPos)
-            // playerPos.forEach(pos=>pos++)
-            // console.log(playerPos)
             playerPos[0] ++
             playerPos[1] ++
             playerPos[2] ++
             playerPos[3] ++
-
-
           }
           break
           case 37:
@@ -432,7 +273,7 @@ randoShape = squares[playerIndex + rando].classList.add('player')
           break
 
           default: playerShouldMove = false
-          // console.log(playerIndex)
+
         }
 
         if (playerShouldMove) movePlayer()
@@ -462,10 +303,10 @@ randoShape = squares[playerIndex + rando].classList.add('player')
 
 
 
-      const moveDown = () => {
+    const moveDown = () => {
         // console.log(spaceCheck(playerPos))
         // clear()
-        if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+      if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
           clear()
           // console.log('moving down')
           playerPos[0] += width
@@ -487,82 +328,17 @@ randoShape = squares[playerIndex + rando].classList.add('player')
           fixedSquares = fixedSquares.concat(playerPos)
           console.log(playerPos, fixedSquares)
           //Call function to make new tetronimo
-          makeTee(14)
+          makeShape(14)
         }
-
-
-
-
 
       }
 
-      setInterval(moveDown, 300000000)
-
-
-      // setInterval(moveDown, 100)
-
-      // squares[playerPos[0]].classList.add('player')
-      // squares[playerPos[1]].classList.add('player')
-      // squares[playerPos[2]].classList.add('player')
-      // squares[playerPos[3]].classList.add('player')
+      setInterval(moveDown, 1000000)
 
       window.addEventListener('keydown', leftRight)
       window.addEventListener('keydown', rotatePress)
     }
 
-
-
-
     init()
-
-
-
-
-    // let shapes = [
-    // 			[
-    // 				[0,0,1],
-    // 				[1,1,1],
-    // 				[0,0,0]
-    // 			],
-    // 			[
-    // 				[1,0,0], // 0, 1, 0 // 0, 0, 0 // 0, 1, 1
-    // 				[1,1,1], // 0, 1, 0 // 1, 1, 1 // 0, 1, 0
-    // 				[0,0,0]  // 1, 1, 0 // 0, 0, 1 // 0, 1, 0
-    // 			],
-    // 			[
-    // 				[0,1,1], // 0, 1, 0 // 1, 1, 0 // 0, 0, 1
-    // 				[1,1,0], // 0, 1, 1 // 0, 1, 1 // 0, 1, 1
-    // 				[0,0,0]  // 0, 0, 1 // 0, 0, 0 // 0, 1, 0
-    // 			],
-    // 			[
-    // 				[1,1,0],
-    // 				[0,1,1],
-    // 				[0,0,0]
-    // 			],
-    // 			[
-    // 				[0,1,0],
-    // 				[1,1,1],
-    // 				[0,0,0]
-    // 			],
-    // 			[
-    // 				[1,1],
-    // 				[1,1]
-    // 			],
-    // 			[
-    // 				[0,0,0,0],
-    // 				[1,1,1,1],
-    // 				[0,0,0,0],
-    // 				[0,0,0,0]
-    // 			]
-    // 		];
-    //
-
-    //
-    // fixedSquares.filter(square=> {
-    //   return playerPos.every(pos => {
-    //     pos !== square
-    //   })
-    // })
-
 
   })
