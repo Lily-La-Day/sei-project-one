@@ -139,8 +139,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 }
 
-  const inBoardCheck = (playerPos) => {
+function isNotNineLessThanRoundNumber(currentValue) {
+if ((currentValue + 10) %10 !== 0) {
+  return currentValue
+}
+}
+  const boardLeftCheck = (playerPos) => {
     return playerPos.every(isNotNineMoreThanRoundNumber)
+  }
+
+  const boardRightCheck = (playerPos) => {
+    return playerPos.every(isNotNineLessThanRoundNumber)
   }
   // //function to check if player pos is same as index of any div with the class fixed
   const spaceCheck = (playerPos) => {
@@ -196,14 +205,14 @@ pos !== fixedSquares[43]
 
 
 function leftRight(e) {
-  if (onBoardCheck(playerPos)&&inBoardCheck(playerPos)) {
+  if (onBoardCheck(playerPos)) {
     console.log(playerPos)
 
     let playerShouldMove = true
 
     switch(e.keyCode) {
       case 39:
-      if (playerIndex % width < width - 1){
+      if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPos))){
         // console.log(playerIndex)
         // console.log(playerPos)
         // playerPos.forEach(pos=>pos++)
@@ -217,7 +226,7 @@ function leftRight(e) {
       }
       break
       case 37:
-      if (playerIndex % width > 0){
+      if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
 
         playerPos[0] --
         playerPos[1] --
@@ -292,7 +301,7 @@ function init() {
   }
 
   setInterval(moveDown, 1000)
-
+32
 
   // setInterval(moveDown, 100)
 
