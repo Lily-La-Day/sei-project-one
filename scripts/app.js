@@ -4,20 +4,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const squares = []
   let playerIndex = 14
   let playerPos = [0,0,0,0]
-  let newPos = [0,0,0,0]
-  const fixedSquares = []
+  // let newPos = [0,0,0,0]
+  let fixedSquares = []
 
 
-
+//basic function to update squares to be coloured as tetonimo moves on board
   function movePlayer() {
     clear()
     squares[playerPos[0]].classList.add('player')
     squares[playerPos[1]].classList.add('player')
     squares[playerPos[2]].classList.add('player')
     squares[playerPos[3]].classList.add('player')
-    }
+  }
 
-
+//clears squares as tetromino moves
   const clear = () => {
     squares.forEach(square =>
       square.classList.remove('player')
@@ -32,6 +32,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     squares[playerIndex + 9].classList.add('player')
     playerPos = [playerIndex, playerIndex - 11, playerIndex - 1, playerIndex + 9 ]
     playerIndex = playerPos[0]
+
     return playerIndex
 
 
@@ -63,7 +64,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const teeDown = () => {
     squares[playerIndex].classList.add('player')
-    console.log(playerIndex)
     squares[playerIndex - 1].classList.add('player')
     squares[playerIndex  + 1].classList.add('player')
     squares[playerIndex + 10].classList.add('player')
@@ -133,16 +133,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
     )
   }
 // //function to check if player pos is same as index of any div with the class fixed
-  const spaceCheck = (playerPos) => {
-    return playerPos.every(pos =>
-      pos !== fixedSquares[0] &&
-     pos !== fixedSquares[1] &&
-     pos !== fixedSquares[2] &&
-     pos !== fixedSquares[3] &&
-     pos !== fixedSquares[4]
-    )
-  }
-
+const spaceCheck = (playerPos) => {
+  return playerPos.every(pos =>
+    pos !== fixedSquares[0]-10 &&
+   pos !== fixedSquares[1] -10 &&
+   pos !== fixedSquares[2] -10&&
+   pos !== fixedSquares[3] -10&&
+   pos !== fixedSquares[4] -10&&
+   pos !== fixedSquares[5] -10&&
+  pos !== fixedSquares[6] -10&&
+  pos !== fixedSquares[7] -10&&
+  pos !== fixedSquares[8] -10&&
+  pos !== fixedSquares[9] -10&&
+  pos !== fixedSquares[10]-10 &&
+ pos !== fixedSquares[11] -10&&
+ pos !== fixedSquares[12]-10 &&
+ pos !== fixedSquares[13] -10&&
+ pos !== fixedSquares[14]
+  )
+}
 
 
   function leftRight(e) {
@@ -203,10 +212,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     makeTee(playerIndex)
 
+
+
     const moveDown = () => {
 
       // clear()
-      if (onBoardCheck(playerPos)) {
+      if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
         clear()
         console.log('moving down')
         playerPos[0] += width
@@ -220,12 +231,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         playerIndex = playerPos[0]
         return playerPos
       } else {
-
+        spaceCheck(playerPos)
         squares[playerPos[0]].classList.add('fixed')
         squares[playerPos[1]].classList.add('fixed')
         squares[playerPos[2]].classList.add('fixed')
         squares[playerPos[3]].classList.add('fixed')
-        fixedSquares.concat(playerPos)
+        fixedSquares = fixedSquares.concat(playerPos)
+        console.log(fixedSquares)
         //Call function to make new tetronimo
         makeTee(14)
 
@@ -241,7 +253,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     }
 
-    setInterval(moveDown, 10000)
+    setInterval(moveDown, 1000)
 
 
     // setInterval(moveDown, 100)
@@ -301,6 +313,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // 			]
   // 		];
   //
+
+    //
+    // fixedSquares.filter(square=> {
+    //   return playerPos.every(pos => {
+    //     pos !== square
+    //   })
+    // })
 
 
 })
