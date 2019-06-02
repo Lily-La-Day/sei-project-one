@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let playerPos = [0,0,0,0]
   let fixedSquares = []
   let shapeName = ''
+  // const rows
 
 
   //basic function to update squares to be coloured as tetronimo moves on board
@@ -119,6 +120,21 @@ return shapeName
 
   }
 
+
+  function rowClear () {
+const row1 = []
+
+console.log(fixedSquares.map(square=>
+  square === 193
+
+))
+// console.log(fixedSquares)
+  // (parseFloat(square.innerHTML) > 190) {
+  // row1.push(square)
+  // console.log(row1)
+}
+
+
 //Need to find a way to get shapename out of makeshape function
 //WORK THIS OUT FIRST THING IN THE MORNING!!!
 function rotate90() {
@@ -175,7 +191,7 @@ console.log(playerPos)
   console.log(playerPos)
 
 }
-}
+}21
 
 function rotate180() {
 if (shapeName === 'Tee'){
@@ -445,50 +461,93 @@ console.log(playerPos)
   const spaceCheck = (playerPos) => {
     return playerPos.every(pos =>
 
-      pos !== fixedSquares[0]-10 &&
-      pos !== fixedSquares[1] -10 &&
-      pos !== fixedSquares[2] -10&&
-      pos !== fixedSquares[3] -10&&
-      pos !== fixedSquares[4] -10&&
-      pos !== fixedSquares[5] -10&&
-      pos !== fixedSquares[6] -10&&
-      pos !== fixedSquares[7] -10&&
-      pos !== fixedSquares[8] -10&&
-      pos !== fixedSquares[9] -10&&
-      pos !== fixedSquares[10]-10 &&
-      pos !== fixedSquares[11] -10&&
-      pos !== fixedSquares[12]-10 &&
-      pos !== fixedSquares[13] -10&&
-      pos !== fixedSquares[14] -10 &&
-      pos !== fixedSquares[15]-10 &&
-      pos !== fixedSquares[16] -10 &&
-      pos !== fixedSquares[17] -10&&
-      pos !== fixedSquares[18] -10&&
-      pos !== fixedSquares[19] -10&&
-      pos !== fixedSquares[20] -10&&
-      pos !== fixedSquares[21] -10&&
-      pos !== fixedSquares[22] -10&&
-      pos !== fixedSquares[23] -10&&
-      pos !== fixedSquares[24] -10&&
-      pos !== fixedSquares[25]-10 &&
-      pos !== fixedSquares[26] -10&&
-      pos !== fixedSquares[27]-10 &&
-      pos !== fixedSquares[28] -10&&
-      pos !== fixedSquares[29] -10&&
-      pos !== fixedSquares[30] -10 &&
-      pos !== fixedSquares[31] -10&&
-      pos !== fixedSquares[32] -10&&
-      pos !== fixedSquares[33] -10&&
-      pos !== fixedSquares[34] -10&&
-      pos !== fixedSquares[35] -10&&
-      pos !== fixedSquares[36] -10&&
-      pos !== fixedSquares[37] -10&&
-      pos !== fixedSquares[38] -10&&
-      pos !== fixedSquares[39]-10 &&
-      pos !== fixedSquares[40] -10&&
-      pos !== fixedSquares[41]-10 &&
-      pos !== fixedSquares[42] -10&&
-      pos !== fixedSquares[43]
+      pos !== fixedSquares[0] - 10 &&
+      pos !== fixedSquares[1] - 10 &&
+      pos !== fixedSquares[2] - 10 &&
+      pos !== fixedSquares[3] - 10 &&
+      pos !== fixedSquares[4] - 10 &&
+      pos !== fixedSquares[5] - 10 &&
+      pos !== fixedSquares[6] - 10 &&
+      pos !== fixedSquares[7] - 10 &&
+      pos !== fixedSquares[8] - 10 &&
+      pos !== fixedSquares[9] - 10 &&
+      pos !== fixedSquares[10] - 10 &&
+      pos !== fixedSquares[11] - 10 &&
+      pos !== fixedSquares[12] - 10 &&
+      pos !== fixedSquares[13] - 10 &&
+      pos !== fixedSquares[14] - 10 &&
+      pos !== fixedSquares[15] - 10 &&
+      pos !== fixedSquares[16] - 10 &&
+      pos !== fixedSquares[17] - 10 &&
+      pos !== fixedSquares[18] - 10 &&
+      pos !== fixedSquares[19] - 10 &&
+      pos !== fixedSquares[20] - 10 &&
+      pos !== fixedSquares[21] - 10 &&
+      pos !== fixedSquares[22] - 10 &&
+      pos !== fixedSquares[23] - 10 &&
+      pos !== fixedSquares[24] - 10 &&
+      pos !== fixedSquares[25] - 10 &&
+      pos !== fixedSquares[26] - 10 &&
+      pos !== fixedSquares[27] - 10 &&
+      pos !== fixedSquares[28] - 10 &&
+      pos !== fixedSquares[29] - 10 &&
+      pos !== fixedSquares[30] - 10 &&
+      pos !== fixedSquares[31] - 10 &&
+      pos !== fixedSquares[32] - 10 &&
+      pos !== fixedSquares[33] - 10 &&
+      pos !== fixedSquares[34] - 10 &&
+      pos !== fixedSquares[35] - 10 &&
+      pos !== fixedSquares[36] - 10 &&
+      pos !== fixedSquares[37] - 10 &&
+      pos !== fixedSquares[38] - 10 &&
+      pos !== fixedSquares[39] - 10 &&
+      pos !== fixedSquares[40] - 10 &&
+      pos !== fixedSquares[41] - 10 &&
+      pos !== fixedSquares[42] - 10 &&
+      pos !== fixedSquares[43] - 10 &&
+      pos !== fixedSquares[44] - 10 &&
+      pos !== fixedSquares[45] - 10 &&
+      pos !== fixedSquares[46] - 10 &&
+      pos !== fixedSquares[47] - 10 &&
+      pos !== fixedSquares[48] - 10 &&
+      pos !== fixedSquares[49] - 10 &&
+      pos !== fixedSquares[50] - 10 &&
+      pos !== fixedSquares[51] - 10 &&
+      pos !== fixedSquares[52] - 10 &&
+      pos !== fixedSquares[53] - 10 &&
+      pos !== fixedSquares[54] - 10 &&
+      pos !== fixedSquares[55] - 10 &&
+      pos !== fixedSquares[56] - 10 &&
+      pos !== fixedSquares[57] - 10 &&
+      pos !== fixedSquares[58] - 10 &&
+      pos !== fixedSquares[59] - 10 &&
+      pos !== fixedSquares[60] - 10 &&
+      pos !== fixedSquares[61] - 10 &&
+      pos !== fixedSquares[62] - 10 &&
+      pos !== fixedSquares[63] - 10 &&
+      pos !== fixedSquares[64] - 10 &&
+      pos !== fixedSquares[65] - 10 &&
+      pos !== fixedSquares[66] - 10 &&
+      pos !== fixedSquares[67] - 10 &&
+      pos !== fixedSquares[68] - 10 &&
+      pos !== fixedSquares[69] - 10 &&
+      pos !== fixedSquares[70] - 10 &&
+      pos !== fixedSquares[71] - 10 &&
+      pos !== fixedSquares[72] - 10 &&
+      pos !== fixedSquares[73] - 10 &&
+      pos !== fixedSquares[74] - 10 &&
+      pos !== fixedSquares[75] - 10 &&
+      pos !== fixedSquares[76] - 10 &&
+      pos !== fixedSquares[77] - 10 &&
+      pos !== fixedSquares[78] - 10 &&
+      pos !== fixedSquares[79] - 10 &&
+      pos !== fixedSquares[80] - 10 &&
+      pos !== fixedSquares[81] - 10 &&
+      pos !== fixedSquares[82] - 10 &&
+      pos !== fixedSquares[83] - 10 &&
+      pos !== fixedSquares[84] - 10 &&
+      pos !== fixedSquares[85] - 10 &&
+      pos !== fixedSquares[86]
     )
   }
 
@@ -551,6 +610,7 @@ console.log(playerPos)
 
 
     const moveDown = () => {
+      rowClear()
       // console.log(spaceCheck(playerPos))
       // clear()
       if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
@@ -580,7 +640,7 @@ console.log(playerPos)
 
     }
 
-    setInterval(moveDown, 100000000)
+    setInterval(moveDown, 1000)
 
     window.addEventListener('keydown', leftRight)
     window.addEventListener('keydown', rotatePress)
