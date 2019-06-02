@@ -7,7 +7,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let playerPos = [0,0,0,0]
   let fixedSquares = []
   let shapeName = ''
-  // const rows
+
+
 
 
   //basic function to update squares to be coloured as tetronimo moves on board
@@ -122,16 +123,19 @@ return shapeName
 
 
   function rowClear () {
-const row1 = []
+let row1 = []
+console.log(row1)
+row1 = fixedSquares.filter(el=>
+  (el < 200 && el > 189)
 
-console.log(fixedSquares.map(square=>
-  square === 193
+)
 
-))
-// console.log(fixedSquares)
-  // (parseFloat(square.innerHTML) > 190) {
-  // row1.push(square)
-  // console.log(row1)
+if(row1.length === 10) {
+  row1.forEach(number =>
+    squares[number].classList.remove('f1ixed')
+  )
+}
+console.log(row1)
 }
 
 
@@ -640,7 +644,7 @@ console.log(playerPos)
 
     }
 
-    setInterval(moveDown, 1000)
+    setInterval(moveDown, 1000000)
 
     window.addEventListener('keydown', leftRight)
     window.addEventListener('keydown', rotatePress)
