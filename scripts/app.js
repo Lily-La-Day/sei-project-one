@@ -123,19 +123,23 @@ return shapeName
 
 
   function rowClear () {
-let row1 = []
-console.log(row1)
-row1 = fixedSquares.filter(el=>
+let rows =[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],]
+console.log(rows[0])
+rows[0] = fixedSquares.filter(el=>
   (el < 200 && el > 189)
 
 )
 
-if(row1.length === 10) {
-  row1.forEach(number =>
-    squares[number].classList.remove('f1ixed')
+if(rows[0].length === 10) {
+  rows[0].forEach(number => {
+console.log(squares[number-10].className)
+    if (squares[number-10].className !== 'grid-item fixed') {
+      squares[number].classList.remove('fixed')
+    }
+    2}
   )
 }
-console.log(row1)
+console.log(rows[0])
 }
 
 
@@ -195,7 +199,7 @@ console.log(playerPos)
   console.log(playerPos)
 
 }
-}21
+}
 
 function rotate180() {
 if (shapeName === 'Tee'){
@@ -644,7 +648,7 @@ console.log(playerPos)
 
     }
 
-    setInterval(moveDown, 1000000)
+    setInterval(moveDown, 500)
 
     window.addEventListener('keydown', leftRight)
     window.addEventListener('keydown', rotatePress)
