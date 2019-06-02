@@ -144,15 +144,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     rows[5] = fixedSquares.filter(el=>
       (el < 150 && el > 139)
     )
-    rows.forEach((row) => {
+
+    return rows.map((row) => {
       if(row.length === 10) {
         document.querySelectorAll('.fixed').forEach(square=> square.classList.add('temp'))
         document.querySelectorAll('.temp').forEach(square=> square.classList.remove('fixed'))
-        row = []
+      row = []
+      console.log(row)
+      shiftRows()
       }
 })
 
-shiftRows()
+
 
  }
 
@@ -690,7 +693,7 @@ for(let i = 0; i < squares.length; i ++) {
 
 
       const moveDown = () => {
-        rowClear()
+
         // console.log(spaceCheck(playerPos))
         // clear()
         if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
@@ -713,6 +716,7 @@ for(let i = 0; i < squares.length; i ++) {
           squares[playerPos[2]].classList.add('fixed')
           squares[playerPos[3]].classList.add('fixed')
           fixedSquares = fixedSquares.concat(playerPos)
+          rowClear()
           // console.log(playerIndex)
           //Call function to make new tetronimo
           makeShape(14)
