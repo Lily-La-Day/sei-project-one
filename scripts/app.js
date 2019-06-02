@@ -32,8 +32,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 3, 13, 23],
       zero: [0, -11, -1, 9],
       ninety: [0, -1, +1, 10],
-      twoSeventy: [0, -9, +1, +11],
-      threeSixty: [0, -1, +1, -10]
+      oneEighty: [0, -9, +1, +11],
+      twoSeventy: [0, -1, +1, -10]
     },
 
     {
@@ -41,8 +41,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 3, 13, 23],
       zero: [0, -11, -1, 9],
       ninety: [0, -1, +1, 10],
-      twoSeventy: [0, -9, +1, +11],
-      threeSixty: [0, -1, +1, -10]
+      oneEighty: [0, -9, +1, +11],
+      twoSeventy: [0, -1, +1, -10]
     },
 
 
@@ -51,8 +51,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 4, 3, 15],
       zero: [0, -10, -11, 1],
       ninety: [0, 1, +10, -9],
-      twoSeventy: [0, -1, +10, +11],
-      threeSixty: [0, -10, -1, +9]
+      oneEighty: [0, -1, +10, +11],
+      twoSeventy: [0, -10, -1, +9]
     },
 
     {
@@ -60,8 +60,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 15, 13, 12],
       zero: [0, 1, -1, -2],
       ninety: [0, -10, -20, +10],
-      twoSeventy: [0, -1, 1, 2],
-      threeSixty: [0, -10, +10, +20]
+      oneEighty: [0, -1, 1, 2],
+      twoSeventy: [0, -10, +10, +20]
     },
 
     {
@@ -69,8 +69,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 4, 5, 13],
       zero: [0, -10, -9, -1],
       ninety: [0, -10, +1, +9],
-      twoSeventy: [0, +1, +10, +9],
-      threeSixty: [0, -10, +1, +11]
+      oneEighty: [0, +1, +10, +9],
+      twoSeventy: [0, -10, +1, +11]
 
     },
 
@@ -79,8 +79,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 15, 13, 25],
       zero: [0, +1, -1, +11],
       ninety: [0, -10, -9, +10],
-      twoSeventy: [0, -1, +1, -11],
-      threeSixty: [0, +10, +9, -10]
+      oneEighty: [0, -1, +1, -11],
+      twoSeventy: [0, +10, +9, -10]
 
     },
 
@@ -89,8 +89,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
       start: [14, 13, 4, 3],
       zero: [0, -1, -10, -11],
       ninety: [0, -1, -10, -11],
-      twoSeventy: [ 0, -1, -10, -11],
-      threeSixty: [0, -1, -10, -11]
+      oneEighty: [ 0, -1, -10, -11],
+      twoSeventy: [0, -1, -10, -11]
 
     }
 
@@ -112,33 +112,244 @@ window.addEventListener('DOMContentLoaded', (event) => {
       playerPos = playerPos.slice(0,4)
     }
     playerIndex = playerPos[3]
-   shapeName += TLZISJ0[randomNum].Name
-   console.log(randomNum)
-   console.log(shapeName)
+   shapeName = TLZISJ0[randomNum].Name
+   // console.log(randomNum)
+
 return shapeName
 
   }
 
 //Need to find a way to get shapename out of makeshape function
 //WORK THIS OUT FIRST THING IN THE MORNING!!!
-function rotate() {
+function rotate90() {
 if (shapeName === 'Tee'){
   playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
-  console.log(playerPos[0])
-  console.log(playerIndex)
   playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
   playerPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
-  playerPos[0] = (playerIndex+ TLZISJ0[0].ninety[3])
-
-  console.log(`new position should be ${playerPos}`)
-
-
-} else {
-    console.log('not tee')
+  playerPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Elle'){
+  playerPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
+  console.log(playerIndex)
+// console.log(`new position should be ${playerPos}`)
+} else if (shapeName === 'Zed'){
+  playerPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
+playerPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
     console.log(playerIndex)
-}
+  console.log(playerPos)
+} else if (shapeName === 'Eye'){
+  playerPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
+    console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Ess'){
+  playerPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+} else if (shapeName === 'Jay'){
+  playerPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+}  else if (shapeName === 'Oh'){
+  playerPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
+  console.log(playerIndex)
+  console.log(playerPos)
 
 }
+}
+
+function rotate180() {
+if (shapeName === 'Tee'){
+  playerPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
+console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Elle'){
+  playerPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
+  console.log(playerIndex)
+// console.log(`new position should be ${playerPos}`)
+} else if (shapeName === 'Zed'){
+  playerPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
+playerPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+} else if (shapeName === 'Eye'){
+  playerPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
+    console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Ess'){
+  playerPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+} else if (shapeName === 'Jay'){
+  playerPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+}  else if (shapeName === 'Oh'){
+  playerPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
+  playerPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
+  console.log(playerIndex)
+  console.log(playerPos)
+
+}
+}
+
+function rotate270() {
+if (shapeName === 'Tee'){
+  playerPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
+console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Elle'){
+  playerPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
+  console.log(playerIndex)
+// console.log(`new position should be ${playerPos}`)
+} else if (shapeName === 'Zed'){
+  playerPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
+playerPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+} else if (shapeName === 'Eye'){
+  playerPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
+    console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Ess'){
+  playerPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+} else if (shapeName === 'Jay'){
+  playerPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+}  else if (shapeName === 'Oh'){
+  playerPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
+  playerPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
+  console.log(playerIndex)
+  console.log(playerPos)
+
+}
+}
+
+function rotate360() {
+if (shapeName === 'Tee'){
+  playerPos[0] = (playerIndex + TLZISJ0[0].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[0].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
+console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Elle'){
+  playerPos[0] = (playerIndex + TLZISJ0[1].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[1].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
+  console.log(playerIndex)
+// console.log(`new position should be ${playerPos}`)
+} else if (shapeName === 'Zed'){
+  playerPos[0] = (playerIndex + TLZISJ0[2].zero[0])
+playerPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[2].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+} else if (shapeName === 'Eye'){
+  playerPos[0] = (playerIndex + TLZISJ0[3].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[3].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
+    console.log(playerIndex)
+console.log(playerPos)
+} else if (shapeName === 'Ess'){
+  playerPos[0] = (playerIndex + TLZISJ0[4].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[4].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+} else if (shapeName === 'Jay'){
+  playerPos[0] = (playerIndex + TLZISJ0[5].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[5].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
+    console.log(playerIndex)
+  console.log(playerPos)
+
+}  else if (shapeName === 'Oh'){
+  playerPos[0] = (playerIndex + TLZISJ0[6].zero[0])
+  playerPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
+  playerPos[2] = (playerIndex + TLZISJ0[6].zero[2])
+  playerPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
+  console.log(playerIndex)
+  console.log(playerPos)
+
+}
+}
+
+
+
+
+
+
   // rando = TLZISJ0[randomNum].zero[i]
   // // const shapeName =TLZISJ0[randomNum].Name
   //
@@ -176,14 +387,14 @@ if (shapeName === 'Tee'){
 
 
       clear()
-    rotate()
+    rotate90()
 
       break
 
       case 50:
 
       clear()
-      rotate()
+      rotate180()
 
       break
 
@@ -191,14 +402,14 @@ if (shapeName === 'Tee'){
       case 51:
 
       clear()
-      rotate()
+      rotate270()
 
       break
 
 
       case 52:
       clear()
-      rotate()
+      rotate360()
 
       break
     }
@@ -362,14 +573,14 @@ if (shapeName === 'Tee'){
         squares[playerPos[2]].classList.add('fixed')
         squares[playerPos[3]].classList.add('fixed')
         fixedSquares = fixedSquares.concat(playerPos)
-        console.log(playerPos, fixedSquares)
+        // console.log(playerIndex)
         //Call function to make new tetronimo
         makeShape(14)
       }
 
     }
 
-    setInterval(moveDown, 10000)
+    setInterval(moveDown, 100000000)
 
     window.addEventListener('keydown', leftRight)
     window.addEventListener('keydown', rotatePress)
