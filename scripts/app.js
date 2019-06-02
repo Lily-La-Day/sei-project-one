@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let TLZISJ0 = [
     {
       Name: 'Tee',
-      start: [14, 3, 13, 4],
+      start: [14, 3, 13, 23],
       zero: [0, -11, -1, 9],
       ninety: [0, -1, +1, 10],
       twoSeventy: [0, -9, +1, +11],
@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     },
 
     {
-      Name: 'Elle',
+      Name: 'Elle',     //NOT RIGHT
       start: [14, 3, 13, 23],
       zero: [0, -11, -1, 9],
       ninety: [0, -1, +1, 10],
@@ -98,11 +98,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const makeShape = (playerIndex) => {
     let rando = 0
-    const adder = 0
+    // const adder = 0
     const randomNum = Math.floor(Math.random()*6)
     for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
 
-      squares[playerIndex + adder].classList.add('player')
+      // squares[playerIndex + adder].classList.add('player')
 
       rando = TLZISJ0[randomNum].zero[i]
       // const shapeName =TLZISJ0[randomNum].Name
@@ -123,17 +123,19 @@ return shapeName
 //WORK THIS OUT FIRST THING IN THE MORNING!!!
 function rotate() {
 if (shapeName === 'Tee'){
-
-  playerPos[0] + TLZISJ0[1].ninety[0]
-  playerPos[1] += TLZISJ0[1].ninety[1]
-  playerPos[2] += TLZISJ0[1].ninety[2]
-  playerPos[2] += TLZISJ0[1].ninety[3]
+  playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
+  console.log(playerPos[0])
+  console.log(playerIndex)
+  playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
+  playerPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
+  playerPos[0] = (playerIndex+ TLZISJ0[0].ninety[3])
 
   console.log(`new position should be ${playerPos}`)
 
 
 } else {
     console.log('not tee')
+    console.log(playerIndex)
 }
 
 }
