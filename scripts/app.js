@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   const makeShape = (playerIndex) => {
     let rando = 0
     const adder = 0
-    const randomNum = Math.round(Math.random()*6)
+    const randomNum = Math.floor(Math.random()*6)
     for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
 
       squares[playerIndex + adder].classList.add('player')
@@ -113,16 +113,51 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     playerIndex = playerPos[3]
    shapeName += TLZISJ0[randomNum].Name
+   console.log(randomNum)
    console.log(shapeName)
 return shapeName
 
   }
 
 //Need to find a way to get shapename out of makeshape function
-
+//WORK THIS OUT FIRST THING IN THE MORNING!!!
 function rotate() {
-  console.log(shapeName)
+if (shapeName === 'Tee'){
+
+  playerPos[0] + TLZISJ0[1].ninety[0]
+  playerPos[1] += TLZISJ0[1].ninety[1]
+  playerPos[2] += TLZISJ0[1].ninety[2]
+  playerPos[2] += TLZISJ0[1].ninety[3]
+
+  console.log(`new position should be ${playerPos}`)
+
+
+} else {
+    console.log('not tee')
 }
+
+}
+  // rando = TLZISJ0[randomNum].zero[i]
+  // // const shapeName =TLZISJ0[randomNum].Name
+  //
+  // squares[playerIndex + rando].classList.add('player')
+  // playerPos.unshift(playerIndex+rando)
+  // playerPos = playerPos.slice(0,4)
+
+//   } else if (shapeName === 'Elle') {
+//     console.log('L')
+//   } else if (shapeName === 'Zed') {
+//     console.log('Z')
+//   } else if (shapeName === 'Eye') {
+//     console.log('I')
+//   } else if (shapeName === 'Ess') {
+//     console.log('S')
+//   } else if (shapeName === 'Jay') {
+//     console.log('J')
+//   } else if (shapeName === 'Oh') {
+//     console.log('O')
+//   }
+// }
 
 
 
