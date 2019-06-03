@@ -602,20 +602,21 @@ window.addEventListener('DOMContentLoaded', () => {
         return playerPos
       } else {
         spaceCheck(playerPos)
-        const nextPlace = playerPos.map(pos=> pos + 10)
+        let nextPlace = playerPos.map(pos=> pos + 10)
         console.log(nextPlace)
-        const nextPlaceFiltered = nextPlace.filter(place =>
-          place > 190)
-        console.log(nextPlaceFiltered)
+        nextPlace= nextPlace.filter(place =>
+          place < 200)
+        console.log(nextPlace)
         squares[playerPos[0]].classList.add('fixed')
         squares[playerPos[1]].classList.add('fixed')
         squares[playerPos[2]].classList.add('fixed')
         squares[playerPos[3]].classList.add('fixed')
-
-        // squares[nextPlace[0]].classList.add('next')
+if(nextPlace.length === 1){
+        squares[nextPlace[0]].classList.add('next')
         // squares[nextPlace[1]].classList.add('next')
         // squares[nextPlace[2]].classList.add('next')
         // squares[nextPlace[3]].classList.add('next')
+      }
         fixedSquares = fixedSquares.concat(playerPos)
 
 
