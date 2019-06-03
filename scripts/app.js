@@ -141,29 +141,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     // for(let i = 0; i <rows.length; i ++) {
-    for(let i = 0; i < rows.length; i ++) {
-      if(rows[i].length === 10) {
+
+      if(rows[0].length === 10) {
         console.log('working')
         // document.querySelectorAll('.fixed').forEach(square=> square.classList.add('temp'))
         squares.forEach(square=> square.classList.remove('fixed'))
-        clearRow(rows, i)
+        rows[0] = rows[1]
+        rows[0] = rows[0].map(el=> el + 10)
+
+        console.log(rows[0])
+        rows[0].forEach((elem) => {
+          squares.forEach((square) => {
+            if (square.classList.contains(elem)) {
+              console.log(elem)
+              square.classList.add('fixed')
+            }
+          })
+        })
+        // clearRow(rows[0])
       }
     }
-  }
 
-  function clearRow(rows, i) {
 
-    rows[i] = rows[i+1]
-    rows[i].map(el=> el + 10)
-    console.log(rows[i])
-    rows[i].forEach((elem) => {
-      squares.forEach((square) => {
-        if (square.classList.contains(elem)) {
-          square.classList.add('fixed')
-        }
-      })
-    })
-  }
+  // function clearRow(rows[0]) {
+  //
+  // }
   //Need to find a way to get shapename out of makeshape function
   //WORK THIS OUT FIRST THING IN THE MORNING!!!
   function rotate90() {
@@ -614,13 +616,13 @@ window.addEventListener('DOMContentLoaded', () => {
         squares[playerPos[2]].classList.add('fixed')
         squares[playerPos[3]].classList.add('fixed')
         fixedSquares = fixedSquares.concat(playerPos)
-        rowClear()
+
 
         // console.log(playerIndex)
         //Call function to make new tetronimo
         makeShape(14)
       }
-
+  rowClear()
 
     }
 
