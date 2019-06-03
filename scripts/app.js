@@ -1,5 +1,5 @@
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
 
   const width = 10
   const squares = []
@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   let playerPos = [0,0,0,0]
   let fixedSquares = []
   let shapeName = ''
+
 
 
 
@@ -28,7 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
 
-  let TLZISJ0 = [
+  const TLZISJ0 = [
     {
       Name: 'Tee',
       start: [14, 3, 13, 23],
@@ -100,23 +101,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   const makeShape = (playerIndex) => {
     let rando = 0
-    // const adder = 0
-    const randomNum = Math.floor(Math.random()*6)
+
+    const randomNum = Math.floor(Math.random()*7)
     for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
-
-      // squares[playerIndex + adder].classList.add('player')
-
       rando = TLZISJ0[randomNum].zero[i]
-      // const shapeName =TLZISJ0[randomNum].Name
-
       squares[playerIndex + rando].classList.add('player')
       playerPos.unshift(playerIndex+rando)
       playerPos = playerPos.slice(0,4)
     }
     playerIndex = playerPos[3]
     shapeName = TLZISJ0[randomNum].Name
-    // console.log(randomNum)
-
     return shapeName
 
   }
@@ -145,35 +139,64 @@ window.addEventListener('DOMContentLoaded', (event) => {
       (el < 150 && el > 139)
     )
 
-    return rows.map((row) => {
+
+    rows.forEach((row) => {
       if(row.length === 10) {
         document.querySelectorAll('.fixed').forEach(square=> square.classList.add('temp'))
         document.querySelectorAll('.temp').forEach(square=> square.classList.remove('fixed'))
-      row = []
-      console.log(row)
-      shiftRows()
+        row = []
       }
 })
 
 
 
- }
-
-
-
-
-  function shiftRows() {
-
-for(let i = 0; i < squares.length; i ++) {
-      if (squares[i].className === 'grid-item temp') {
-
-   squares[i].classList.remove('temp')
-  squares[i+10].classList.add('fixed')
-
-
+for (let i = 0; i < squares.length; i++) {
+if(squares[i].className === 'grid-item temp') {
+    squares[i+10].classList.add('fixed')
+squares[i].classList.remove('temp')
+console.log(rows)
+  }
 }
 }
-}
+
+
+
+// let activeSquares =[]
+// let activeSquaresPlus = []
+//   let index = indexOf
+//             if (squares[index].className === 'grid-item temp') {
+// activeSquares += squares[index]
+// activeSquaresPlus += squares[i+10]
+// console.log(activeSquares)
+// console.log(activeSquaresPlus)
+         // activeSquares.classList.remove('temp')
+         // squares[i+10].classList.add('fixed')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   function shiftRows() {
+//
+// for(let i = 0; i < squares.length; i ++) {
+//       if (squares[i].className === 'grid-item temp') {
+//
+//    squares[i].classList.remove('temp')
+//   squares[i+10].classList.add('fixed')
+//
+//
+//
+// }
+// }
 
 
 
@@ -686,7 +709,6 @@ for(let i = 0; i < squares.length; i ++) {
         squares.push(square)
         grid.append(square)
 
-
       }
       makeShape(playerIndex)
 
@@ -724,7 +746,7 @@ for(let i = 0; i < squares.length; i ++) {
 
       }
 
-      setInterval(moveDown, 1000)
+      setInterval(moveDown, 700)
 
       window.addEventListener('keydown', leftRight)
       window.addEventListener('keydown', rotatePress)
