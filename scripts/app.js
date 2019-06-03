@@ -123,6 +123,8 @@ window.addEventListener('DOMContentLoaded', () => {
     rows[0] = fixedSquares.filter(el=>
       (el < 200 && el > 189)
     )
+
+
     rows[1] = fixedSquares.filter(el=>
       (el < 190 && el > 179)
     )
@@ -135,24 +137,35 @@ window.addEventListener('DOMContentLoaded', () => {
     rows[4] = fixedSquares.filter(el=>
       (el < 160 && el > 149)
     )
+
+
     rows[5] = fixedSquares.filter(el=>
       (el < 150 && el > 139)
     )
 
+rowCheck(rows)
 
-    // for(let i = 0; i <rows.length; i ++) {
 
-      if(rows[0].length === 10) {
+  }
 
+  const rowCheck = (rows) => {
+    for (let i = 0; i <rows.length; i ++) {
+      if (rows[i].length === 10) {
         document.querySelectorAll('.fixed').forEach(square=> square.classList.remove('fixed'))
         document.querySelectorAll('.next').forEach(square=> square.classList.add('fixed'))
-        console.log(squares)
+        // squares.forEach(square=> {if(square.className===''){
+        //   square.remo
+        // })}
 
+console.log(rows)
+squares.forEach(square=> {
+  square.classList.remove('next')
+})
 
+}
+}
 
-
-      }
-    }
+}
 
 
   // function clearRow(rows[0]) {
@@ -632,10 +645,13 @@ if(nextPlace.length === 1){
         fixedSquares = fixedSquares.concat(playerPos)
   rowClear()
 
+
+
         // console.log(playerIndex)
         //Call function to make new tetronimo
         makeShape(14)
       }
+
 
 
     }
