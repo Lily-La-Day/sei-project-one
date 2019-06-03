@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerIndex = 14
   let playerPos = [0,0,0,0]
   let fixedSquares = []
+
   let shapeName = ''
 
 
@@ -117,55 +118,96 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   function rowClear() {
-    const rows =[[],[]]
+
+
+    let fixedDivs = []
+    fixedDivs = squares.filter(square =>
+      (square.className === 'grid-item fixed')
+    )
+  const rows =[[],[]]
     // console.log(rows[0])
 
-    rows[0] = fixedSquares.filter(el=>
-      (el < 200 && el > 189)
+    rows[0] = squares.filter((el, index) =>
+      (index < 200 && index > 189 && el.className === 'grid-item fixed')
+    )
+    rows[1] = squares.filter((el, index) =>
+      (index < 190 && index > 179 && el.className === 'grid-item fixed')
+    )
+    rows[2] = squares.filter((el, index) =>
+      (index < 180 && index > 169 && el.className === 'grid-item fixed')
+    )
+    rows[3] = squares.filter((el, index) =>
+      (index < 170 && index > 159 && el.className === 'grid-item fixed')
+    )
+    rows[4] = squares.filter((el, index) =>
+      (index < 160 && index > 149 && el.className === 'grid-item fixed')
+    )
+    rows[5] = squares.filter((el, index) =>
+      (index < 150 && index > 139 && el.className === 'grid-item fixed')
+    )
+    rows[6] = squares.filter((el, index) =>
+      (index < 140 && index > 129 && el.className === 'grid-item fixed')
+    )
+    rows[7] = squares.filter((el, index) =>
+      (index < 130 && index > 119 && el.className === 'grid-item fixed')
+    )
+
+    rows[9] = squares.filter((el, index) =>
+      (index < 120 && index > 109 && el.className === 'grid-item fixed')
+    )
+    rows[10] = squares.filter((el, index) =>
+      (index < 110 && index > 99 && el.className === 'grid-item fixed')
+    )
+    rows[11] = squares.filter((el, index) =>
+      (index < 100 && index > 89 && el.className === 'grid-item fixed')
+    )
+    rows[12] = squares.filter((el, index) =>
+      (index < 90 && index > 79 && el.className === 'grid-item fixed')
+    )
+    rows[13] = squares.filter((el, index) =>
+      (index < 80 && index > 69 && el.className === 'grid-item fixed')
+    )
+    rows[14] = squares.filter((el, index) =>
+      (index < 70 && index > 59 && el.className === 'grid-item fixed')
+    )
+    rows[15] = squares.filter((el, index) =>
+      (index < 60 && index > 49 && el.className === 'grid-item fixed')
+    )
+    rows[16] = squares.filter((el, index) =>
+      (index < 50 && index > 39 && el.className === 'grid-item fixed')
+    )
+    rows[17] = squares.filter((el, index) =>
+      (index < 40 && index > 29 && el.className === 'grid-item fixed')
+    )
+    rows[18] = squares.filter((el, index) =>
+      (index < 30 && index > 19 && el.className === 'grid-item fixed')
+    )
+    rows[19] = squares.filter((el, index) =>
+      (index < 20 && index > 9 && el.className === 'grid-item fixed')
+    )
+    rows[20] = squares.filter((el, index) =>
+      (index < 10 && index > 0 && el.className === 'grid-item fixed')
     )
 
 
-    rows[1] = fixedSquares.filter(el=>
-      (el < 190 && el > 179)
-    )
-    rows[2] = fixedSquares.filter(el=>
-      (el < 180 && el > 169)
-    )
-    rows[3] = fixedSquares.filter(el=>
-      (el < 170 && el > 159)
-    )
-    rows[4] = fixedSquares.filter(el=>
-      (el < 160 && el > 149)
-    )
 
-
-    rows[5] = fixedSquares.filter(el=>
-      (el < 150 && el > 139)
-    )
-
-rowCheck(rows)
+  // for(let j = 0; j < rows.length; j ++) {
+  //       if(rows[j].length===10) {
+  //         for(let i = 0; i<fixedDivs.length; i ++) {
+  //           fixedDivs[i].classList.remove('fixed')
+  //
+  //         }
+  //
+  //         console.log('working')
+  //         rows[j] = []
+  //         console.log(rows)
+  //
+  //       }
+  //
+  //   }
 
 
   }
-
-  const rowCheck = (rows) => {
-    for (let i = 0; i <rows.length; i ++) {
-      if (rows[i].length === 10) {
-        document.querySelectorAll('.fixed').forEach(square=> square.classList.remove('fixed'))
-        document.querySelectorAll('.next').forEach(square=> square.classList.add('fixed'))
-        // squares.forEach(square=> {if(square.className===''){
-        //   square.remo
-        // })}
-
-console.log(rows)
-squares.forEach(square=> {
-  square.classList.remove('next')
-})
-
-}
-}
-
-}
 
 
   // function clearRow(rows[0]) {
@@ -588,7 +630,6 @@ squares.forEach(square=> {
       const square = document.createElement('div')
       square.classList.add('grid-item')
       square.innerHTML = i
-      square.classList.add(i)
       squares.push(square)
       grid.append(square)
 
@@ -616,34 +657,16 @@ squares.forEach(square=> {
         return playerPos
       } else {
         spaceCheck(playerPos)
-        let nextPlace = playerPos.map(pos=> pos + 10)
-        console.log(nextPlace)
-        nextPlace= nextPlace.filter(place =>
-          place < 200)
-        console.log(nextPlace)
+
         squares[playerPos[0]].classList.add('fixed')
         squares[playerPos[1]].classList.add('fixed')
         squares[playerPos[2]].classList.add('fixed')
         squares[playerPos[3]].classList.add('fixed')
-if(nextPlace.length === 1){
-        squares[nextPlace[0]].classList.add('next')
-      } else if (nextPlace.length === 2) {
-        squares[nextPlace[0]].classList.add('next')
-        squares[nextPlace[1]].classList.add('next')
-      } else if (nextPlace.length === 3) {
-        squares[nextPlace[0]].classList.add('next')
-        squares[nextPlace[1]].classList.add('next')
-        squares[nextPlace[2]].classList.add('next')
-      } else if(nextPlace.length === 4) {
-      squares[nextPlace[0]].classList.add('next')
-      squares[nextPlace[1]].classList.add('next')
-      squares[nextPlace[2]].classList.add('next')
-      squares[nextPlace[3]].classList.add('next')
-    }
+
 
 
         fixedSquares = fixedSquares.concat(playerPos)
-  rowClear()
+
 
 
 
@@ -652,7 +675,7 @@ if(nextPlace.length === 1){
         makeShape(14)
       }
 
-
+      rowClear()
 
     }
 
