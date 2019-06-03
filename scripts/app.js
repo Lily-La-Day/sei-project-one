@@ -116,42 +116,43 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // function rowClear() {
-  //   const rows =[[],[]]
-  //   // console.log(rows[0])
-  //
-  //   rows[0] = fixedSquares.filter(el=>
-  //     (el < 200 && el > 189)
-  //   )
-  //   rows[1] = fixedSquares.filter(el=>
-  //     (el < 190 && el > 179)
-  //   )
-  //   rows[2] = fixedSquares.filter(el=>
-  //     (el < 180 && el > 169)
-  //   )
-  //   rows[3] = fixedSquares.filter(el=>
-  //     (el < 170 && el > 159)
-  //   )
-  //   rows[4] = fixedSquares.filter(el=>
-  //     (el < 160 && el > 149)
-  //   )
-  //   rows[5] = fixedSquares.filter(el=>
-  //     (el < 150 && el > 139)
-  //   )
-  //
-  //
-  //   // for(let i = 0; i <rows.length; i ++) {
-  //
-  //     if(rows[0].length === 10) {
-  //
-  //       document.querySelectorAll('.fixed').forEach(square=> square.classList.add('temp'))
-  //       squares.forEach(square=> square.classList.remove('fixed'))
-  //
-  //
-  //
-  //
-  //     }
-  //   }
+  function rowClear() {
+    const rows =[[],[]]
+    // console.log(rows[0])
+
+    rows[0] = fixedSquares.filter(el=>
+      (el < 200 && el > 189)
+    )
+    rows[1] = fixedSquares.filter(el=>
+      (el < 190 && el > 179)
+    )
+    rows[2] = fixedSquares.filter(el=>
+      (el < 180 && el > 169)
+    )
+    rows[3] = fixedSquares.filter(el=>
+      (el < 170 && el > 159)
+    )
+    rows[4] = fixedSquares.filter(el=>
+      (el < 160 && el > 149)
+    )
+    rows[5] = fixedSquares.filter(el=>
+      (el < 150 && el > 139)
+    )
+
+
+    // for(let i = 0; i <rows.length; i ++) {
+
+      if(rows[0].length === 10) {
+
+        document.querySelectorAll('.fixed').forEach(square=> square.classList.remove('fixed'))
+        document.querySelectorAll('.next').forEach(square=> square.classList.add('fixed'))
+        console.log(squares)
+
+
+
+
+      }
+    }
 
 
   // function clearRow(rows[0]) {
@@ -613,12 +614,23 @@ window.addEventListener('DOMContentLoaded', () => {
         squares[playerPos[3]].classList.add('fixed')
 if(nextPlace.length === 1){
         squares[nextPlace[0]].classList.add('next')
-        // squares[nextPlace[1]].classList.add('next')
-        // squares[nextPlace[2]].classList.add('next')
-        // squares[nextPlace[3]].classList.add('next')
-      }
-        fixedSquares = fixedSquares.concat(playerPos)
+      } else if (nextPlace.length === 2) {
+        squares[nextPlace[0]].classList.add('next')
+        squares[nextPlace[1]].classList.add('next')
+      } else if (nextPlace.length === 3) {
+        squares[nextPlace[0]].classList.add('next')
+        squares[nextPlace[1]].classList.add('next')
+        squares[nextPlace[2]].classList.add('next')
+      } else if(nextPlace.length === 4) {
+      squares[nextPlace[0]].classList.add('next')
+      squares[nextPlace[1]].classList.add('next')
+      squares[nextPlace[2]].classList.add('next')
+      squares[nextPlace[3]].classList.add('next')
+    }
 
+
+        fixedSquares = fixedSquares.concat(playerPos)
+  rowClear()
 
         // console.log(playerIndex)
         //Call function to make new tetronimo
