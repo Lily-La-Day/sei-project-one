@@ -140,24 +140,30 @@ window.addEventListener('DOMContentLoaded', () => {
     )
 
 
-    rows.forEach((row) => {
-      if(row.length === 10) {
+    for(let i = 0; i <rows.length; i ++) {
+      if(rows[i].length === 10) {
         document.querySelectorAll('.fixed').forEach(square=> square.classList.add('temp'))
         document.querySelectorAll('.temp').forEach(square=> square.classList.remove('fixed'))
-        row = []
+        rows[i] = []
+        console.log(rows[i])
+        console.log(rows)
       }
-})
+}
 
 
 
-for (let i = 0; i < squares.length; i++) {
+for (let i = 0; i < squares.length-10; i++) {
 if(squares[i].className === 'grid-item temp') {
     squares[i+10].classList.add('fixed')
-squares[i].classList.remove('temp')
+
 console.log(rows)
   }
 }
+
+squares.forEach(square => square.classList.remove('temp'))
 }
+
+
 
 
 
