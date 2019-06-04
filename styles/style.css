@@ -38,3 +38,7 @@ div.grid-item.player {
 .fixed {
   background-color: HotPink !important;
 }
+
+.test {
+  background-color: turquoise !important;
+}
