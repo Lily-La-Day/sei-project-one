@@ -16,6 +16,26 @@ window.addEventListener('DOMContentLoaded', () => {
     )
   }
 
+  const equalityCheck = (arrayOne, arrayTwo) => {
+
+for(let i = 0; i < arrayOne.length; i++) {
+  for(let j = 0; j < arrayTwo.length; j++) {
+    if (arrayOne.sort()[i] === arrayTwo.sort()[j]){
+    return true
+
+        } else {
+    return false
+  }
+
+
+  }
+}
+
+
+  }
+
+  console.log(equalityCheck([2,2,3,5], [2,2,3,5]))
+
   //function to make grid, 20 x 10 with an extra hidden row to account for
   //difficulty with shifting rows
   init()
@@ -31,16 +51,33 @@ window.addEventListener('DOMContentLoaded', () => {
       create: function(playerIndex) {
         return this.start
       },
+
+
       turn: function(playerIndex) {
-        console.log(this.ninety.map(num=> playerIndex + num))
-        if(playerPosArr === this.start){
-          playerPosArr = this.ninety.map(num=> playerIndex + num)
-          return this.ninety.map(num=> playerIndex + num)
-        } else if (playerPosArr ===
-           this.ninety.map(num=> playerIndex + num)) {
-          return this.oneEighty.map(num=> playerIndex + num)
+const ninety = this.ninety.map(num=> playerIndex + num)
+        if(playerPosArr === this.start) {
+           playerPosArr = this.ninety.map(num=> playerIndex + num)
+           console.log(playerPosArr)
+           console.log(this.ninety.map(num=> playerIndex + num))
+
+        } else if (equalityCheck(playerPosArr,ninety)) {
+console.log(equalityCheck(playerPosArr,ninety))
+          playerPosArr = this.oneEighty.map(num=> playerIndex + num)
         }
       }
+
+            // console.log(playerPosArr)
+        //   } else if (playerPosArr ===
+        //    this.oneEighty.map(num=> playerIndex + num)) {
+        //   return this.oneTwoSeventy.map(num=> playerIndex + num)
+        // } else if (playerPosArr ===
+        //    this.twoSeventy.map(num=> playerIndex + num)) {
+        //   return this.threeSixty.map(num=> playerIndex + num)
+        // } else if (playerPosArr ===
+        //    this.threeSixty.map(num=> playerIndex + num)) {
+        //   return this.ninety.map(num=> playerIndex + num)
+        // }
+
       //
       //  this.oneEighty.map(num=> playerIndex + num)
       //
@@ -194,30 +231,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 
+
+
   ]
 
-
-  // const makeShape = (playerIndex) => {
-  //   let rando = 0
-  //   const randomNum = Math.floor(Math.random()*7)
-  //   for (let i = 0; i < TLZISJ0[0].start.length; i ++) {
-  //     rando = TLZISJ0[randomNum].start[i]
-  //     squares.forEach(square =>square[playerIndex + rando].classList.add('player'))
-  //     playerPos.unshift(playerIndex+rando)
-  //     playerPos = playerPos.slice(0,4)
-  //   }
-  //
-  //   playerIndex = playerPos[3]
-  //   shapeName = TLZISJ0[randomNum].name
-  //   console.log(shapeName)
-  //   return shapeName
-  //
-  // }
-
-
-
-
-  // console.log(TLZISJ0[randomNum].start)
+// console.log(TLZISJ0[randomNum].start)
 
 
   const makeShape = (playerIndex) => {
@@ -236,7 +254,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   makeShape(35)
-  console.log(playerPosArr)
+  // console.log(playerPosArr)
 
 
   const rotateShape = () => {
@@ -244,15 +262,16 @@ window.addEventListener('DOMContentLoaded', () => {
     switch(player) {
       case 'Tee':
 
-      console.log(playerPos)
-      // TLZISJ0[0].turn(playerIndex)
-      // for(let i = 0; i < 4; i++){
+      // console.log(playerPos)
+      TLZISJ0[0].turn(playerIndex)
+      // console.log(playerPosArr)
       //   playerPos = TLZISJ0[0].turn(playerIndex)[i]
-      //   for(let i = 0; i < squares.length; i ++) {
-      //
-      //     squares[playerPos].classList.add('player')
+playerPosArr.forEach(pos =>
+         squares[pos].classList.add('player'))
 
-        }
+
+      }
+    }
         // }
         // playerPos =TLZISJ0[0].turnTwoSeventy(playerIndex)
         // for(let i = 0; i < 4; i++){
@@ -266,7 +285,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    }
+
 
 
   function rotatePress(e) {
@@ -358,6 +377,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const square = document.createElement('div')
       square.classList.add('grid-item')
       square.innerHTML = i
+      square.dataset.index = i
       squares.push(square)
       grid.append(square)
 
