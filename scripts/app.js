@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerPosArr = []
   let fixedSquares = []
   let shapeName = ''
-  const randomNum = Math.floor(Math.random()*7)
+
   let player = ''
 
   const clear = () => {
@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
       square.classList.remove('player')
     )
   }
+
 
 
 
@@ -120,7 +121,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-    const makeShape = (playerIndex) => {
+    const makeShape = () => {
+      const randomNum = Math.floor(Math.random()*7)
       for (let i = 0; i < 4; i++) {
         playerPos = TLZISJ0[randomNum].start[i]
         playerPosArr = TLZISJ0[randomNum].start
@@ -135,7 +137,6 @@ window.addEventListener('DOMContentLoaded', () => {
       return player
     }
 
-    makeShape()
     // console.log(playerPosArr)
 
 
@@ -145,53 +146,60 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       const rotateShape = (e) => {
-switch(e.keyCode) {
-  case 32:
-        switch(player) {
-          case 'Tee':
-          clear()
-          tee.turn(playerIndex)
-          update()
-          break
-          case 'Elle':
-          clear()
-          elle.turn(playerIndex)
-          update()
-          break
-          case 'Zed':
-          clear()
-          zed.turn(playerIndex)
-          update()
-          break
-          case 'Eye':
-          clear()
-          eye.turn(playerIndex)
-          update()
-          break
-          case 'Ess':
-          clear()
-          ess.turn(playerIndex)
-          update()
-          break
-          case 'Jay':
-          clear()
-          jay.turn(playerIndex)
-          update()
-          break
-          case 'Oh':
-          clear()
-          oh.ninety
-          update()
-          break
+        switch(e.keyCode) {
+          case 32:
+          switch(player) {
+            case 'Tee':
+            clear()
+            tee.turn(playerIndex)
+            update()
+            break
+            case 'Elle':
+            clear()
+            elle.turn(playerIndex)
+            update()
+            break
+            case 'Zed':
+            clear()
+            zed.turn(playerIndex)
+            update()
+            break
+            case 'Eye':
+            clear()
+            eye.turn(playerIndex)
+            update()
+            break
+            case 'Ess':
+            clear()
+            ess.turn(playerIndex)
+            update()
+            break
+            case 'Jay':
+            clear()
+            jay.turn(playerIndex)
+            update()
+            break
+            case 'Oh':
+            clear()
+            oh.ninety
+            update()
+            break
+          }
         }
-      }
       }
 
 
 
       const moveDown = () => {
-        clear()
+        console.log(fixedSquares)
+        console.log(playerPosArr)
+clear()
+
+
         if (onBoardCheck(playerPosArr)) {
+
+
+          // playerPosArr.forEach(pos => pos += width)
           playerPosArr[0] += width
           playerPosArr[1] += width
           playerPosArr[2] += width
@@ -203,14 +211,17 @@ switch(e.keyCode) {
           playerIndex = playerPosArr[0]
           return playerPosArr
         } else {
-          spaceCheck(playerPos)
+
 
           squares[playerPosArr[0]].classList.add('fixed')
           squares[playerPosArr[1]].classList.add('fixed')
           squares[playerPosArr[2]].classList.add('fixed')
           squares[playerPosArr[3]].classList.add('fixed')
+          fixedSquares = fixedSquares.concat(playerPosArr)
+          makeShape()
 
         }
+
 
       }
 
@@ -219,8 +230,8 @@ switch(e.keyCode) {
       const moveDownPress = (e) => {
         switch(e.keyCode) {
           case 40: moveDown()
+        }
       }
-    }
 
 
 
@@ -229,7 +240,8 @@ switch(e.keyCode) {
 
       window.addEventListener('keydown', rotateShape)
       window.addEventListener('keydown', leftRight)
-  window.addEventListener('keydown', moveDownPress)
+      window.addEventListener('keydown', moveDownPress)
+      // window.addEventListener('load',  makeShape)
 
       function right() {
         console.log(playerPos)
@@ -239,7 +251,7 @@ switch(e.keyCode) {
         playerPosArr[2] ++
         playerPosArr[3] ++
 
-        }
+      }
 
 
       function left() {
@@ -250,82 +262,92 @@ switch(e.keyCode) {
         playerPosArr[2] --
         playerPosArr[3] --
 
-          }
+      }
 
 
-        const onBoardCheck = (playerPosArr) => {
-          return playerPosArr.every(pos =>
-            pos >= 0 && pos < 180
+      const onBoardCheck = (playerPosArr) => {
+        return playerPosArr.every(pos =>
+          pos >= 0 && pos < 190
 
-          )
-        }
-
-        console.log(playerPosArr)
-
-        function isNotNineMoreThanRoundNumber(currentValue) {
-          if ((currentValue - 9) %10 !== 0) {
-            return currentValue
-          }
-        }
-
-        function isNotNineLessThanRoundNumber(currentValue) {
-          if ((currentValue + 10) %10 !== 0) {
-            return currentValue
-          }
-        }
-        const boardLeftCheck = (playerPosArr) => {
-          return playerPosArr.every(isNotNineMoreThanRoundNumber)
-        }
-
-        const boardRightCheck = (playerPosArr) => {
-          return playerPosArr.every(isNotNineLessThanRoundNumber)
-        }
-
-        function leftRight(e) {
-          console.log(playerPosArr)
-          // let playerShouldMove = true
-          switch(e.keyCode) {
-            case 39:
-            if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPosArr))){
-              right()
-            }
-            break
-            case 37:
-            if ((playerIndex % width > 0)&&(boardRightCheck(playerPosArr))){
-              left()
-            }
-            break
-            // default: playerShouldMove = false
-          }
-          // if (playerShouldMove) movePlayer()
-        }
-
-
-        function init() {
-          const grid = document.querySelector('.grid')
-          for (let i = 0; i < width * (width*2) + (width); i ++) {
-            const square = document.createElement('div')
-            square.classList.add('grid-item')
-            square.innerHTML = i
-            square.dataset.index = i
-            squares.push(square)
-            grid.append(square)
-
-          }
-          for (let i = 0; i < 20; i ++) {
-            squares[i].classList.opacity = 0.5
-          }
-          for (let i = 200; i < 210 ; i ++) {
-            squares[i].style.opacity = 0
-          }
-
-
-        }
+        )
+      }
 
 
 
 
 
+  // console.log(spaceCheck(playerPosArr))
+
+
+
+  function isNotNineMoreThanRoundNumber(currentValue) {
+    if ((currentValue - 9) %10 !== 0) {
+      return currentValue
+    }
+  }
+
+  function isNotNineLessThanRoundNumber(currentValue) {
+    if ((currentValue + 10) %10 !== 0) {
+      return currentValue
+    }
+  }
+  const boardLeftCheck = (playerPosArr) => {
+    return playerPosArr.every(isNotNineMoreThanRoundNumber)
+  }
+
+  const boardRightCheck = (playerPosArr) => {
+    return playerPosArr.every(isNotNineLessThanRoundNumber)
+  }
+
+  function leftRight(e) {
+    // console.log(playerPosArr)
+    // let playerShouldMove = true
+    switch(e.keyCode) {
+      case 39:
+      if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPosArr))){
+        right()
+      }
+      break
+      case 37:
+      if ((playerIndex % width > 0)&&(boardRightCheck(playerPosArr))){
+        left()
+      }
+      break
+      // default: playerShouldMove = false
+    }
+    // if (playerShouldMove) movePlayer()
+  }
+
+  const spaceCheck = () => {
+ if(fi)
+}
+
+
+
+
+  function init() {
+    const grid = document.querySelector('.grid')
+    for (let i = 0; i < width * (width*2) + (width); i ++) {
+      const square = document.createElement('div')
+      square.classList.add('grid-item')
+      square.innerHTML = i
+      square.dataset.index = i
+      squares.push(square)
+      grid.append(square)
+
+    }
+    for (let i = 0; i < 20; i ++) {
+      squares[i].classList.opacity = 0.5
+    }
+    for (let i = 200; i < 210 ; i ++) {
+      squares[i].style.opacity = 0
+    }
+
+
+
+  }
+
+  makeShape()
 
 
 
@@ -334,4 +356,7 @@ switch(e.keyCode) {
 
 
 
-      })
+
+
+
+})
