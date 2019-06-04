@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerPosArr = []
   let fixedSquares = []
   let shapeName = ''
-  const randomNum = Math.floor(Math.random()*1)
+  const randomNum = Math.floor(Math.random()*7)
   let player = ''
 
   const clear = () => {
@@ -18,224 +18,93 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const equalityCheck = (arrayOne, arrayTwo) => {
 
-for(let i = 0; i < arrayOne.length; i++) {
-  for(let j = 0; j < arrayTwo.length; j++) {
-    if (arrayOne.sort()[i] === arrayTwo.sort()[j]){
-    return true
+    for(let i = 0; i < arrayOne.length; i++) {
+      for(let j = 0; j < arrayTwo.length; j++) {
+        if (arrayOne.sort()[i] === arrayTwo.sort()[j]){
+          return true
 
         } else {
-    return false
-  }
+          return false
+        }
+
+
+      }
+    }
 
 
   }
-}
 
 
-  }
-
-  console.log(equalityCheck([2,2,3,5], [2,2,3,5]))
 
   //function to make grid, 20 x 10 with an extra hidden row to account for
   //difficulty with shifting rows
   init()
 
-  const TLZISJ0 = [
-    {
-      name: 'Tee',
-      start: [14, 3, 13, 23],
-      ninety: [0, -11, -1, 9],
-      oneEighty: [0, -1, +1, 10],
-      twoSeventy: [0, -9, +1, +11],
-      threeSixty: [0, -1, +1, -10],
-      create: function(playerIndex) {
-        return this.start
-      },
+class Tetronimo{
+
+constructor(name, start, ninety, oneEighty,
+   twoSeventy, threeSixty) {
+
+     this.name = name
+     this.start = start
+     this.ninety = ninety
+     this.oneEighty = oneEighty
+     this.twoSeventy = twoSeventy
+     this.threeSixty = threeSixty
+
+   }
+
+   create(playerIndex) {
+     return this.start
+   }
+
+   turn(playerIndex) {
+     const ninety = this.ninety.map(num=> playerIndex + num)
+     const oneEighty = this.oneEighty.map(num=> playerIndex + num)
+     const twoSeventy = this.twoSeventy.map(num=> playerIndex + num)
+     const threeSixty = this.threeSixty.map(num=> playerIndex + num)
+     if(playerPosArr === this.start) {
+       playerPosArr = this.ninety.map(num=> playerIndex + num)
+     } else if (equalityCheck(playerPosArr,ninety)) {
+       playerPosArr = oneEighty
+     } else if (equalityCheck(playerPosArr,oneEighty)){
+       playerPosArr = twoSeventy
+     } else if (equalityCheck(playerPosArr, twoSeventy)){
+       playerPosArr = threeSixty
+     } else if (equalityCheck(playerPosArr, threeSixty)){
+       playerPosArr = ninety
+   }
+ }
+
+ }
 
 
-      turn: function(playerIndex) {
-const ninety = this.ninety.map(num=> playerIndex + num)
-        if(playerPosArr === this.start) {
-           playerPosArr = this.ninety.map(num=> playerIndex + num)
-           console.log(playerPosArr)
-           console.log(this.ninety.map(num=> playerIndex + num))
+const tee = new Tetronimo('Tee', [14, 3, 13, 23], [0, -11, -1, 9], [0, -1, +1, 10],
+[0, -9, +1, +11], [0, -1, +1, -10] )
 
-        } else if (equalityCheck(playerPosArr,ninety)) {
-console.log(equalityCheck(playerPosArr,ninety))
-          playerPosArr = this.oneEighty.map(num=> playerIndex + num)
-        }
-      }
+const elle = new Tetronimo('Elle', [14, 4, 24, 25],  [0, 2, 1, -8], [0, -1, +1, 10],
+[0, -9, +1, +11], [0, -1, +1, -10] )
 
-            // console.log(playerPosArr)
-        //   } else if (playerPosArr ===
-        //    this.oneEighty.map(num=> playerIndex + num)) {
-        //   return this.oneTwoSeventy.map(num=> playerIndex + num)
-        // } else if (playerPosArr ===
-        //    this.twoSeventy.map(num=> playerIndex + num)) {
-        //   return this.threeSixty.map(num=> playerIndex + num)
-        // } else if (playerPosArr ===
-        //    this.threeSixty.map(num=> playerIndex + num)) {
-        //   return this.ninety.map(num=> playerIndex + num)
-        // }
+const zed = new Tetronimo('Zed', [14, 4, 3, 15], [0, -10, -11, 1], [0, 1, +10, -9],
+[0, -1, +10, +11], [0, -10, -1, 9] )
 
-      //
-      //  this.oneEighty.map(num=> playerIndex + num)
-      //
-      //
-      //  this.twoSeventy.map(num=> playerIndex + num)
-      //
-      // this.threeSixty.map(num=> playerIndex + num)
-      // }
-    },
+const eye = new Tetronimo('Eye', [14, 15, 13, 12],[0, 1, -1, -2], [0, -10, -20, +10],
+[0, -1, 1, 2], [0, -10, +10, +20] )
 
-    {
-      name: 'Elle',     //NOT RIGHT
-      start: [14, 3, 13, 23],
-      ninety: [0, -11, -1, 9],
-      oneEighty: [0, -1, +1, 10],
-      twoSeventy: [0, -9, +1, +11],
-      threeSixty: [0, -1, +1, -10],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    },
+const ess = new Tetronimo('Ess', [14, 4, 5, 13], [0, -10, -9, -1], [0, -10, +1, +9],
+[0, +1, +10, +9], [0, -10, +1, +11] )
 
+const jay = new Tetronimo('Jay', [14, 15, 13, 25], [0, +1, -1, +11], [0, -10, -9, +10],
+[0, -1, +1, -11], [0, +10, +9, -10] )
 
-    {
-      name: 'Zed',
-      start: [14, 4, 3, 15],
-      ninety: [0, -10, -11, 1],
-      oneEighty: [0, 1, +10, -9],
-      twoSeventy: [0, -1, +10, +11],
-      threeSixty: [0, -10, -1, +9],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    },
-    {
-      name: 'Eye',
-      start: [14, 15, 13, 12],
-      ninety: [0, 1, -1, -2],
-      oneEighty: [0, -10, -20, +10],
-      twoSeventy: [0, -1, 1, 2],
-      threeSixty: [0, -10, +10, +20],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    },
-    {
-      name: 'Ess',
-      start: [14, 4, 5, 13],
-      ninety: [0, -10, -9, -1],
-      oneEighty: [0, -10, +1, +9],
-      twoSeventy: [0, +1, +10, +9],
-      threeSixty: [0, -10, +1, +11],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    },
-    {
-      name: 'Jay',
-      start: [14, 15, 13, 25],
-      ninety: [0, +1, -1, +11],
-      oneEighty: [0, -10, -9, +10],
-      twoSeventy: [0, -1, +1, -11],
-      threeSixty: [0, +10, +9, -10],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    },
-
-    {
-      name: 'Oh',
-      start: [14, 13, 4, 3],
-      ninety: [0, -1, -10, -11],
-      oneEighty: [0, -1, -10, -11],
-      twoSeventy: [ 0, -1, -10, -11],
-      threeSixty: [0, -1, -10, -11],
-      create: function(playerIndex) {
-        return this.start
-      },
-      turnNinety: function(playerIndex) {
-        return this.ninety.map(num=> playerIndex + num)
-      },
-      turnOneEighty: function(playerIndex) {
-        return this.oneEighty.map(num=> playerIndex + num)
-      },
-      turnTwoSeventy: function(playerIndex) {
-        return this.twoSeventy.map(num=> playerIndex + num)
-      },
-      turnThreeSixty: function(playerIndex) {
-        return this.threeSixty.map(num=> playerIndex + num)
-      }
-    }
+const oh = new Tetronimo('Oh', [14, 13, 4, 3], [0, 0, 0, 0], [0, 0, 0, 0],
+[0, 0, 0, 0], [0, 0, 0, 0] )
 
 
 
 
-  ]
+const TLZISJ0 = [tee, elle, zed, eye, ess, jay, oh ]
 
-// console.log(TLZISJ0[randomNum].start)
 
 
   const makeShape = (playerIndex) => {
@@ -255,142 +124,179 @@ console.log(equalityCheck(playerPosArr,ninety))
 
   makeShape(35)
   // console.log(playerPosArr)
-
+const update = () => {
+  playerPosArr.forEach(pos =>
+    squares[pos].classList.add('player'))
+}
 
   const rotateShape = () => {
 
     switch(player) {
       case 'Tee':
+      tee.turn(playerIndex)
+      update()
+      break
+      case 'Elle':
+      elle.turn(playerIndex)
+      update()
+      break
+      case 'Zed':
+      zed.turn(playerIndex)
+      update()
+      break
+      case 'Eye':
+      eye.turn(playerIndex)
+      update()
+      break
+      case 'Ess':
+      ess.turn(playerIndex)
+      update()
+      break
+      case 'Jay':
+      jay.turn(playerIndex)
+      update()
+      break
+      case 'Oh':
+      oh.turn(playerIndex)
+      update()
+      break
+    }
+//
+//       case 'Zed':
+//       TLZISJ0[2].turn(playerIndex)
+//       playerPosArr.forEach(pos =>
+//         squares[pos].classList.add('player'))
+//
+//         break
+//
+//               case '':
+//               TLZISJ0[2].turn(playerIndex)
+//               playerPosArr.forEach(pos =>
+//                 squares[pos].classList.add('player'))
+//
+//       }
+    }
+    // }
+    // playerPos =TLZISJ0[0].turnTwoSeventy(playerIndex)
+    // for(let i = 0; i < 4; i++){
+    //   playerPos = TLZISJ0[0].turnTwoSeventy(playerIndex)[i]
+    //   for(let i = 0; i < squares.length; i ++) {
+    //
+    //     squares[playerPos].classList.add('player')
+    //
+    //   }
+    // }
 
-      // console.log(playerPos)
-      TLZISJ0[0].turn(playerIndex)
-      // console.log(playerPosArr)
-      //   playerPos = TLZISJ0[0].turn(playerIndex)[i]
-playerPosArr.forEach(pos =>
-         squares[pos].classList.add('player'))
 
+
+
+
+
+    function rotatePress(e) {
+
+      switch(e.keyCode) {
+        case 32:
+        clear()
+        rotateShape()
 
       }
     }
-        // }
-        // playerPos =TLZISJ0[0].turnTwoSeventy(playerIndex)
-        // for(let i = 0; i < 4; i++){
-        //   playerPos = TLZISJ0[0].turnTwoSeventy(playerIndex)[i]
-        //   for(let i = 0; i < squares.length; i ++) {
-        //
-        //     squares[playerPos].classList.add('player')
-        //
-        //   }
-      // }
 
 
 
 
 
+    window.addEventListener('keydown', rotatePress)
 
-  function rotatePress(e) {
-
-    switch(e.keyCode) {
-      case 32:
-      clear()
-      rotateShape()
-
-    }
-  }
+    console.log(player)
 
 
 
-
-
-  window.addEventListener('keydown', rotatePress)
-
-  console.log(player)
-
-
-
-  //     case 37:
-  //     if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
-  //
-  //       playerPos[0] --
-  //       playerPos[1] --
-  //       playerPos[2] --
-  //       playerPos[3] --
-  //     }
-  //     break
-  //
-  //     default: playerShouldMove = false
-  //
-  //   }
-  //
-  //
-  //
-  //
-  // }
+    //     case 37:
+    //     if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
+    //
+    //       playerPos[0] --
+    //       playerPos[1] --
+    //       playerPos[2] --
+    //       playerPos[3] --
+    //     }
+    //     break
+    //
+    //     default: playerShouldMove = false
+    //
+    //   }
+    //
+    //
+    //
+    //
+    // }
 
 
 
 
 
-  // const moveDown = () => {
-  //
-  //   // console.log(spaceCheck(playerPos))
-  //   // clear()
-  //   if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
-  //     clear()
-  //     // console.log('moving down')
-  //     playerPos[0] += width
-  //     playerPos[1] += width
-  //     playerPos[2] += width
-  //     playerPos[3] += width
-  //     squares[playerPos[0]].classList.add('player')
-  //     squares[playerPos[1]].classList.add('player')
-  //     squares[playerPos[2]].classList.add('player')
-  //     squares[playerPos[3]].classList.add('player')
-  //     playerIndex = playerPos[0]
-  //     return playerPos
-  //   } else {
-  //     spaceCheck(playerPos)
-  //
-  //     squares[playerPos[0]].classList.add('fixed')
-  //     squares[playerPos[1]].classList.add('fixed')
-  //     squares[playerPos[2]].classList.add('fixed')
-  //     squares[playerPos[3]].classList.add('fixed')
-  //
-  //
-  //
-  //     fixedSquares = fixedSquares.concat(playerPos)
-  //
-  //
-  //     rowClear()
-  //
-  //     // console.log(playerIndex)
-  //     //Call function to make new tetronimo
-  //     // makeShape(14)
-  //   }
-  // }
+    // const moveDown = () => {
+    //
+    //   // console.log(spaceCheck(playerPos))
+    //   // clear()
+    //   if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+    //     clear()
+    //     // console.log('moving down')
+    //     playerPos[0] += width
+    //     playerPos[1] += width
+    //     playerPos[2] += width
+    //     playerPos[3] += width
+    //     squares[playerPos[0]].classList.add('player')
+    //     squares[playerPos[1]].classList.add('player')
+    //     squares[playerPos[2]].classList.add('player')
+    //     squares[playerPos[3]].classList.add('player')
+    //     playerIndex = playerPos[0]
+    //     return playerPos
+    //   } else {
+    //     spaceCheck(playerPos)
+    //
+    //     squares[playerPos[0]].classList.add('fixed')
+    //     squares[playerPos[1]].classList.add('fixed')
+    //     squares[playerPos[2]].classList.add('fixed')
+    //     squares[playerPos[3]].classList.add('fixed')
+    //
+    //
+    //
+    //     fixedSquares = fixedSquares.concat(playerPos)
+    //
+    //
+    //     rowClear()
+    //
+    //     // console.log(playerIndex)
+    //     //Call function to make new tetronimo
+    //     // makeShape(14)
+    //   }
+    // }
 
 
 
-  function init() {
-    const grid = document.querySelector('.grid')
-    for (let i = 0; i < width * (width*2) + (width*3); i ++) {
-      const square = document.createElement('div')
-      square.classList.add('grid-item')
-      square.innerHTML = i
-      square.dataset.index = i
-      squares.push(square)
-      grid.append(square)
+    function init() {
+      const grid = document.querySelector('.grid')
+      for (let i = 0; i < width * (width*2) + (width*3); i ++) {
+        const square = document.createElement('div')
+        square.classList.add('grid-item')
+        square.innerHTML = i
+        square.dataset.index = i
+        squares.push(square)
+        grid.append(square)
 
-    }
-    for (let i = 0; i < 20; i ++) {
-      squares[i].classList.opacity = 0.5
-    }
-    for (let i = 229; i > 219 ; i --) {
-      squares[i].style.opacity = 0
+      }
+      for (let i = 0; i < 20; i ++) {
+        squares[i].classList.opacity = 0.5
+      }
+      for (let i = 229; i > 219 ; i --) {
+        squares[i].style.opacity = 0
+      }
+
+
     }
 
 
-  }
 
 
 
@@ -402,6 +308,4 @@ playerPosArr.forEach(pos =>
 
 
 
-
-
-})
+  })
