@@ -5,8 +5,6 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerIndex = 14
   let playerPos = [0,0,0,0]
   let fixedSquares = []
-
-
   let shapeName = ''
 
 
@@ -629,6 +627,7 @@ function init() {
 
 
 
+
   const moveDown = () => {
 
     // console.log(spaceCheck(playerPos))
@@ -665,7 +664,7 @@ rowClear()
       //Call function to make new tetronimo
       makeShape(14)
     }
-s
+
 
 
   }
