@@ -155,7 +155,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
       const makeShape = () => {
-        const randomNum = Math.floor(Math.random()*7)
+        const randomNum = Math.floor(Math.random()*3 + 3)
         for (let i = 0; i < 4; i++) {
           playerPos = TLZISJ0[randomNum].start[i]
           playerPosArr = TLZISJ0[randomNum].start
@@ -488,44 +488,86 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         const rowClear= () => {
-          let playerDivs = [...document.querySelectorAll('.player')]
-          const rowOne = [...document.querySelectorAll('[ data-row ="0"]')]
-          const rowTwo = [...document.querySelectorAll('[ data-row ="1"]')]
-          const rowThree = [...document.querySelectorAll('[ data-row ="3"]')]
-          const rowFour = [...document.querySelectorAll('[ data-row ="4"]')]
-          const rowFive = [...document.querySelectorAll('[ data-row ="5"]')]
-          const rowSix = [...document.querySelectorAll('[ data-row ="6"]')]
-          const rowSeven= [...document.querySelectorAll('[ data-row ="7"]')]
-          const rowEight = [...document.querySelectorAll('[ data-row ="8"]')]
-          const rowNine = [...document.querySelectorAll('[ data-row ="9"]')]
-          const rowTen = [...document.querySelectorAll('[ data-row ="10"]')]
-          const rowEleven = [...document.querySelectorAll('[ data-row ="11"]')]
-          const rowTwelve = [...document.querySelectorAll('[ data-row ="12"]')]
-          const rowThirteen= [...document.querySelectorAll('[ data-row ="13"]')]
-          const rowFourteen = [...document.querySelectorAll('[ data-row ="14"]')]
-          const rowFifteen = [...document.querySelectorAll('[ data-row ="15"]')]
-          const rowSixteen = [...document.querySelectorAll('[ data-row ="16"]')]
-          const rowSeventeen = [...document.querySelectorAll('[ data-row ="17"]')]
-          const rowEighteen = [...document.querySelectorAll('[ data-row ="18"]')]
-          const rowNineteen = [...document.querySelectorAll('[ data-row ="19"]')]
-          const rowTwenty = [...document.querySelectorAll('[ data-row ="20"]')]
-          const rowTwentyOne = [...document.querySelectorAll('[ data-row ="21"]')]
+            let fixedDivsArr = [...document.querySelectorAll('.fixed')].filter(square => square.className === 'grid-item fixed')
+          let playerDivs = [...document.querySelectorAll('.player')].filter(square => square.className === 'grid-item fixed')
+          const rowOne = [...document.querySelectorAll('[ data-row ="0"]')].filter(square => square.className === 'grid-item fixed')
+          const rowTwo = [...document.querySelectorAll('[ data-row ="1"]')].filter(square => square.className === 'grid-item fixed')
+          const rowThree = [...document.querySelectorAll('[ data-row ="3"]')].filter(square => square.className === 'grid-item fixed')
+          const rowFour = [...document.querySelectorAll('[ data-row ="4"]')].filter(square => square.className === 'grid-item fixed')
+          const rowFive = [...document.querySelectorAll('[ data-row ="5"]')].filter(square => square.className === 'grid-item fixed')
+          const rowSix = [...document.querySelectorAll('[ data-row ="6"]')].filter(square => square.className === 'grid-item fixed')
+          const rowSeven= [...document.querySelectorAll('[ data-row ="7"]')].filter(square => square.className === 'grid-item fixed')
+          const rowEight = [...document.querySelectorAll('[ data-row ="8"]')].filter(square => square.className === 'grid-item fixed')
+          const rowNine = [...document.querySelectorAll('[ data-row ="9"]')].filter(square => square.className === 'grid-item fixed')
+          const rowTen = [...document.querySelectorAll('[ data-row ="10"]')].filter(square => square.className === 'grid-item fixed')
+          const rowEleven = [...document.querySelectorAll('[ data-row ="11"]')].filter(square => square.className === 'grid-item fixed')
+          const rowTwelve = [...document.querySelectorAll('[ data-row ="12"]')].filter(square => square.className === 'grid-item fixed')
+          const rowThirteen= [...document.querySelectorAll('[ data-row ="13"]')].filter(square => square.className === 'grid-item fixed')
+          const rowFourteen = [...document.querySelectorAll('[ data-row ="14"]')].filter(square => square.className === 'grid-item fixed')
+          const rowFifteen = [...document.querySelectorAll('[ data-row ="15"]')].filter(square => square.className === 'grid-item fixed')
+          const rowSixteen = [...document.querySelectorAll('[ data-row ="16"]')].filter(square => square.className === 'grid-item fixed')
+          const rowSeventeen = [...document.querySelectorAll('[ data-row ="17"]')].filter(square => square.className === 'grid-item fixed')
+          const rowEighteen = [...document.querySelectorAll('[ data-row ="18"]')].filter(square => square.className === 'grid-item fixed')
+          const rowNineteen = [...document.querySelectorAll('[ data-row ="19"]')].filter(square => square.className === 'grid-item fixed')
+          const rowTwenty = [...document.querySelectorAll('[ data-row ="20"]')].filter(square => square.className === 'grid-item fixed')
+          const rowTwentyOne = [...document.querySelectorAll('[ data-row ="21"]')].filter(square => square.className === 'grid-item fixed')
           const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven, rowEight, rowNine,
             rowTen, rowEleven, rowTwelve, rowThirteen, rowFourteen, rowFifteen, rowSixteen, rowSeventeen,
             rowEighteen, rowNineteen, rowTwenty, rowTwentyOne]
-            let positions = []
-            let fixedRow = rowNineteen.filter(square => square.className === 'grid-item fixed')
-            console.log(fixedRow)
-            if (fixedRow.length === 10) {
+let positions = []
+            rows.forEach(row=> {
+              if (row.length === 10){
 
-              fixedDivsArr.forEach(div=> {
-                positions.push(div.dataset.index)
-                div.classList.remove('fixed')
+                fixedDivsArr.forEach(square=> {
+            let position = 0
+                    position = square.dataset.index
+                    positions.push(position)
+                    square.classList.remove('fixed')
+                    row.length = 0
+                 })
+                 console.log(positions)
+                 return positions
               }
-            )
-          }
+            })
+            let positionNums = positions.map(position=> parseFloat(position))
+squares.forEach(square=> {
+  for(let i=0; i < positionNums.length; i++){
+  if(square.dataset.next === positionNums[i]) {
+    square.classList.add('fixed')
+  }
+}
+})
 
-        }
+
+            // let fixedRows =  rows.forEach(row => row.filter(square => square.className === 'grid-item fixed'))
+
+          }
+            // console.log(fixedRow)
+//             if (fixedRow.length === 10) {
+// // console.log('10')
+// // console.log(fixedDivsArr)
+//               return fixedDivsArr.forEach(div=> {
+//                 let positions = []
+//                 positions = positions.push(div.dataset.index)
+//                  console.log(positions)
+//                 div.classList.remove('fixed')
+//               return positions
+//             }
+//
+//             )
+//
+//
+//           }
+// console.log(positions)
+//         }
+      //   for(let i = 0; i <squares.length; i ++) {
+      //     for(let j = 0; j < positions.length; j++) {
+      //       console.log(squares[i].dataset.next, positions[j])
+      //     if (squares[i].dataset.next === positions[j]) {
+      //       squares[i].classList.add('next')
+      //     }
+      //   }
+      // }
 
 
 
