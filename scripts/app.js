@@ -357,7 +357,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         const moveDown = () => {
-          rowClear()
+
           clear()
 
 
@@ -403,7 +403,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         setInterval(moveDownAuto, 1000)
 
-        setTimeout(moveDownAuto, 3000)
+        // setTimeout(moveDownAuto, 3000)
         setTimeout(spaceCheck, 6000)
 
         window.addEventListener('keydown', rotateShape)
@@ -514,35 +514,66 @@ window.addEventListener('DOMContentLoaded', () => {
           const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven, rowEight, rowNine,
             rowTen, rowEleven, rowTwelve, rowThirteen, rowFourteen, rowFifteen, rowSixteen, rowSeventeen,
             rowEighteen, rowNineteen, rowTwenty, rowTwentyOne]
-            let positions = []
-            rows.forEach(row=> {
-              if (row.length > 2){
+            const moveRows = () => {
+              console.log('moving')
+              squares.forEach(square=> {
+                console.log(square.dataset.index)
+                positions.forEach(position=> {
 
+                  if(position === square.dataset.index){
+const newPos = parseFloat(square.dataset.index)+10
+console.log(newPos)
+for(let i = 0;  i < positions.length-10; i ++) {
+  console.log(squares[newPos])
+  squares[newPos].classList.add('fixed')
+}
+
+                      positions=[]
+                      console.log(positions)
+
+                  }
+
+                })
+              })
+            }
+
+
+
+            let positions = []
+
+
+
+            rows.forEach(row=> {
+              if (row.length > 3){
+                console.log('working')
                 fixedDivsArr.forEach(square=> {
                   let position = 0
                   position = square.dataset.index
                   positions.push(position)
+
                   square.classList.remove('fixed')
                   row = []
+                  console.log(positions)
+                  moveRows()
                 })
-                console.log(positions)
-                return positions
+
               }
             })
 
-            squares.forEach(square=> {
-              for(let i=0; i < positions.length; i++){
-                console.log(square.dataset.next, positions[i] )
-                if(square.dataset.next === positions[i]) {
-                  return square.classList.add('fixed')
-                }
-              }
-            })
+            }
+
+
+
+
+
+
 
 
             // let fixedRows =  rows.forEach(row => row.filter(square => square.className === 'grid-item fixed'))
 
-          }
+
+
+          setInterval(rowClear, 10000)
           // console.log(fixedRow)
           //             if (fixedRow.length === 10) {
           // // console.log('10')
@@ -665,7 +696,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-          makeShape()
+
 
 
 
