@@ -8,7 +8,30 @@ window.addEventListener('DOMContentLoaded', () => {
   let fixedSquares = []
   let fixedDivsArr = [...document.querySelectorAll('.fixed')]
 let playerDivs = [...document.querySelectorAll('.player')]
-
+const rowOne = [...document.querySelectorAll('[ data-row ="0"]')]
+const rowTwo = [...document.querySelectorAll('[ data-row ="1"]')]
+const rowThree = [...document.querySelectorAll('[ data-row ="3"]')]
+const rowFour = [...document.querySelectorAll('[ data-row ="4"]')]
+const rowFive = [...document.querySelectorAll('[ data-row ="5"]')]
+const rowSix = [...document.querySelectorAll('[ data-row ="6"]')]
+const rowSeven= [...document.querySelectorAll('[ data-row ="7"]')]
+const rowEight = [...document.querySelectorAll('[ data-row ="8"]')]
+const rowNine = [...document.querySelectorAll('[ data-row ="9"]')]
+const rowTen = [...document.querySelectorAll('[ data-row ="10"]')]
+const rowEleven = [...document.querySelectorAll('[ data-row ="11"]')]
+const rowTwelve = [...document.querySelectorAll('[ data-row ="12"]')]
+const rowThirteen= [...document.querySelectorAll('[ data-row ="13"]')]
+const rowFourteen = [...document.querySelectorAll('[ data-row ="14"]')]
+const rowFifteen = [...document.querySelectorAll('[ data-row ="15"]')]
+const rowSixteen = [...document.querySelectorAll('[ data-row ="16"]')]
+const rowSeventeen = [...document.querySelectorAll('[ data-row ="17"]')]
+const rowEighteen = [...document.querySelectorAll('[ data-row ="18"]')]
+const rowNineteen = [...document.querySelectorAll('[ data-row ="19"]')]
+const rowTwenty = [...document.querySelectorAll('[ data-row ="20"]')]
+const rowTwentyOne = [...document.querySelectorAll('[ data-row ="21"]')]
+const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven, rowEight, rowNine,
+rowTen, rowEleven, rowTwelve, rowThirteen, rowFourteen, rowFifteen, rowSixteen, rowSeventeen,
+ rowEighteen, rowNineteen, rowTwenty, rowTwentyOne]
   let shapeName = ''
 
 
@@ -230,7 +253,7 @@ let playerDivs = [...document.querySelectorAll('.player')]
 //   console.log(merged, mergedArray)
 //   return true
 // }
-
+//NEED TO RE-WRITE THIS IN A DRY WAY
 const spaceCheck = (playerPos) => {
   return playerPosArr.every(pos =>
 
@@ -330,33 +353,16 @@ const spaceCheck = (playerPos) => {
 
 
 
+
+
+
       const moveDown = () => {
-    //     let fixedDivsArr = [...document.querySelectorAll('.fixed')]
-    //   let playerDivs = [...document.querySelectorAll('.player')]
-    //   const spaceCheck = () => {
-    //
-    //   for(let i = 0; i < squares.length; i++) {
-    //
-    //     console.log(playerDivs[i].dataset.next)
-    //
-    //     for(let j = 0; j < squares.length; j++){
-    //
-    //       console.log(playerDivs[i].dataset.next, fixedDivsArr[j].dataset.next)
-    //
-    //       if (playerDivs[j].dataset.index === fixedDivsArr[j].dataset.next){
-    //         return false
-    //       } else {
-    //         return true
-    //       }
-    //
-    //     }
-    //   }
-    // }
+rowClear()
         clear()
 
 
         if (onBoardCheck(playerPosArr) && spaceCheck()) {
-console.log(spaceCheck())
+
 
           // playerPosArr.forEach(pos => pos += width)
           playerPosArr[0] += width
@@ -481,6 +487,68 @@ console.log(spaceCheck())
       }
 
 
+const rowClear= () => {
+  let playerDivs = [...document.querySelectorAll('.player')]
+  const rowOne = [...document.querySelectorAll('[ data-row ="0"]')]
+  const rowTwo = [...document.querySelectorAll('[ data-row ="1"]')]
+  const rowThree = [...document.querySelectorAll('[ data-row ="3"]')]
+  const rowFour = [...document.querySelectorAll('[ data-row ="4"]')]
+  const rowFive = [...document.querySelectorAll('[ data-row ="5"]')]
+  const rowSix = [...document.querySelectorAll('[ data-row ="6"]')]
+  const rowSeven= [...document.querySelectorAll('[ data-row ="7"]')]
+  const rowEight = [...document.querySelectorAll('[ data-row ="8"]')]
+  const rowNine = [...document.querySelectorAll('[ data-row ="9"]')]
+  const rowTen = [...document.querySelectorAll('[ data-row ="10"]')]
+  const rowEleven = [...document.querySelectorAll('[ data-row ="11"]')]
+  const rowTwelve = [...document.querySelectorAll('[ data-row ="12"]')]
+  const rowThirteen= [...document.querySelectorAll('[ data-row ="13"]')]
+  const rowFourteen = [...document.querySelectorAll('[ data-row ="14"]')]
+  const rowFifteen = [...document.querySelectorAll('[ data-row ="15"]')]
+  const rowSixteen = [...document.querySelectorAll('[ data-row ="16"]')]
+  const rowSeventeen = [...document.querySelectorAll('[ data-row ="17"]')]
+  const rowEighteen = [...document.querySelectorAll('[ data-row ="18"]')]
+  const rowNineteen = [...document.querySelectorAll('[ data-row ="19"]')]
+  const rowTwenty = [...document.querySelectorAll('[ data-row ="20"]')]
+  const rowTwentyOne = [...document.querySelectorAll('[ data-row ="21"]')]
+  const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven, rowEight, rowNine,
+  rowTen, rowEleven, rowTwelve, rowThirteen, rowFourteen, rowFifteen, rowSixteen, rowSeventeen,
+   rowEighteen, rowNineteen, rowTwenty, rowTwentyOne]
+   let counter = [new Set([])] 
+let position = 0
+let fullRows =
+ rows.forEach( (row) => {
+   console.log(row)
+   return row.forEach( (square) => {
+
+      if(square.className === 'grid-item fixed'){
+        counter.push(square)
+
+      if(counter.length===10) {
+        console.log('working')
+        fixedDivsArr.forEach(div => {
+          div.classList.remove('fixed')
+          position = div.dataset.index
+
+        for(let i = 0; i < squares.length; i ++) {
+          if(squares[i].dataset.next === position) {
+            squares[i].classList.add('fixed')
+          }
+        }
+          })
+      }
+    }
+ })
+
+  })
+
+
+ console.log(counter)
+// console.log(rowOne)
+// const squaresArr = [...squares]
+// const playerArr = squaresArr.every(squares => squares.className === 'grid-item player')
+// console.log(playerArr)
+}
+
 
 
 
@@ -496,14 +564,75 @@ console.log(spaceCheck())
 
           squares.push(square)
           grid.append(square)
+}
 
+          for (let i = 10; i < 20; i ++) {
+
+    squares[i].dataset.row = 0
+
+          }
+
+
+        for (let i = 10; i < 20; i ++) {
+          squares[i].dataset.row = 1
         }
-        for (let i = 0; i < 20; i ++) {
-          squares[i].classList.opacity = 0.5
+        for (let i = 20; i < 100; i ++) {
+          squares[i].dataset.row = 2
         }
+        for (let i = 30; i < 40; i ++) {
+        squares[i].dataset.row = 3
+        }
+        for (let i = 40; i < 50; i ++) {
+        squares[i].dataset.row = 4
+        }
+        for (let i = 50; i < 60; i ++) {
+          squares[i].dataset.row = 5
+        }
+        for (let i = 60; i < 70; i ++) {
+        squares[i].dataset.row = 6
+        }
+        for (let i = 70; i < 80; i ++) {
+          squares[i].dataset.row = 7
+        }
+        for (let i = 80; i < 90; i ++) {
+        squares[i].dataset.row = 8
+        }
+        for (let i = 90; i < 100; i ++) {
+        squares[i].dataset.row = 9
+        }
+        for (let i = 100; i < 110; i ++) {
+        squares[i].dataset.row = 10
+        }
+        for (let i = 110; i < 120; i ++) {
+        squares[i].dataset.row = 11
+        }
+        for (let i = 120; i < 130; i ++) {
+        squares[i].dataset.row = 12
+        }
+        for (let i = 130; i < 140; i ++) {
+        squares[i].dataset.row = 13
+        }
+        for (let i = 140; i < 150; i ++) {
+          squares[i].dataset.row = 14
+        }
+        for (let i = 150; i < 160; i ++) {
+          squares[i].dataset.row = 15
+        }
+        for (let i = 160; i < 170; i ++) {
+        squares[i].dataset.row = 16
+        }
+        for (let i = 170; i < 180; i ++) {
+          squares[i].dataset.row = 17
+        }
+        for (let i = 180; i < 190; i ++) {
+          squares[i].dataset.row = 18
+        }
+        for (let i = 190; i < 200; i ++) {
+        squares[i].dataset.row = 19
+}
         for (let i = 200; i < 210 ; i ++) {
-          squares[i].style.opacity = 0
-          // squares[i].classList.add('fixed')
+        squares[i].dataset.row = 20
+        squares[i].style.opacity = 0
         }
 
 makeShape()
