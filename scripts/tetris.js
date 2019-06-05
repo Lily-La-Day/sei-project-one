@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
       Name: 'Ess',
       start: [14, 4, 5, 13],
       zero: [0, -10, -9, -1],
-      ninety: [0, -10, +1, +9],
+      ninety: [0, -10, +1, +11],
       oneEighty: [0, +1, +10, +9],
       twoSeventy: [0, -10, +1, +11]
 
@@ -139,6 +139,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     playerIndex = playerPos[3]
     shapeName = TLZISJ0[randomNum].Name
+    console.log(shapeName)
     return shapeName
 
   }
@@ -150,81 +151,169 @@ window.addEventListener('DOMContentLoaded', () => {
     const rows =[[],[]]
 
     rows[0] = squares.filter((el, index) =>
-    (index < 200 && index > 189 && el.className === 'grid-item fixed')
+    (index < 200 && index > 189 && el.classList.contains('fixed'))
   )
   rows[1] = squares.filter((el, index) =>
-  (index < 190 && index > 179 && el.className === 'grid-item fixed')
+  (index < 190 && index > 179 && el.classList.contains('fixed'))
 )
 rows[2] = squares.filter((el, index) =>
-(index < 180 && index > 169 && el.className === 'grid-item fixed')
+(index < 180 && index > 169 && el.classList.contains('fixed'))
 )
 rows[3] = squares.filter((el, index) =>
-(index < 170 && index > 159 && el.className === 'grid-item fixed')
+(index < 170 && index > 159 && el.classList.contains('fixed'))
 )
 rows[4] = squares.filter((el, index) =>
-(index < 160 && index > 149 && el.className === 'grid-item fixed')
+(index < 160 && index > 149 && el.classList.contains('fixed'))
 )
 rows[5] = squares.filter((el, index) =>
-(index < 150 && index > 139 && el.className === 'grid-item fixed')
+(index < 150 && index > 139 && el.classList.contains('fixed'))
 )
 rows[6] = squares.filter((el, index) =>
-(index < 140 && index > 129 && el.className === 'grid-item fixed')
+(index < 140 && index > 129 && el.classList.contains('fixed'))
 )
 rows[7] = squares.filter((el, index) =>
-(index < 130 && index > 119 && el.className === 'grid-item fixed')
+(index < 130 && index > 119 && el.classList.contains('fixed'))
 )
 
 rows[9] = squares.filter((el, index) =>
-(index < 120 && index > 109 && el.className === 'grid-item fixed')
+(index < 120 && index > 109 && el.classList.contains('fixed'))
 )
 rows[10] = squares.filter((el, index) =>
-(index < 110 && index > 99 && el.className === 'grid-item fixed')
+(index < 110 && index > 99 && el.classList.contains('fixed'))
 )
 rows[11] = squares.filter((el, index) =>
-(index < 100 && index > 89 && el.className === 'grid-item fixed')
+(index < 100 && index > 89 && el.classList.contains('fixed'))
 )
 rows[12] = squares.filter((el, index) =>
-(index < 90 && index > 79 && el.className === 'grid-item fixed')
+(index < 90 && index > 79 && el.classList.contains('fixed'))
 )
 rows[13] = squares.filter((el, index) =>
-(index < 80 && index > 69 && el.className === 'grid-item fixed')
+(index < 80 && index > 69 && el.classList.contains('fixed'))
 )
 rows[14] = squares.filter((el, index) =>
-(index < 70 && index > 59 && el.className === 'grid-item fixed')
+(index < 70 && index > 59 && el.classList.contains('fixed'))
 )
 rows[15] = squares.filter((el, index) =>
-(index < 60 && index > 49 && el.className === 'grid-item fixed')
+(index < 60 && index > 49 && el.classList.contains('fixed'))
 )
 rows[16] = squares.filter((el, index) =>
-(index < 50 && index > 39 && el.className === 'grid-item fixed')
+(index < 50 && index > 39 && el.classList.contains('fixed'))
 )
 rows[17] = squares.filter((el, index) =>
-(index < 40 && index > 29 && el.className === 'grid-item fixed')
+(index < 40 && index > 29 && el.classList.contains('fixed'))
 )
 rows[18] = squares.filter((el, index) =>
-(index < 30 && index > 19 && el.className === 'grid-item fixed')
+(index < 30 && index > 19 && el.classList.contains('fixed'))
 )
 rows[19] = squares.filter((el, index) =>
-(index < 20 && index > 9 && el.className === 'grid-item fixed')
+(index < 20 && index > 9 && el.classList.contains('fixed'))
 )
 rows[20] = squares.filter((el, index) =>
-(index < 10 && index > 0 && el.className === 'grid-item fixed')
+(index < 10 && index > 0 && el.classList.contains('fixed'))
 )
 
 rows.forEach((row) => {
   if(row.length === 10){
+    console.log('row is full')
     for(let i = 0; i < squares.length; i++) {
-      if(squares[i].className === 'fixed') {
-        squares[i+10].classList.add('fixed')
+      if(squares[i].className === 'grid-item fixed') {
+        console.log(squares[i])
+        squares[i+10].classList.add('fixed-two')
         squares[i].classList.remove('fixed')
+        row = []
+       if (squares[i].className === 'grid-item fixed-two') {
+        console.log('second row')
+        console.log(squares[i])
+        squares[i+10].classList.add('fixed-three')
+        squares[i].classList.remove('fixed-two')
+        row = []
+       if (squares[i].className === 'grid-item fixed-three') {
+        console.log('second row')
+        console.log(squares[i])
+        squares[i+10].classList.add('fixed-four')
+        squares[i].classList.remove('fixed-three')
+        row = []
+        if (squares[i].className === 'grid-item fixed-four') {
+         console.log('second row')
+         console.log(squares[i])
+         squares[i+10].classList.add('fixed-five')
+         squares[i].classList.remove('fixed-four')
+
+         row = []
+         if (squares[i].className === 'grid-item fixed-four') {
+          console.log('second row')
+          console.log(squares[i])
+          squares[i+10].classList.add('fixed-five')
+          squares[i].classList.remove('fixed-four')
+
+          row = []
+          if (squares[i].className === 'grid-item fixed-five') {
+           console.log('second row')
+           console.log(squares[i])
+           squares[i+10].classList.add('fixed-six')
+           squares[i].classList.remove('fixed-five')
+
+           row = []
+           if (squares[i].className === 'grid-item fixed-six') {
+            console.log('second row')
+            console.log(squares[i])
+            squares[i+10].classList.add('fixed-seven')
+            squares[i].classList.remove('fixed-six')
+
+            row = []
+            if (squares[i].className === 'grid-item fixed-seven') {
+             console.log('second row')
+             console.log(squares[i])
+             squares[i+10].classList.add('fixed-eight')
+             squares[i].classList.remove('fixed-seven')
+
+             row = []
+             if (squares[i].className === 'grid-item fixed-eight') {
+              console.log('second row')
+              console.log(squares[i])
+              squares[i+10].classList.add('fixed-nine')
+              squares[i].classList.remove('fixed-eight')
+
+              row = []
+              if (squares[i].className === 'grid-item fixed-nine') {
+               console.log('second row')
+               console.log(squares[i])
+               squares[i+10].classList.add('fixed-ten')
+               squares[i].classList.remove('fixed-nine')
+
+               row = []
+               if (squares[i].className === 'grid-item fixed-ten') {
+                console.log('second row')
+                console.log(squares[i])
+                squares[i+10].classList.add('fixed-eleven')
+                squares[i].classList.remove('fixed-ten')
+
+                row = []
+
+              }
+             }
+            }
+           }
+          }
+         }
+
+        }
+       }
       }
     }
   }
+}
+}
 })
 }
 
 
 
+
+
+//Need to find a way to get shapename out of makeshape function
+//WORK THIS OUT FIRST THING IN THE MORNING!!!
+let rotateTracker = 0
 
 
 //Need to find a way to get shapename out of makeshape function
@@ -235,6 +324,7 @@ function rotate90() {
     playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
     playerPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
     playerPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+
     // console.log(playerIndex)
     // console.log(playerPos)
   } else if (shapeName === 'Elle'){
@@ -283,7 +373,9 @@ function rotate90() {
     // console.log(playerPos)
 
   }
+  return rotateTracker = 90
 }
+
 
 function rotate180() {
   if (shapeName === 'Tee'){
@@ -339,6 +431,7 @@ function rotate180() {
     // console.log(playerPos)
 
   }
+  return rotateTracker = 180
 }
 
 function rotate270() {
@@ -395,6 +488,7 @@ function rotate270() {
     // console.log(playerPos)
 
   }
+  return rotateTracker = 270
 }
 
 function rotate360() {
@@ -451,129 +545,95 @@ function rotate360() {
     // console.log(playerPos)
 
   }
+  return rotateTracker = 360
 }
 
-function rotatePress(e) {
-
+const rotateShape = (e) => {
   switch(e.keyCode) {
-    case 49:
-    clear()
-    rotate90()
-    break
-    case 50:
-    clear()
-    rotate180()
-    break
-    case 51:
-    clear()
-    rotate270()
-    break
-    case 52:
-    clear()
-    rotate360()
-    break
+    case 32:
+    switch(rotateTracker) {
+      case 0 :
+      clear()
+      rotate90()
+      break
+      case 90 :
+      clear()
+      rotate180()
+      break
+      case 180:
+      clear()
+      rotate270()
+      break
+      case 270 :
+      clear()
+      rotate360()
+      break
+      case 360 :
+      clear()
+      rotate90()
+      break
+
+
+    }
   }
 }
 
 
+// function rotatePress(e) {
+//
+//   switch(e.keyCode) {
+//     case 32:
+//     clear()
+//     rotate90()
+//     break
+//     case 32:
+//     clear()
+//     rotate180()
+//     break
+//     case 32:
+//     clear()
+//     rotate270()
+//     break
+//     case 32:
+//     clear()
+//     rotate360()
+//     break
+//   }
+// }
+
+function checkBelow(blockIndex){
+  return fixedSquares.includes(blockIndex + 10)
+}
+
+function checkLeft(blockIndex){
+  return fixedSquares.includes(blockIndex - 1)
+}
+
+function checkRight(blockIndex){
+  return fixedSquares.includes(blockIndex + 1)
+}
+
 // //function to check if player pos is same as index of any div with the class fixed
 const spaceCheck = (playerPos) => {
-  return playerPos.every(pos =>
+  function checkLeft(blockIndex){
+    return fixedSquares.includes(blockIndex - 1)
+  }
 
-    pos !== fixedSquares[0] - 10 &&
-    pos !== fixedSquares[1] - 10 &&
-    pos !== fixedSquares[2] - 10 &&
-    pos !== fixedSquares[3] - 10 &&
-    pos !== fixedSquares[4] - 10 &&
-    pos !== fixedSquares[5] - 10 &&
-    pos !== fixedSquares[6] - 10 &&
-    pos !== fixedSquares[7] - 10 &&
-    pos !== fixedSquares[8] - 10 &&
-    pos !== fixedSquares[9] - 10 &&
-    pos !== fixedSquares[10] - 10 &&
-    pos !== fixedSquares[11] - 10 &&
-    pos !== fixedSquares[12] - 10 &&
-    pos !== fixedSquares[13] - 10 &&
-    pos !== fixedSquares[14] - 10 &&
-    pos !== fixedSquares[15] - 10 &&
-    pos !== fixedSquares[16] - 10 &&
-    pos !== fixedSquares[17] - 10 &&
-    pos !== fixedSquares[18] - 10 &&
-    pos !== fixedSquares[19] - 10 &&
-    pos !== fixedSquares[20] - 10 &&
-    pos !== fixedSquares[21] - 10 &&
-    pos !== fixedSquares[22] - 10 &&
-    pos !== fixedSquares[23] - 10 &&
-    pos !== fixedSquares[24] - 10 &&
-    pos !== fixedSquares[25] - 10 &&
-    pos !== fixedSquares[26] - 10 &&
-    pos !== fixedSquares[27] - 10 &&
-    pos !== fixedSquares[28] - 10 &&
-    pos !== fixedSquares[29] - 10 &&
-    pos !== fixedSquares[30] - 10 &&
-    pos !== fixedSquares[31] - 10 &&
-    pos !== fixedSquares[32] - 10 &&
-    pos !== fixedSquares[33] - 10 &&
-    pos !== fixedSquares[34] - 10 &&
-    pos !== fixedSquares[35] - 10 &&
-    pos !== fixedSquares[36] - 10 &&
-    pos !== fixedSquares[37] - 10 &&
-    pos !== fixedSquares[38] - 10 &&
-    pos !== fixedSquares[39] - 10 &&
-    pos !== fixedSquares[40] - 10 &&
-    pos !== fixedSquares[41] - 10 &&
-    pos !== fixedSquares[42] - 10 &&
-    pos !== fixedSquares[43] - 10 &&
-    pos !== fixedSquares[44] - 10 &&
-    pos !== fixedSquares[45] - 10 &&
-    pos !== fixedSquares[46] - 10 &&
-    pos !== fixedSquares[47] - 10 &&
-    pos !== fixedSquares[48] - 10 &&
-    pos !== fixedSquares[49] - 10 &&
-    pos !== fixedSquares[50] - 10 &&
-    pos !== fixedSquares[51] - 10 &&
-    pos !== fixedSquares[52] - 10 &&
-    pos !== fixedSquares[53] - 10 &&
-    pos !== fixedSquares[54] - 10 &&
-    pos !== fixedSquares[55] - 10 &&
-    pos !== fixedSquares[56] - 10 &&
-    pos !== fixedSquares[57] - 10 &&
-    pos !== fixedSquares[58] - 10 &&
-    pos !== fixedSquares[59] - 10 &&
-    pos !== fixedSquares[60] - 10 &&
-    pos !== fixedSquares[61] - 10 &&
-    pos !== fixedSquares[62] - 10 &&
-    pos !== fixedSquares[63] - 10 &&
-    pos !== fixedSquares[64] - 10 &&
-    pos !== fixedSquares[65] - 10 &&
-    pos !== fixedSquares[66] - 10 &&
-    pos !== fixedSquares[67] - 10 &&
-    pos !== fixedSquares[68] - 10 &&
-    pos !== fixedSquares[69] - 10 &&
-    pos !== fixedSquares[70] - 10 &&
-    pos !== fixedSquares[71] - 10 &&
-    pos !== fixedSquares[72] - 10 &&
-    pos !== fixedSquares[73] - 10 &&
-    pos !== fixedSquares[74] - 10 &&
-    pos !== fixedSquares[75] - 10 &&
-    pos !== fixedSquares[76] - 10 &&
-    pos !== fixedSquares[77] - 10 &&
-    pos !== fixedSquares[78] - 10 &&
-    pos !== fixedSquares[79] - 10 &&
-    pos !== fixedSquares[80] - 10 &&
-    pos !== fixedSquares[81] - 10 &&
-    pos !== fixedSquares[82] - 10 &&
-    pos !== fixedSquares[83] - 10 &&
-    pos !== fixedSquares[84] - 10 &&
-    pos !== fixedSquares[85] - 10 &&
-    pos !== fixedSquares[86]
-  )
+  function checkRight(blockIndex){
+    return fixedSquares.includes(blockIndex + 1)
+  }
+  let checker = true
+  playerPos.forEach(block => {
+    if(checkBelow(block)) checker = false
+  })
+
+  return checker
 }
 
 
 
 function leftRight(e) {
-  if (onBoardCheck(playerPos)) {
+  if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
     // console.log(playerPos)
 
     let playerShouldMove = true
@@ -612,19 +672,22 @@ function leftRight(e) {
 
 
 function init() {
-
-
-  const grid = document.querySelector('.grid')
-  for (let i = 0; i < width * (width*2); i ++) {
+const grid = document.querySelector('.grid')
+  for (let i = 0; i < width * (width*2) + width; i ++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
     square.innerHTML = i
     squares.push(square)
     grid.append(square)
 
-  }
-  makeShape(playerIndex)
 
+  }
+  for (let i = 200; i < 210 ; i ++) {
+    squares[i].dataset.row = 0
+    squares[i].style.opacity = 0
+  }
+
+  makeShape(playerIndex)
 
 
 
@@ -657,22 +720,31 @@ function init() {
 
       fixedSquares = fixedSquares.concat(playerPos)
 
-
-rowClear()
+      rowClear()
 
       // console.log(playerIndex)
       //Call function to make new tetronimo
       makeShape(14)
     }
 
+  }
+
+  // setInterval(rowClear, 3000 )
 
 
+  const moveDownAuto = () => moveDown()
+
+  const moveDownPress = (e) => {
+    switch(e.keyCode) {
+      case 40: moveDown()
+    }
   }
 
   setInterval(moveDown, 500)
 
   window.addEventListener('keydown', leftRight)
-  window.addEventListener('keydown', rotatePress)
+  window.addEventListener('keydown', rotateShape )
+  window.addEventListener('keydown', moveDownPress)
 }
 
 init()
