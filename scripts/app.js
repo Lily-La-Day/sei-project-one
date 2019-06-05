@@ -6,15 +6,25 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerPos = 0
   let playerPosArr = []
   let fixedSquares = []
+  let fixedDivsArr = [...document.querySelectorAll('.fixed')]
+let playerDivs = [...document.querySelectorAll('.player')]
+
   let shapeName = ''
 
+
+
   let player = ''
+
+
 
   const clear = () => {
     squares.forEach(square =>
       square.classList.remove('player')
     )
   }
+
+
+
 
 
 
@@ -45,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   //function to make grid, 20 x 10 with an extra hidden row to account for
   //difficulty with shifting rows
-  init()
+
 
   class Tetronimo{
 
@@ -137,6 +147,7 @@ window.addEventListener('DOMContentLoaded', () => {
       return player
     }
 
+  init()
     // console.log(playerPosArr)
 
 
@@ -187,17 +198,165 @@ window.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
+    //
+    //   const spaceCheck = () => {
+    //
+    //   for(let i = 0; i < fixedDivsArr.length - 10; i++) {
+    //     console.log(playerDivs[i].dataset.next)
+    //     for(let j = 0; j < fixedDivsArr.length - 10; j++){
+    //
+    //       console.log(playerDivs[i].dataset.next,fixedDivsArr[j].dataset.index)
+    //
+    //       if (playerDivs[i].dataset.next === fixedDivsArr[j].dataset.index){
+    //         return false
+    //       } else {
+    //         return true
+    //       }
+    //
+    //     }
+    //   }
+    // }
+
+//     const spaceCheck = () => {
+//
+//       let fixedDivsArr = [...document.querySelectorAll('.fixed')]
+//     let playerDivs = [...document.querySelectorAll('.player')]
+//     let mergedArray = fixedDivsArr.concat(playerDivs)
+//     const merged = new Set([...fixedDivsArr , ...playerDivs])
+// if(merged.length > 4 && merged.length === mergedArray.length) {
+//   console.log(merged, mergedArray)
+//   return false
+// } else {
+//   console.log(merged, mergedArray)
+//   return true
+// }
+
+const spaceCheck = (playerPos) => {
+  return playerPosArr.every(pos =>
+
+    pos !== fixedSquares[0] - 10 &&
+    pos !== fixedSquares[1] - 10 &&
+    pos !== fixedSquares[2] - 10 &&
+    pos !== fixedSquares[3] - 10 &&
+    pos !== fixedSquares[4] - 10 &&
+    pos !== fixedSquares[5] - 10 &&
+    pos !== fixedSquares[6] - 10 &&
+    pos !== fixedSquares[7] - 10 &&
+    pos !== fixedSquares[8] - 10 &&
+    pos !== fixedSquares[9] - 10 &&
+    pos !== fixedSquares[10] - 10 &&
+    pos !== fixedSquares[11] - 10 &&
+    pos !== fixedSquares[12] - 10 &&
+    pos !== fixedSquares[13] - 10 &&
+    pos !== fixedSquares[14] - 10 &&
+    pos !== fixedSquares[15] - 10 &&
+    pos !== fixedSquares[16] - 10 &&
+    pos !== fixedSquares[17] - 10 &&
+    pos !== fixedSquares[18] - 10 &&
+    pos !== fixedSquares[19] - 10 &&
+    pos !== fixedSquares[20] - 10 &&
+    pos !== fixedSquares[21] - 10 &&
+    pos !== fixedSquares[22] - 10 &&
+    pos !== fixedSquares[23] - 10 &&
+    pos !== fixedSquares[24] - 10 &&
+    pos !== fixedSquares[25] - 10 &&
+    pos !== fixedSquares[26] - 10 &&
+    pos !== fixedSquares[27] - 10 &&
+    pos !== fixedSquares[28] - 10 &&
+    pos !== fixedSquares[29] - 10 &&
+    pos !== fixedSquares[30] - 10 &&
+    pos !== fixedSquares[31] - 10 &&
+    pos !== fixedSquares[32] - 10 &&
+    pos !== fixedSquares[33] - 10 &&
+    pos !== fixedSquares[34] - 10 &&
+    pos !== fixedSquares[35] - 10 &&
+    pos !== fixedSquares[36] - 10 &&
+    pos !== fixedSquares[37] - 10 &&
+    pos !== fixedSquares[38] - 10 &&
+    pos !== fixedSquares[39] - 10 &&
+    pos !== fixedSquares[40] - 10 &&
+    pos !== fixedSquares[41] - 10 &&
+    pos !== fixedSquares[42] - 10 &&
+    pos !== fixedSquares[43] - 10 &&
+    pos !== fixedSquares[44] - 10 &&
+    pos !== fixedSquares[45] - 10 &&
+    pos !== fixedSquares[46] - 10 &&
+    pos !== fixedSquares[47] - 10 &&
+    pos !== fixedSquares[48] - 10 &&
+    pos !== fixedSquares[49] - 10 &&
+    pos !== fixedSquares[50] - 10 &&
+    pos !== fixedSquares[51] - 10 &&
+    pos !== fixedSquares[52] - 10 &&
+    pos !== fixedSquares[53] - 10 &&
+    pos !== fixedSquares[54] - 10 &&
+    pos !== fixedSquares[55] - 10 &&
+    pos !== fixedSquares[56] - 10 &&
+    pos !== fixedSquares[57] - 10 &&
+    pos !== fixedSquares[58] - 10 &&
+    pos !== fixedSquares[59] - 10 &&
+    pos !== fixedSquares[60] - 10 &&
+    pos !== fixedSquares[61] - 10 &&
+    pos !== fixedSquares[62] - 10 &&
+    pos !== fixedSquares[63] - 10 &&
+    pos !== fixedSquares[64] - 10 &&
+    pos !== fixedSquares[65] - 10 &&
+    pos !== fixedSquares[66] - 10 &&
+    pos !== fixedSquares[67] - 10 &&
+    pos !== fixedSquares[68] - 10 &&
+    pos !== fixedSquares[69] - 10 &&
+    pos !== fixedSquares[70] - 10 &&
+    pos !== fixedSquares[71] - 10 &&
+    pos !== fixedSquares[72] - 10 &&
+    pos !== fixedSquares[73] - 10 &&
+    pos !== fixedSquares[74] - 10 &&
+    pos !== fixedSquares[75] - 10 &&
+    pos !== fixedSquares[76] - 10 &&
+    pos !== fixedSquares[77] - 10 &&
+    pos !== fixedSquares[78] - 10 &&
+    pos !== fixedSquares[79] - 10 &&
+    pos !== fixedSquares[80] - 10 &&
+    pos !== fixedSquares[81] - 10 &&
+    pos !== fixedSquares[82] - 10 &&
+    pos !== fixedSquares[83] - 10 &&
+    pos !== fixedSquares[84] - 10 &&
+    pos !== fixedSquares[85] - 10 &&
+    pos !== fixedSquares[86]
+  )
+}
+
+
+
+
 
 
 
       const moveDown = () => {
-        console.log(fixedSquares)
-        console.log(playerPosArr)
-clear()
+    //     let fixedDivsArr = [...document.querySelectorAll('.fixed')]
+    //   let playerDivs = [...document.querySelectorAll('.player')]
+    //   const spaceCheck = () => {
+    //
+    //   for(let i = 0; i < squares.length; i++) {
+    //
+    //     console.log(playerDivs[i].dataset.next)
+    //
+    //     for(let j = 0; j < squares.length; j++){
+    //
+    //       console.log(playerDivs[i].dataset.next, fixedDivsArr[j].dataset.next)
+    //
+    //       if (playerDivs[j].dataset.index === fixedDivsArr[j].dataset.next){
+    //         return false
+    //       } else {
+    //         return true
+    //       }
+    //
+    //     }
+    //   }
+    // }
+        clear()
 
 
-        if (onBoardCheck(playerPosArr)) {
-
+        if (onBoardCheck(playerPosArr) && spaceCheck()) {
+console.log(spaceCheck())
 
           // playerPosArr.forEach(pos => pos += width)
           playerPosArr[0] += width
@@ -212,12 +371,12 @@ clear()
           return playerPosArr
         } else {
 
-
           squares[playerPosArr[0]].classList.add('fixed')
           squares[playerPosArr[1]].classList.add('fixed')
           squares[playerPosArr[2]].classList.add('fixed')
           squares[playerPosArr[3]].classList.add('fixed')
           fixedSquares = fixedSquares.concat(playerPosArr)
+          // fixedDivsArr = document.querySelectorAll('.fixed')
           makeShape()
 
         }
@@ -237,6 +396,9 @@ clear()
 
 
       setInterval(moveDownAuto, 1000)
+
+      setTimeout(moveDownAuto, 3000)
+        setTimeout(spaceCheck, 6000)
 
       window.addEventListener('keydown', rotateShape)
       window.addEventListener('keydown', leftRight)
@@ -276,87 +438,93 @@ clear()
 
 
 
-  // console.log(spaceCheck(playerPosArr))
+      // console.log(spaceCheck(playerPosArr))
 
 
 
-  function isNotNineMoreThanRoundNumber(currentValue) {
-    if ((currentValue - 9) %10 !== 0) {
-      return currentValue
-    }
-  }
-
-  function isNotNineLessThanRoundNumber(currentValue) {
-    if ((currentValue + 10) %10 !== 0) {
-      return currentValue
-    }
-  }
-  const boardLeftCheck = (playerPosArr) => {
-    return playerPosArr.every(isNotNineMoreThanRoundNumber)
-  }
-
-  const boardRightCheck = (playerPosArr) => {
-    return playerPosArr.every(isNotNineLessThanRoundNumber)
-  }
-
-  function leftRight(e) {
-    // console.log(playerPosArr)
-    // let playerShouldMove = true
-    switch(e.keyCode) {
-      case 39:
-      if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPosArr))){
-        right()
+      function isNotNineMoreThanRoundNumber(currentValue) {
+        if ((currentValue - 9) %10 !== 0) {
+          return currentValue
+        }
       }
-      break
-      case 37:
-      if ((playerIndex % width > 0)&&(boardRightCheck(playerPosArr))){
-        left()
+
+      function isNotNineLessThanRoundNumber(currentValue) {
+        if ((currentValue + 10) %10 !== 0) {
+          return currentValue
+        }
       }
-      break
-      // default: playerShouldMove = false
-    }
-    // if (playerShouldMove) movePlayer()
-  }
+      const boardLeftCheck = (playerPosArr) => {
+        return playerPosArr.every(isNotNineMoreThanRoundNumber)
+      }
 
-  const spaceCheck = () => {
- if(fi)
-}
+      const boardRightCheck = (playerPosArr) => {
+        return playerPosArr.every(isNotNineLessThanRoundNumber)
+      }
 
-
-
-
-  function init() {
-    const grid = document.querySelector('.grid')
-    for (let i = 0; i < width * (width*2) + (width); i ++) {
-      const square = document.createElement('div')
-      square.classList.add('grid-item')
-      square.innerHTML = i
-      square.dataset.index = i
-      squares.push(square)
-      grid.append(square)
-
-    }
-    for (let i = 0; i < 20; i ++) {
-      squares[i].classList.opacity = 0.5
-    }
-    for (let i = 200; i < 210 ; i ++) {
-      squares[i].style.opacity = 0
-    }
-
-
-
-  }
-
-  makeShape()
+      function leftRight(e) {
+        // console.log(playerPosArr)
+        // let playerShouldMove = true
+        switch(e.keyCode) {
+          case 39:
+          if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPosArr))){
+            right()
+          }
+          break
+          case 37:
+          if ((playerIndex % width > 0)&&(boardRightCheck(playerPosArr))){
+            left()
+          }
+          break
+          // default: playerShouldMove = false
+        }
+        // if (playerShouldMove) movePlayer()
+      }
 
 
 
 
 
 
+      function init() {
+        const grid = document.querySelector('.grid')
+        for (let i = 0; i < width * (width*2) + (width); i ++) {
+          const square = document.createElement('div')
+          square.classList.add('grid-item')
+          square.innerHTML = i
+          square.dataset.index = i
+          square.dataset.next = (i+10)
+
+          squares.push(square)
+          grid.append(square)
+
+        }
+        for (let i = 0; i < 20; i ++) {
+          squares[i].classList.opacity = 0.5
+        }
+        for (let i = 200; i < 210 ; i ++) {
+          squares[i].style.opacity = 0
+          // squares[i].classList.add('fixed')
+        }
+
+makeShape()
+
+      }
 
 
 
 
 
-})
+
+      makeShape()
+
+
+
+
+
+
+
+
+
+
+
+    })
