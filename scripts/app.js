@@ -488,8 +488,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         const rowClear= () => {
-          let fixedDivsArr = [...document.querySelectorAll('.fixed')].filter(square => square.className === 'grid-item fixed')
-          let playerDivs = [...document.querySelectorAll('.player')].filter(square => square.className === 'grid-item fixed')
+          const fixedDivsArr = [...document.querySelectorAll('.fixed')].filter(square => square.className === 'grid-item fixed')
+
           const rowOne = [...document.querySelectorAll('[ data-row ="0"]')].filter(square => square.className === 'grid-item fixed')
           const rowTwo = [...document.querySelectorAll('[ data-row ="1"]')].filter(square => square.className === 'grid-item fixed')
           const rowThree = [...document.querySelectorAll('[ data-row ="3"]')].filter(square => square.className === 'grid-item fixed')
@@ -514,184 +514,157 @@ window.addEventListener('DOMContentLoaded', () => {
           const rows = [rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven, rowEight, rowNine,
             rowTen, rowEleven, rowTwelve, rowThirteen, rowFourteen, rowFifteen, rowSixteen, rowSeventeen,
             rowEighteen, rowNineteen, rowTwenty, rowTwentyOne]
-            const moveRows = () => {
-              console.log('moving')
-              squares.forEach(square=> {
-                console.log(square.dataset.index)
-                positions.forEach(position=> {
 
-                  if(position === square.dataset.index){
-const newPos = parseFloat(square.dataset.index)+10
-console.log(newPos)
-for(let i = 0;  i < positions.length-10; i ++) {
-  console.log(squares[newPos])
-  squares[newPos].classList.add('fixed')
-}
 
-                      positions=[]
-                      console.log(positions)
 
-                  }
 
-                })
+              console.log(rows[18])
+              if(rows[18].length > 4) {
+                console.log(fixedDivsArr)
+                fixedDivsArr.forEach(divs => {
+                  let index = parseInt(divs.getAttribute('data-index'))
+                  // divs.classList.remove('fixed')
+                  index += 10
+                  console.log(divs)
+                  let newDiv = document.querySelector(`[data-index="${index}"]`)
+                  console.log(newDiv)
+                  newDiv.classList.add('fixed')
+
+
+
+
+
               })
-            }
-
-
-
-            let positions = []
-
-
-
-            rows.forEach(row=> {
-              if (row.length > 3){
-                console.log('working')
-                fixedDivsArr.forEach(square=> {
-                  let position = 0
-                  position = square.dataset.index
-                  positions.push(position)
-
-                  square.classList.remove('fixed')
-                  row = []
-                  console.log(positions)
-                  moveRows()
-                })
-
-              }
-            })
 
             }
 
+        }
 
 
 
 
 
-
-
-            // let fixedRows =  rows.forEach(row => row.filter(square => square.className === 'grid-item fixed'))
+        // let fixedRows =  rows.forEach(row => row.filter(square => square.className === 'grid-item fixed'))
 
 
 
-          setInterval(rowClear, 10000)
-          // console.log(fixedRow)
-          //             if (fixedRow.length === 10) {
-          // // console.log('10')
-          // // console.log(fixedDivsArr)
-          //               return fixedDivsArr.forEach(div=> {
-          //                 let positions = []
-          //                 positions = positions.push(div.dataset.index)
-          //                  console.log(positions)
-          //                 div.classList.remove('fixed')
-          //               return positions
-          //             }
-          //
-          //             )
-          //
-          //
-          //           }
-          // console.log(positions)
-          //         }
-          //   for(let i = 0; i <squares.length; i ++) {
-          //     for(let j = 0; j < positions.length; j++) {
-          //       console.log(squares[i].dataset.next, positions[j])
-          //     if (squares[i].dataset.next === positions[j]) {
-          //       squares[i].classList.add('next')
-          //     }
-          //   }
-          // }
+        setInterval(rowClear, 5000)
+        // console.log(fixedRow)
+        //             if (fixedRow.length === 10) {
+        // // console.log('10')
+        // // console.log(fixedDivsArr)
+        //               return fixedDivsArr.forEach(div=> {
+        //                 let positions = []
+        //                 positions = positions.push(div.dataset.index)
+        //                  console.log(positions)
+        //                 div.classList.remove('fixed')
+        //               return positions
+        //             }
+        //
+        //             )
+        //
+        //
+        //           }
+        // console.log(positions)
+        //         }
+        //   for(let i = 0; i <squares.length; i ++) {
+        //     for(let j = 0; j < positions.length; j++) {
+        //       console.log(squares[i].dataset.next, positions[j])
+        //     if (squares[i].dataset.next === positions[j]) {
+        //       squares[i].classList.add('next')
+        //     }
+        //   }
+        // }
 
 
 
 
 
-          function init() {
-            const grid = document.querySelector('.grid')
-            for (let i = 0; i < width * (width*2) + (width); i ++) {
-              const square = document.createElement('div')
-              square.classList.add('grid-item')
-              square.innerHTML = i
-              square.dataset.index = i
-              square.dataset.next = (i+10)
+        function init() {
+          const grid = document.querySelector('.grid')
+          for (let i = 0; i < width * (width*2) + (width); i ++) {
+            const square = document.createElement('div')
+            square.classList.add('grid-item')
+            square.innerHTML = i
+            square.dataset.index = i
+            square.dataset.next = (i+10)
 
-              squares.push(square)
-              grid.append(square)
-            }
+            squares.push(square)
+            grid.append(square)
+          }
 
-            for (let i = 10; i < 20; i ++) {
+          for (let i = 10; i < 20; i ++) {
 
-              squares[i].dataset.row = 0
-
-            }
-
-
-            for (let i = 10; i < 20; i ++) {
-              squares[i].dataset.row = 1
-            }
-            for (let i = 20; i < 100; i ++) {
-              squares[i].dataset.row = 2
-            }
-            for (let i = 30; i < 40; i ++) {
-              squares[i].dataset.row = 3
-            }
-            for (let i = 40; i < 50; i ++) {
-              squares[i].dataset.row = 4
-            }
-            for (let i = 50; i < 60; i ++) {
-              squares[i].dataset.row = 5
-            }
-            for (let i = 60; i < 70; i ++) {
-              squares[i].dataset.row = 6
-            }
-            for (let i = 70; i < 80; i ++) {
-              squares[i].dataset.row = 7
-            }
-            for (let i = 80; i < 90; i ++) {
-              squares[i].dataset.row = 8
-            }
-            for (let i = 90; i < 100; i ++) {
-              squares[i].dataset.row = 9
-            }
-            for (let i = 100; i < 110; i ++) {
-              squares[i].dataset.row = 10
-            }
-            for (let i = 110; i < 120; i ++) {
-              squares[i].dataset.row = 11
-            }
-            for (let i = 120; i < 130; i ++) {
-              squares[i].dataset.row = 12
-            }
-            for (let i = 130; i < 140; i ++) {
-              squares[i].dataset.row = 13
-            }
-            for (let i = 140; i < 150; i ++) {
-              squares[i].dataset.row = 14
-            }
-            for (let i = 150; i < 160; i ++) {
-              squares[i].dataset.row = 15
-            }
-            for (let i = 160; i < 170; i ++) {
-              squares[i].dataset.row = 16
-            }
-            for (let i = 170; i < 180; i ++) {
-              squares[i].dataset.row = 17
-            }
-            for (let i = 180; i < 190; i ++) {
-              squares[i].dataset.row = 18
-            }
-            for (let i = 190; i < 200; i ++) {
-              squares[i].dataset.row = 19
-            }
-            for (let i = 200; i < 210 ; i ++) {
-              squares[i].dataset.row = 20
-              squares[i].style.opacity = 0
-            }
-
-            makeShape()
+            squares[i].dataset.row = 0
 
           }
 
 
+          for (let i = 10; i < 20; i ++) {
+            squares[i].dataset.row = 1
+          }
+          for (let i = 20; i < 100; i ++) {
+            squares[i].dataset.row = 2
+          }
+          for (let i = 30; i < 40; i ++) {
+            squares[i].dataset.row = 3
+          }
+          for (let i = 40; i < 50; i ++) {
+            squares[i].dataset.row = 4
+          }
+          for (let i = 50; i < 60; i ++) {
+            squares[i].dataset.row = 5
+          }
+          for (let i = 60; i < 70; i ++) {
+            squares[i].dataset.row = 6
+          }
+          for (let i = 70; i < 80; i ++) {
+            squares[i].dataset.row = 7
+          }
+          for (let i = 80; i < 90; i ++) {
+            squares[i].dataset.row = 8
+          }
+          for (let i = 90; i < 100; i ++) {
+            squares[i].dataset.row = 9
+          }
+          for (let i = 100; i < 110; i ++) {
+            squares[i].dataset.row = 10
+          }
+          for (let i = 110; i < 120; i ++) {
+            squares[i].dataset.row = 11
+          }
+          for (let i = 120; i < 130; i ++) {
+            squares[i].dataset.row = 12
+          }
+          for (let i = 130; i < 140; i ++) {
+            squares[i].dataset.row = 13
+          }
+          for (let i = 140; i < 150; i ++) {
+            squares[i].dataset.row = 14
+          }
+          for (let i = 150; i < 160; i ++) {
+            squares[i].dataset.row = 15
+          }
+          for (let i = 160; i < 170; i ++) {
+            squares[i].dataset.row = 16
+          }
+          for (let i = 170; i < 180; i ++) {
+            squares[i].dataset.row = 17
+          }
+          for (let i = 180; i < 190; i ++) {
+            squares[i].dataset.row = 18
+          }
+          for (let i = 190; i < 200; i ++) {
+            squares[i].dataset.row = 19
+          }
+          for (let i = 200; i < 210 ; i ++) {
+            squares[i].dataset.row = 20
+            squares[i].style.opacity = 0
+          }
+
+          makeShape()
+
+        }
 
 
 
@@ -708,4 +681,6 @@ for(let i = 0;  i < positions.length-10; i ++) {
 
 
 
-        })
+
+
+      })
