@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const squares = []
   let playerIndex = 14
   let playerPos = [0,0,0,0]
+  let nextPos = [0,0,0,0]
+
   let fixedSquares = []
   let shapeName = ''
 let scoreTracker = 0
@@ -54,23 +56,20 @@ return score.innerHTML = scoreTracker
   if (topRow.length > 0){
    console.log('you lose')
   score.innerHTML = 'YOU LOSE'
-} else {
-  console.log('you win')
-
 }
 }
 
 
 
 
-  //basic function to update squares to be coloured as tetronimo moves on board
-  function movePlayer() {
-    clear()
-    squares[playerPos[0]].classList.add('player')
-    squares[playerPos[1]].classList.add('player')
-    squares[playerPos[2]].classList.add('player')
-    squares[playerPos[3]].classList.add('player')
-  }
+  // //basic function to update squares to be coloured as tetronimo moves on board
+  // function movePlayer() {
+  //   clear()
+  //   squares[playerPos[0]].classList.add('player')
+  //   squares[playerPos[1]].classList.add('player')
+  //   squares[playerPos[2]].classList.add('player')
+  //   squares[playerPos[3]].classList.add('player')
+  // }
 
   //clears squares as tetromino moves
   const clear = () => {
@@ -470,6 +469,7 @@ let rotateTracker = 0
 //Need to find a way to get shapename out of makeshape function
 //WORK THIS OUT FIRST THING IN THE MORNING!!!
 function rotate90() {
+  const newPos = []
   if (shapeName === 'Tee'){
     playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
     playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
@@ -643,6 +643,7 @@ function rotate270() {
 }
 
 function rotate360() {
+
   if (shapeName === 'Tee'){
     playerPos[0] = (playerIndex + TLZISJ0[0].zero[0])
     playerPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
@@ -729,8 +730,20 @@ const rotateShape = (e) => {
   }
 }
 
+ playerPosAfter = (func) => {
+
+console.log(playerPos.map(func, playerPos))
+
+
+}
+
+
+
+
+
 function checkBelow(blockIndex){
 
+console.log(playerPos)
   return fixedSquares.includes(blockIndex + 10)
 }
 
@@ -749,6 +762,7 @@ const spaceCheck = (playerPos) => {
   }
 
   function checkRight(blockIndex){
+    cosole.log(blockIndex)
     return fixedSquares.includes(blockIndex + 1)
   }
   let checker = true
@@ -762,6 +776,7 @@ const spaceCheck = (playerPos) => {
 
 
 function leftRight(e) {
+
   if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
     // console.log(playerPos)
 
@@ -805,6 +820,8 @@ function init() {
   for (let i = 0; i < width * (width*2) + width + width; i ++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
+    square.innerHTML = i
+
     square.dataset.index = i
     squares.push(square)
     grid.append(square)
@@ -822,47 +839,75 @@ function init() {
 
   makeShape(playerIndex)
 
+  let newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+  squares[nextPos[2]], squares[nextPos[3]] ]
+
+  const nextPosFunc = () => {
+      nextPos = playerPos.map(pos => pos += width)
+      // console.log(playerPos)
+      // console.log(nextPos)
+return nextPos
+
+// console.log(playerPos)
+    // return nextPos
+  }
+
+  const newPosFunc = () => {
+    // console.log(nextPos)
+    newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+    squares[nextPos[2]], squares[nextPos[3]] ]
+
+    if (newPos.some(pos => pos.classList.contains('fixed'))){
+      console.log('should fix now')
+      return false
+    } else {
+      return true
+    }
+  }
+
+const moveDown = () => {
+nextPosFunc()
+newPosFunc()
+// console.log( playerPos, nextPos)
+if (newPosFunc() && onBoardCheck(playerPos)) {
+  moveDownCheck()
+} else {
+  console.log(playerPos, nextPos)
+squares[playerPos[0]].classList.add('fixed')
+  squares[playerPos[1]].classList.add('fixed')
+  squares[playerPos[2]].classList.add('fixed')
+  squares[playerPos[3]].classList.add('fixed')
+fixedSquares = fixedSquares.concat(playerPos)
+
+  rowClear()
+winFunction()
+
+  // console.log(playerIndex)
+  //Call function to make new tetronimo
+  makeShape(14)
+}
+
+}
 
 
 
 
-  const moveDown = () => {
-
-    // console.log(spaceCheck(playerPos))
-    // clear()
-    if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+  const moveDownCheck = () => {
+console.log(playerPos, nextPos)
       clear()
 
-      // console.log('moving down')
-      playerPos[0] += width
-      playerPos[1] += width
-      playerPos[2] += width
-      playerPos[3] += width
+        playerPos[0] += width
+        playerPos[1] += width
+        playerPos[2] += width
+        playerPos[3] += width
+console.log(playerPos, nextPos)
       squares[playerPos[0]].classList.add('player')
       squares[playerPos[1]].classList.add('player')
       squares[playerPos[2]].classList.add('player')
       squares[playerPos[3]].classList.add('player')
       playerIndex = playerPos[0]
       return playerPos
-    } else {
-      spaceCheck(playerPos)
 
-      squares[playerPos[0]].classList.add('fixed')
-      squares[playerPos[1]].classList.add('fixed')
-      squares[playerPos[2]].classList.add('fixed')
-      squares[playerPos[3]].classList.add('fixed')
-
-
-
-      fixedSquares = fixedSquares.concat(playerPos)
-
-      rowClear()
- winFunction()
-
-      // console.log(playerIndex)
-      //Call function to make new tetronimo
-      makeShape(14)
-    }
 
 
   }
@@ -880,7 +925,7 @@ function init() {
     }
   }
 
-  setInterval(moveDown, 500)
+  setInterval(moveDown, 5000)
   setInterval(scoreFunction, 1000)
 
 
