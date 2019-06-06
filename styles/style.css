@@ -8,11 +8,21 @@ html, body {
   height: 100%;
 }
 
+h2 {
+  padding-right: 50px;
+  font-size: 40pt;
+}
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: HotPink;
+  font-family: 'Monoton', cursive;
 }
+
+
+
 
 div.grid {
   align-content: space-around;
@@ -21,18 +31,20 @@ div.grid {
   height: 500px;
   display: flex;
   flex-wrap: wrap;
+  background-color: white;
 }
 
 div.grid-item {
   width: 25px;
   height: 25px;
-  border: 1px dashed black;
+  border: 1px dashed white;
 }
 
 div.grid-item.player {
   background-color: black;
   background-repeat: no-repeat;
   background-size: contain;
+  border: 1px dashed black;
 }
 
 .fixed {
