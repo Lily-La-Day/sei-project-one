@@ -20,11 +20,6 @@ return score.innerHTML = scoreTracker
 
 }
 
-
-
-
-
-
   const onBoardCheck = (playerPos) => {
     return playerPos.every(pos =>
       pos >= 0 && pos < 200
@@ -62,14 +57,14 @@ return score.innerHTML = scoreTracker
 
 
 
-  // //basic function to update squares to be coloured as tetronimo moves on board
-  // function movePlayer() {
-  //   clear()
-  //   squares[playerPos[0]].classList.add('player')
-  //   squares[playerPos[1]].classList.add('player')
-  //   squares[playerPos[2]].classList.add('player')
-  //   squares[playerPos[3]].classList.add('player')
-  // }
+
+  function movePlayer() {
+    clear()
+    squares[playerPos[0]].classList.add('player')
+    squares[playerPos[1]].classList.add('player')
+    squares[playerPos[2]].classList.add('player')
+    squares[playerPos[3]].classList.add('player')
+  }
 
   //clears squares as tetromino moves
   const clear = () => {
@@ -265,185 +260,6 @@ rows.forEach((row) => {
             squares[i+10].classList.add('fixed-four')
             squares[i].classList.remove('fixed-three')
             row = []
-            if (squares[i].className === 'grid-item fixed-four') {
-              scoreTracker += 1
-              console.log('second row')
-              console.log(squares[i])
-              squares[i+10].classList.add('fixed-five')
-              squares[i].classList.remove('fixed-four')
-
-              row = []
-              if (squares[i].className === 'grid-item fixed-four') {
-                scoreTracker += 1
-                console.log('second row')
-                console.log(squares[i])
-                squares[i+10].classList.add('fixed-five')
-                squares[i].classList.remove('fixed-four')
-
-                row = []
-                if (squares[i].className === 'grid-item fixed-five') {
-                  scoreTracker += 1
-                  console.log('second row')
-                  console.log(squares[i])
-                  squares[i+10].classList.add('fixed-six')
-                  squares[i].classList.remove('fixed-five')
-
-                  row = []
-                  if (squares[i].className === 'grid-item fixed-six') {
-                    scoreTracker += 1
-                    console.log('second row')
-                    console.log(squares[i])
-                    squares[i+10].classList.add('fixed-seven')
-                    squares[i].classList.remove('fixed-six')
-
-                    row = []
-                    if (squares[i].className === 'grid-item fixed-seven') {
-                      scoreTracker += 1
-                      console.log('second row')
-                      console.log(squares[i])
-                      squares[i+10].classList.add('fixed-eight')
-                      squares[i].classList.remove('fixed-seven')
-
-                      row = []
-                      if (squares[i].className === 'grid-item fixed-eight') {
-                        console.log('second row')
-                        console.log(squares[i])
-                        squares[i+10].classList.add('fixed-nine')
-                        squares[i].classList.remove('fixed-eight')
-
-                        row = []
-                        if (squares[i].className === 'grid-item fixed-nine') {
-                          console.log('second row')
-                          console.log(squares[i])
-                          squares[i+10].classList.add('fixed-ten')
-                          squares[i].classList.remove('fixed-nine')
-
-                          row = []
-                          if (squares[i].className === 'grid-item fixed-ten') {
-                            console.log('second row')
-                            console.log(squares[i])
-                            squares[i+10].classList.add('fixed-eleven')
-                            squares[i].classList.remove('fixed-ten')
-
-                            row = []
-
-                            if (squares[i].className === 'grid-item fixed-ten') {
-                              console.log('second row')
-                              console.log(squares[i])
-                              squares[i+10].classList.add('fixed-eleven')
-                              squares[i].classList.remove('fixed-ten')
-
-                              row = []
-
-                              if (squares[i].className === 'grid-item fixed-ten') {
-
-                                console.log(squares[i])
-                                squares[i+10].classList.add('fixed-eleven')
-                                squares[i].classList.remove('fixed-ten')
-
-                                row = []
-
-                                if (squares[i].className === 'grid-item fixed-ten') {
-                                  console.log('second row')
-                                  console.log(squares[i])
-                                  squares[i+10].classList.add('fixed-eleven')
-                                  squares[i].classList.remove('fixed-ten')
-
-                                  row = []
-
-                                  if (squares[i].className === 'grid-item fixed-ten') {
-                                    console.log('second row')
-                                    console.log(squares[i])
-                                    squares[i+10].classList.add('fixed-eleven')
-                                    squares[i].classList.remove('fixed-ten')
-
-                                    row = []
-                                    if (squares[i].className === 'grid-item fixed-ten') {
-                                      console.log('second row')
-                                      console.log(squares[i])
-                                      squares[i+10].classList.add('fixed-eleven')
-                                      squares[i].classList.remove('fixed-ten')
-
-                                      row = []
-                                      if (squares[i].className === 'grid-item fixed-eleven') {
-                                        console.log('second row')
-                                        console.log(squares[i])
-                                        squares[i+10].classList.add('fixed-twelve')
-                                        squares[i].classList.remove('fixed-eleven')
-
-                                        row = []
-                                        if (squares[i].className === 'grid-item fixed-twelve') {
-                                          console.log('second row')
-                                          console.log(squares[i])
-                                          squares[i+10].classList.add('fixed-thirteen')
-                                          squares[i].classList.remove('fixed-tweleve')
-
-                                          row = []
-                                          if (squares[i].className === 'grid-item fixed-thirteen') {
-                                            console.log('second row')
-                                            console.log(squares[i])
-                                            squares[i+10].classList.add('fixed-fourteen')
-                                            squares[i].classList.remove('fixed-ten')
-
-                                            row = []
-                                            if (squares[i].className === 'grid-item fixed-fourteen') {
-                                              console.log('second row')
-                                              console.log(squares[i])
-                                              squares[i+10].classList.add('fixed-fifteen')
-                                              squares[i].classList.remove('fixed-fourteen')
-
-                                              row = []
-                                              if (squares[i].className === 'grid-item fixed-fifteen') {
-                                                console.log('second row')
-                                                console.log(squares[i])
-                                                squares[i+10].classList.add('fixed-sixteen')
-                                                squares[i].classList.remove('fixed-fifteen')
-
-                                                row = []
-                                                if (squares[i].className === 'grid-item fixed-sixteen') {
-                                                  console.log('second row')
-                                                  console.log(squares[i])
-                                                  squares[i+10].classList.add('fixed-seventeen')
-                                                  squares[i].classList.remove('fixed-sixteen')
-
-                                                  row = []
-                                                  if (squares[i].className === 'grid-item fixed-seventeen') {
-                                                    console.log('second row')
-                                                    console.log(squares[i])
-                                                    squares[i+10].classList.add('fixed-eighteen')
-                                                    squares[i].classList.remove('fixed-seventeen')
-
-                                                    row = []
-
-
-                                                  }
-
-                                                }
-
-                                              }
-
-                                            }
-
-                                          }
-
-                                        }
-
-                                      }
-
-                                    }
-
-                                  }
-                                }
-                              }
-                            }
-
-                          }
-
-                        }
-                      }
-                    }
-                  }
-                }
 
               }
             }
@@ -451,11 +267,10 @@ rows.forEach((row) => {
         }
       }
 
+    })
     }
-  }
-})
 
-}
+
 
 
 
@@ -469,7 +284,7 @@ let rotateTracker = 0
 //Need to find a way to get shapename out of makeshape function
 //WORK THIS OUT FIRST THING IN THE MORNING!!!
 function rotate90() {
-  const newPos = []
+
   if (shapeName === 'Tee'){
     playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
     playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
@@ -701,6 +516,7 @@ function rotate360() {
 }
 
 const rotateShape = (e) => {
+
   switch(e.keyCode) {
     case 32:
     switch(rotateTracker) {
@@ -882,8 +698,7 @@ fixedSquares = fixedSquares.concat(playerPos)
   rowClear()
 winFunction()
 
-  // console.log(playerIndex)
-  //Call function to make new tetronimo
+
   makeShape(14)
 }
 
@@ -912,11 +727,6 @@ console.log(playerPos, nextPos)
 
   }
 
-
-
-  // setInterval(rowClear, 3000 )
-
-
   const moveDownAuto = () => moveDown()
 
   const moveDownPress = (e) => {
@@ -925,7 +735,7 @@ console.log(playerPos, nextPos)
     }
   }
 
-  setInterval(moveDown, 5000)
+  setInterval(moveDown, 1000)
   setInterval(scoreFunction, 1000)
 
 
