@@ -7,12 +7,18 @@ window.addEventListener('DOMContentLoaded', () => {
   let fixedSquares = []
   let shapeName = ''
 let scoreTracker = 0
+let fixedSquaresTwo = [...document.querySelectorAll('[class*="fixed"]')]
   let score = document.querySelector('.score')
 
 
+const scoreFunction = () => {
+console.log(scoreTracker)
+return score.innerHTML = scoreTracker
 
 
-  score.innerHTML = scoreTracker
+}
+
+
 
 
 
@@ -43,18 +49,14 @@ let scoreTracker = 0
     return playerPos.every(isNotNineLessThanRoundNumber)
   }
   const winFunction = () => {
-  topRow = [...document.querySelectorAll('[data-row="-1"]')]
-  fixedSquares = [...document.querySelectorAll('[class*="fixed"]')]
-    console.log(topRow)
-  console.log(topRow.includes((square) => square))
-if (topRow.some((square) => square.classList.contains('fixed'))) {
-  console.log('you lose')
-  console.log(square)
-fixedSquares.forEach((square) => square.display.none)
-grid.display.opacity = 0.1
-score.innerHTML = 'YOU LOSE'
+  topRow = [...document.querySelectorAll('[data-row="-1"]')].filter(square => square.className === 'grid-item player fixed')
+  let fixedSquaresTwo = [...document.querySelectorAll('[class*="fixed"]')]
+  if (topRow.length > 0){
+   console.log('you lose')
+  score.innerHTML = 'YOU LOSE'
 } else {
   console.log('you win')
+
 }
 }
 
@@ -149,7 +151,7 @@ score.innerHTML = 'YOU LOSE'
   ]
 
   const makeShape = (playerIndex) => {
-    // winFunction()
+
     let rando = 0
 
     const randomNum = Math.floor(Math.random()*7)
@@ -233,6 +235,11 @@ rows[19] = squares.filter((el, index) =>
 rows[20] = squares.filter((el, index) =>
 (index < 10 && index > 0 && el.classList.contains('fixed'))
 )
+rows[21] = squares.filter((el, index) =>
+(index < 210 && index > 199 && el.classList.contains('fixed'))
+)
+
+console.log(rows[21])
 
 rows.forEach((row) => {
   if(row.length === 10){
@@ -330,7 +337,7 @@ rows.forEach((row) => {
                               row = []
 
                               if (squares[i].className === 'grid-item fixed-ten') {
-                                console.log('second row')
+
                                 console.log(squares[i])
                                 squares[i+10].classList.add('fixed-eleven')
                                 squares[i].classList.remove('fixed-ten')
@@ -798,7 +805,7 @@ function init() {
   for (let i = 0; i < width * (width*2) + width + width; i ++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
-    square.innerHTML = i
+    square.dataset.index = i
     squares.push(square)
     grid.append(square)
 
@@ -815,7 +822,7 @@ function init() {
 
   makeShape(playerIndex)
 
-winFunction()
+
 
 
 
@@ -850,11 +857,13 @@ winFunction()
       fixedSquares = fixedSquares.concat(playerPos)
 
       rowClear()
- 
+ winFunction()
+
       // console.log(playerIndex)
       //Call function to make new tetronimo
       makeShape(14)
     }
+
 
   }
 
@@ -872,6 +881,9 @@ winFunction()
   }
 
   setInterval(moveDown, 500)
+  setInterval(scoreFunction, 1000)
+
+
 
   window.addEventListener('keydown', leftRight)
   window.addEventListener('keydown', rotateShape )
