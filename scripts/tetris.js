@@ -8,11 +8,12 @@ window.addEventListener('DOMContentLoaded', () => {
   let fixedSquares = []
   let shapeName = ''
   let scoreTracker = 0
+  const rows =[[],[]]
   const score = document.querySelector('.score')
   const resetButton = document.querySelector('.reset')
 
   const scoreFunction = () => {
-    console.log(scoreTracker)
+    // console.log(scoreTracker)
     return score.innerHTML = scoreTracker
   }
 
@@ -152,17 +153,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   function rowClear() {
-
-    const rows =[[],[]]
-
-    rows[0] = squares.filter((el, index) =>
+  rows[0] = squares.filter((el, index) =>
       (index < 200 && index > 189 && el.classList.contains('fixed')))
-
     rows[1] = squares.filter((el, index) =>
       (index < 190 && index > 179 && el.classList.contains('fixed')))
-
-    rows[2] = squares.filter((el, index) =>
-      (index < 180 && index > 169 && el.classList.contains('fixed')))
+      rows[2] = squares.filter((el, index) =>
+    (index < 180 && index > 169 && el.classList.contains('fixed')))
     rows[3] = squares.filter((el, index) =>
       (index < 170 && index > 159 && el.classList.contains('fixed')))
     rows[4] = squares.filter((el, index) =>
@@ -173,8 +169,7 @@ window.addEventListener('DOMContentLoaded', () => {
       (index < 140 && index > 129 && el.classList.contains('fixed')))
     rows[7] = squares.filter((el, index) =>
       (index < 130 && index > 119 && el.classList.contains('fixed')))
-
-    rows[9] = squares.filter((el, index) =>
+      rows[9] = squares.filter((el, index) =>
       (index < 120 && index > 109 && el.classList.contains('fixed')))
     rows[10] = squares.filter((el, index) =>
       (index < 110 && index > 99 && el.classList.contains('fixed')))
@@ -206,7 +201,7 @@ window.addEventListener('DOMContentLoaded', () => {
     rows.forEach((row) => {
       if(row.length === 10){
 
-        console.log('row is full')
+        // console.log('row is full')
         scoreTracker += 1
         for(let i = 0; i < squares.length; i++) {
           if(squares[i].className === 'grid-item fixed') {
@@ -217,8 +212,8 @@ window.addEventListener('DOMContentLoaded', () => {
             row = []
             if (squares[i].className === 'grid-item fixed-two') {
               scoreTracker += 1
-              console.log('second row')
-              console.log(squares[i])
+              // console.log('second row')
+              // console.log(squares[i])
               squares[i+10].classList.add('fixed')
               squares[i].classList.remove('fixed-two')
               squares[i].style.backgroundColor= 'white'
@@ -470,85 +465,64 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+
   const rotateShape = () => {
+    if (playerIndex % width < width - 1
+    && boardLeftCheck(playerPos) &&
+    playerIndex % width > 0 && boardRightCheck(playerPos)) {
+      if (onBoardCheck(playerPos)) {
 
-    if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+        switch(rotateTracker) {
 
-      switch(rotateTracker) {
+          case 90 :
+            console.log(newPosFunc())
 
-        case 90 :
-          rotate90()
-          if(newPosFunc()) {
-            clear()
-            playerPos = nextPos
-          }
-          break
-        case 180:
-          rotate180()
-          if(newPosFunc()) {
-            clear()
-            playerPos = nextPos
-          }
+            rotate90()
+            newPosFunc()
+            console.log(nextPos)
+            if(newPosFunc()) {
+              clear()
+              playerPos = nextPos
+            }
+            break
+          case 180:
+            rotate180()
+            console.log(nextPos)
+            if(newPosFunc()) {
+              clear()
+              playerPos = nextPos
+            }
 
-          break
-        case 270 :
-          rotate270()
-          if(newPosFunc()) {
-            clear()
-            playerPos = nextPos
-          }
+            break
+          case 270 :
+            rotate270()
+            console.log(nextPos)
+            if(newPosFunc()) {
+              clear()
+              playerPos = nextPos
+            }
 
-          break
-        case 360 :
-          rotate360()
-          if(newPosFunc()) {
-            clear()
-            playerPos = nextPos
-          }
+            break
+          case 360 :
+            rotate360()
+            console.log(nextPos)
+            if(newPosFunc()) {
+              clear()
+              playerPos = nextPos
+            }
 
+        }
       }
     }
   }
 
 
 
-  function checkBelow(blockIndex){
-
-    console.log(playerPos)
-    return fixedSquares.includes(blockIndex + 10)
-  }
-
-  // function checkLeft(blockIndex){
-  //   return fixedSquares.includes(blockIndex - 1)
-  // }
-  //
-  // function checkRight(blockIndex){
-  //   return fixedSquares.includes(blockIndex + 1)
-  // }
-
-  // //function to check if player pos is same as index of any div with the class fixed
-  const spaceCheck = (playerPos) => {
-    // function checkLeft(blockIndex){
-    //   return fixedSquares.includes(blockIndex - 1)
-    // }
-    //
-    // function checkRight(blockIndex){
-    //   cosole.log(blockIndex)
-    //   return fixedSquares.includes(blockIndex + 1)
-    // }
-    let checker = true
-    playerPos.forEach(block => {
-      if(checkBelow(block)) checker = false
-    })
-
-    return checker
-  }
-
-
 
   function left() {
 
-    if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+    if (onBoardCheck(playerPos)) {
       if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPos))){
         playerPos[0] ++
         playerPos[1] ++
@@ -557,6 +531,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
 
   function right() {
     if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
@@ -590,7 +565,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const moveDown = () => {
     nextPosFunc()
     newPosFunc()
-    // console.log( playerPos, nextPos)
+
     if (newPosFunc() && onBoardCheck(playerPos)) {
       moveDownCheck()
     } else {
@@ -615,14 +590,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
+
   const moveDownCheck = () => {
-    console.log(playerPos, nextPos)
+    // console.log(playerPos, nextPos)
     clear()
     playerPos[0] += width
     playerPos[1] += width
     playerPos[2] += width
     playerPos[3] += width
-    console.log(playerPos, nextPos)
+    // console.log(playerPos, nextPos)
     squares[playerPos[0]].classList.add('player')
     squares[playerPos[1]].classList.add('player')
     squares[playerPos[2]].classList.add('player')
@@ -683,7 +659,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const setInterFunc = () =>  {
     let interval = 0
     if (scoreTracker === 0) {
-      interval = 700
+      interval = 2000
     } else if (scoreTracker < 3)  {
       interval = 500
     } else {
@@ -697,7 +673,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const interval = setInterFunc()
 
-  setInterval(moveDown, `${interval}`)
+  setInterval(moveDownAuto, `${interval}`)
 
 
 
@@ -714,9 +690,7 @@ window.addEventListener('DOMContentLoaded', () => {
     squares.forEach(square=> square.classList.remove('fixed'))
     squares.forEach(square=> square.classList.remove('fixed-two'))
     squares.forEach(square=> square.style.backgroundColor = 'white')
-    resetButton.display = 'none'
-
-
+    resetButton.style.display = 'none'
     return makeShape(14)
 
   }
