@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const TLZISJ0 = [
     {
-      Name: 'Tee',
+      name: 'Tee',
       start: [14, 3, 13, 23],
       zero: [0, -11, -1, 9],
       ninety: [0, -1, +1, 10],
@@ -73,7 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     {
-      Name: 'Elle',     //NOT RIGHT
+      name: 'Elle',     //NOT RIGHT
       start: [14, 3, 13, 23],
       zero: [0, 10, 20, +21],
       ninety: [0, -1, -2, +8],
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     {
-      Name: 'Zed',
+      name: 'Zed',
       start: [14, 4, 3, 15],
       zero: [0, 1, +10, -9],
       ninety: [0, -10, -11, 1],
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     {
-      Name: 'Eye',
+      name: 'Eye',
       start: [14, 15, 13, 12],
       zero: [0, 1, -1, -2],
       ninety: [0, -10, -20, +10],
@@ -103,7 +103,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     {
-      Name: 'Ess',
+      name: 'Ess',
       start: [14, 4, 5, 13],
       zero: [0, -10, -9, -1],
       ninety: [0, -10, +1, +11],
@@ -113,7 +113,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     {
-      Name: 'Jay',
+      name: 'Jay',
       start: [14, 15, 13, 25],
       zero: [0, +1, -1, +11],
       ninety: [0, -10, -9, +10],
@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
       playerPos = playerPos.slice(0,4)
     }
     playerIndex = playerPos[0]
-    shapeName = TLZISJ0[randomNum].Name
+    shapeName = TLZISJ0[randomNum].name
     console.log(shapeName)
     return shapeName
 
@@ -153,12 +153,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   function rowClear() {
-  rows[0] = squares.filter((el, index) =>
+    rows[0] = squares.filter((el, index) =>
       (index < 200 && index > 189 && el.classList.contains('fixed')))
     rows[1] = squares.filter((el, index) =>
       (index < 190 && index > 179 && el.classList.contains('fixed')))
-      rows[2] = squares.filter((el, index) =>
-    (index < 180 && index > 169 && el.classList.contains('fixed')))
+    rows[2] = squares.filter((el, index) =>
+      (index < 180 && index > 169 && el.classList.contains('fixed')))
     rows[3] = squares.filter((el, index) =>
       (index < 170 && index > 159 && el.classList.contains('fixed')))
     rows[4] = squares.filter((el, index) =>
