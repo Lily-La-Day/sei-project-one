@@ -238,6 +238,7 @@ rows.forEach((row) => {
         console.log(squares[i])
         squares[i+10].classList.add('fixed-two')
         squares[i].classList.remove('fixed')
+        squares[i].style.backgroundColor= 'white'
         row = []
         if (squares[i].className === 'grid-item fixed-two') {
           scoreTracker += 1
@@ -245,6 +246,8 @@ rows.forEach((row) => {
           console.log(squares[i])
           squares[i+10].classList.add('fixed-three')
           squares[i].classList.remove('fixed-two')
+          squares[i].classList.remove('fixed')
+          squares[i].style.backgroundColor= 'white'
           row = []
           if (squares[i].className === 'grid-item fixed-three') {
             scoreTracker += 1
