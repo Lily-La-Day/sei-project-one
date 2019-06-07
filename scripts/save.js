@@ -4042,7 +4042,7 @@ if (squares[i].className === 'grid-item fixed-four') {
           }
         }
 
-        setInterval(moveDown, 500)
+        setInterval(moveDown, 300)
         setInterval(scoreFunction, 1000)
 
 
@@ -4055,3 +4055,304 @@ if (squares[i].className === 'grid-item fixed-four') {
       init()
 
     })
+
+    const TLZISJ0 = [
+      {
+        name: 'Tee',
+        ninety: [0, -11, -1, 9],
+        oneEighty: [0, -1, +1, 10],
+        twoSeventy: [0, -9, +1, +11],
+        threeSixty: [0, -1, +1, -10]
+      },
+
+      {
+        name: 'Elle',     //NOT RIGHT
+        ninety: [0, 10, 20, +21],
+        oneEighty: [0, -1, -2, +8],
+        twoSeventy: [0, -10, -20, -19],
+        threeSixty:  [0, 1, 2, -8],
+      },
+
+      {
+        name: 'Zed',
+        ninety: [0, -1, 10 , -11],
+        oneEighty: [0, 10, -1, -9],
+        twoSeventy: [0, -10, -11, +1],
+        threeSixty: [0, -10, +1, -9]
+      },
+
+      {
+        name: 'Eye',
+        ninety: [0, 10, -10, -20],
+        oneEighty: [0, -10, -20, +10],
+        twoSeventy: [0, +1, -1, -2],
+        threeSixty: [0, -10, +20, +10]
+      },
+
+      {
+        name: 'Ess',
+        ninety: [0, -10, -9, -1],
+        oneEighty: [0, -10, +1, +11],
+        twoSeventy: [0, +1, +10, +9],
+        threeSixty: [0, -10, +1, +11]
+
+      },
+
+      {
+        name: 'Jay',
+        ninety: [0, +1, -10, -9],
+        oneEighty: [0, -10, -9, +10],
+        twoSeventy: [0, -1, +1, -11],
+        threeSixty: [0, +10, +9, -10]
+
+      },
+
+      {
+        name: 'Oh',
+        ninety: [0, -1, -10, -11],
+        oneEighty: [0, -1, -10, -11],
+        twoSeventy: [ 0, -1, -10, -11],
+        threeSixty: [0, -1, -10, -11]
+
+      }
+
+    ]
+
+
+    function rotate90() {
+    console.log(playerIndex)
+      if (shapeName === 'Tee'){
+        playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+
+        // console.log(playerIndex)e
+        // console.log(playerPos)
+      } else if (shapeName === 'Elle'){
+        playerPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
+        // console.log(playerIndex)
+        // console.log(`new position should be ${playerPos}`)
+      } else if (shapeName === 'Zed'){
+        playerPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Eye'){
+        playerPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Ess'){
+        playerPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      } else if (shapeName === 'Jay'){
+        playerPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }  else if (shapeName === 'Oh'){
+        playerPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
+        playerPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }
+      return rotateTracker = 90
+    }
+
+
+    function rotate180() {
+      console.log(playerIndex)
+      if (shapeName === 'Tee'){
+        playerPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
+
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Elle'){
+        playerPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(`new position should be ${playerPos}`)
+      } else if (shapeName === 'Zed'){
+        playerPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Eye'){
+        playerPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Ess'){
+        playerPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      } else if (shapeName === 'Jay'){
+        playerPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }  else if (shapeName === 'Oh'){
+        playerPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }
+        playerIndex = playerPos[1]
+      return rotateTracker = 180
+    }
+
+    function rotate270() {
+      console.log(playerIndex)
+      if (shapeName === 'Tee'){
+        playerPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Elle'){
+        playerPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(`new position should be ${playerPos}`)
+      } else if (shapeName === 'Zed'){
+        playerPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Eye'){
+        playerPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Ess'){
+        playerPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      } else if (shapeName === 'Jay'){
+        playerPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }  else if (shapeName === 'Oh'){
+        playerPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
+        playerPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }
+        playerIndex = playerPos[1]
+      return rotateTracker = 270
+    }
+
+    function rotate360() {
+
+      if (shapeName === 'Tee'){
+        playerPos[0] = (playerIndex + TLZISJ0[0].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[0].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[0].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[0].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Elle'){
+        playerPos[0] = (playerIndex + TLZISJ0[1].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[1].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[1].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[1].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(`new position should be ${playerPos}`)
+      } else if (shapeName === 'Zed'){
+        playerPos[0] = (playerIndex + TLZISJ0[2].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[2].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[2].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[2].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Eye'){
+        playerPos[0] = (playerIndex + TLZISJ0[3].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[3].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[3].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[3].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+      } else if (shapeName === 'Ess'){
+        playerPos[0] = (playerIndex + TLZISJ0[4].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[4].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[4].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[4].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      } else if (shapeName === 'Jay'){
+        playerPos[0] = (playerIndex + TLZISJ0[5].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[5].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[5].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[5].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }  else if (shapeName === 'Oh'){
+        playerPos[0] = (playerIndex + TLZISJ0[6].threeSixty[0])
+        playerPos[1] = (playerIndex+ TLZISJ0[6].threeSixty[1])
+        playerPos[2] = (playerIndex + TLZISJ0[6].threeSixty[2])
+        playerPos[3] = (playerIndex+ TLZISJ0[6].threeSixty[3])
+        // console.log(playerIndex)
+        // console.log(playerPos)
+
+      }
+        playerIndex = playerPos[1]
+      return rotateTracker = 360
+    }

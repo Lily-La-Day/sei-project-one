@@ -149,7 +149,7 @@
   const eye = new Tetronimo('Eye', [14, 15, 13, 12],[0, 1, -1, -2], [0, -10, -20, +10],
   [0, -1, 1, 2], [0, -10, +10, +20] )
 
-  const ess = new Tetronimo('Ess', [14, 4, 5, 13], [0, -10, +1, +11], [0, -10, +1, +9],
+  const ess = new Tetronimo('Ess', [14, 4, 5, 13], [0, -10, +1, +11], [0, -10, +1, +11],
   [0, +1, +10, +9], [0, -10, +1, +11])
 
   const jay = new Tetronimo('Jay', [14, 15, 13, 25], [0, +1, -1, +11], [0, -10, -9, +10],
@@ -184,10 +184,6 @@
   // console.log(playerPosArr)
 
 
-  const update = () => {
-    playerPosArr.forEach(pos =>
-      squares[pos].classList.add('player'))
-    }
 
     const rotateShape = (e) => {
       switch(e.keyCode) {
@@ -264,6 +260,12 @@
     //   return true
     // }
     //NEED TO RE-WRITE THIS IN A DRY WAY
+
+
+
+
+
+
     const spaceCheck = (playerPos) => {
       return playerPosArr.every(pos =>
 

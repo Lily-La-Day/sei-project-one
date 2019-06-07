@@ -5,7 +5,6 @@ window.addEventListener('DOMContentLoaded', () => {
   let playerIndex = 14
   let playerPos = [0,0,0,0]
   let nextPos = [0,0,0,0]
-
   let fixedSquares = []
   let shapeName = ''
   let scoreTracker = 0
@@ -17,9 +16,7 @@ init()
   const scoreFunction = () => {
     console.log(scoreTracker)
     return score.innerHTML = scoreTracker
-
-
-  }
+}
 
   const onBoardCheck = (playerPos) => {
     return playerPos.every(pos =>
@@ -27,8 +24,7 @@ init()
 
     )
   }
-
-  function isNotNineMoreThanRoundNumber(currentValue) {
+function isNotNineMoreThanRoundNumber(currentValue) {
     if ((currentValue - 9) %10 !== 0) {
       return currentValue
     }
@@ -55,11 +51,7 @@ init()
     }
   }
 
-
-
-
-
-  function movePlayer() {
+function movePlayer() {
     clear()
     squares[playerPos[0]].classList.add('player')
     squares[playerPos[1]].classList.add('player')
@@ -88,20 +80,20 @@ init()
     {
       Name: 'Elle',     //NOT RIGHT
       start: [14, 3, 13, 23],
-      ninety: [0, 10, 20, +21],
-      oneEighty: [0, -1, -2, +8],
-      twoSeventy: [0, -10, -20, -19],
-      threeSixty:  [0, 1, 2, -8],
+      zero: [0, 10, 20, +21],
+      ninety: [0, -1, -2, +8],
+      oneEighty: [0, -10, -20, -19],
+      twoSeventy:  [0, 1, 2, -8],
     },
 
 
     {
       Name: 'Zed',
       start: [14, 4, 3, 15],
-      zero: [0, -10, -11, 1],
-      ninety: [0, 1, +10, -9],
-      oneEighty: [0, -1, +10, +11],
-      twoSeventy: [0, -10, -1, +9]
+      ninety: [0, -1, 10 , -11],
+      oneEighty: [0, 10, -1, -9],
+      twoSeventy: [0, -10, -11, +1],
+      threeSixty: [0, -10, +1, -9]
     },
 
     {
@@ -234,7 +226,7 @@ rows[21] = squares.filter((el, index) =>
 (index < 210 && index > 199 && el.classList.contains('fixed'))
 )
 
-console.log(rows[21])
+
 
 rows.forEach((row) => {
   if(row.length === 10){
@@ -271,14 +263,6 @@ rows.forEach((row) => {
 })
 }
 
-
-
-
-
-
-
-//Need to find a way to get shapename out of makeshape function
-//WORK THIS OUT FIRST THING IN THE MORNING!!!
 let rotateTracker = 0
 
 
@@ -617,21 +601,15 @@ function left() {
 
     makeShape(playerIndex)
 
-  let newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+  let newPos = [squares[nextPos[0]], squares[nextPos[1]],
   squares[nextPos[2]], squares[nextPos[3]] ]
 
   const nextPosFunc = () => {
     nextPos = playerPos.map(pos => pos += width)
-    // console.log(playerPos)
-    // console.log(nextPos)
     return nextPos
-
-    // console.log(playerPos)
-    // return nextPos
   }
 
   const newPosFunc = () => {
-    // console.log(nextPos)
     newPos = [ squares[nextPos[0]], squares[nextPos[1]],
     squares[nextPos[2]], squares[nextPos[3]] ]
 
@@ -650,29 +628,26 @@ function left() {
     if (newPosFunc() && onBoardCheck(playerPos)) {
       moveDownCheck()
     } else {
-      console.log(playerPos, nextPos)
       squares[playerPos[0]].classList.add('fixed')
       squares[playerPos[1]].classList.add('fixed')
       squares[playerPos[2]].classList.add('fixed')
       squares[playerPos[3]].classList.add('fixed')
+      const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      squares[playerPos[0]].style.backgroundColor = randomColor
+      squares[playerPos[1]].style.backgroundColor = randomColor
+      squares[playerPos[2]].style.backgroundColor = randomColor
+      squares[playerPos[3]].style.backgroundColor = randomColor
       fixedSquares = fixedSquares.concat(playerPos)
-
       rowClear()
       winFunction()
-
-
       makeShape(14)
     }
 
   }
 
-
-
-
   const moveDownCheck = () => {
     console.log(playerPos, nextPos)
     clear()
-
     playerPos[0] += width
     playerPos[1] += width
     playerPos[2] += width
@@ -682,7 +657,9 @@ function left() {
     squares[playerPos[1]].classList.add('player')
     squares[playerPos[2]].classList.add('player')
     squares[playerPos[3]].classList.add('player')
-    playerIndex = playerPos.sort()[0]
+
+
+    playerIndex = playerPos[0]
     return playerPos
 
 
@@ -713,8 +690,6 @@ function left() {
     for (let i = 0; i < width * (width*2) + width + width; i ++) {
       const square = document.createElement('div')
       square.classList.add('grid-item')
-      square.innerHTML = i
-
       square.dataset.index = i
       squares.push(square)
       grid.append(square)

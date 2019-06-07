@@ -8,102 +8,93 @@ html, body {
   height: 100%;
 }
 
+header {
+
+}
+
+.left {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  height:100%;
+  width: 20%;
+  position: fixed;
+  left: 100px;
+  font-size: 30pt;
+
+}
+
+.score-section {
+  text-align: center;
+  right: 100px;
+  width: 20%;
+  margin-right: -20px;
+  position: fixed;
+  align-self: center;
+  justify-content: center;
+}
+
+
+
 h2 {
-  padding-right: 50px;
+  padding-right: 10px;
   font-size: 40pt;
 }
 
 body {
-  background-image: url("/Users/lilykeeling/development/projects/sei-project-one/images/bricks.jpg");
+  background-image: url("https://i.ibb.co/f1GWjCV/bricks.jpg");
   display: flex;
-  align-items: center;
-  justify-content: center;
 
+  justify-content: center;
   font-family: 'Monoton', cursive;
+  color: white;
 }
 
 
 
 
 div.grid {
+  background-image: url("https://i.ibb.co/pKK33HM/wall.jpg")
   align-content: space-around;
   margin-top: 50px;
   width: 250px;
   height: 500px;
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
+
+
 }
 
 div.grid-item {
+  background-color: white;
+  opacity: 0.5;
+  background-size:cover;
   width: 25px;
   height: 25px;
-  border: 1px dashed white;
+  border: 0.5px dashed white;
 }
 
 div.grid-item.player {
-  background-color: black;
+  background-color: white !important;
+  opacity: 1;
+  background-size: cover;
   background-repeat: no-repeat;
   background-size: contain;
   border: 1px dashed black;
 }
 
 .fixed {
-  background-color: HotPink !important;
+  background-color: HotPink;
+  opacity: 1 !important;
 }
 
 .fixed-two {
-  background-color: HotPink !important;
+  background-color: HotPink;
+  opacity: 1 !important;
 }
 
 .fixed-three {
-  background-color: HotPink !important;
-}
-.fixed-four {
-  background-color: HotPink !important;
-}
-.fixed-five {
-  background-color: HotPink !important;
-}
-.fixed-six {
-  background-color: HotPink !important;
-}
-.fixed-seven {
-  background-color: HotPink !important;
-}
-.fixed-eight {
-  background-color: HotPink !important;
-}
-.fixed-nine {
-  background-color: HotPink !important;
-}
+  background-color: HotPink;
 
-.fixed-ten {
-  background-color: HotPink !important;
-}
-.fixed-eleven {
-  background-color: HotPink !important;
-}
-.fixed-twelve {
-  background-color: HotPink !important;
-}
-.fixed-thirteen {
-  background-color: HotPink !important;
-}
-
-.fixed-fourteen {
-  background-color: HotPink !important;
-}
-.fixed-fifteen {
-  background-color: HotPink !important;
-}
-.fixed-sixteen {
-  background-color: HotPink !important;
-}
-.fixed-seventeen{
-  background-color: HotPink !important;
-}
-
-.test {
-  background-color: turquoise !important;
+  opacity: 1 !important;
 }
