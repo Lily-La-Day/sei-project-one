@@ -8,15 +8,13 @@ window.addEventListener('DOMContentLoaded', () => {
   let fixedSquares = []
   let shapeName = ''
   let scoreTracker = 0
-  let fixedSquaresTwo = [...document.querySelectorAll('[class*="fixed"]')]
-  let score = document.querySelector('.score')
-
-init()
+  const score = document.querySelector('.score')
+  const resetButton = document.querySelector('.reset')
 
   const scoreFunction = () => {
     console.log(scoreTracker)
     return score.innerHTML = scoreTracker
-}
+  }
 
   const onBoardCheck = (playerPos) => {
     return playerPos.every(pos =>
@@ -24,7 +22,7 @@ init()
 
     )
   }
-function isNotNineMoreThanRoundNumber(currentValue) {
+  function isNotNineMoreThanRoundNumber(currentValue) {
     if ((currentValue - 9) %10 !== 0) {
       return currentValue
     }
@@ -42,22 +40,18 @@ function isNotNineMoreThanRoundNumber(currentValue) {
   const boardRightCheck = (playerPos) => {
     return playerPos.every(isNotNineLessThanRoundNumber)
   }
+
+
   const winFunction = () => {
-    topRow = [...document.querySelectorAll('[data-row="-1"]')].filter(square => square.className === 'grid-item player fixed')
-    let fixedSquaresTwo = [...document.querySelectorAll('[class*="fixed"]')]
+    const topRow = [...document.querySelectorAll('[data-row="-1"]')].filter(square => square.className === 'grid-item player fixed')
     if (topRow.length > 0){
-      console.log('you lose')
       score.innerHTML = 'YOU LOSE'
+      resetButton.style.display = 'block'
+      resetButton.innerHTML = 'reset'
+
     }
   }
 
-function movePlayer() {
-    clear()
-    squares[playerPos[0]].classList.add('player')
-    squares[playerPos[1]].classList.add('player')
-    squares[playerPos[2]].classList.add('player')
-    squares[playerPos[3]].classList.add('player')
-  }
 
   //clears squares as tetromino moves
   const clear = () => {
@@ -83,18 +77,20 @@ function movePlayer() {
       zero: [0, 10, 20, +21],
       ninety: [0, -1, -2, +8],
       oneEighty: [0, -10, -20, -19],
-      twoSeventy:  [0, 1, 2, -8],
+      twoSeventy: [0, 1, 2, -8]
     },
 
 
     {
       Name: 'Zed',
       start: [14, 4, 3, 15],
-      ninety: [0, -1, 10 , -11],
-      oneEighty: [0, 10, -1, -9],
-      twoSeventy: [0, -10, -11, +1],
-      threeSixty: [0, -10, +1, -9]
+      zero: [0, 1, +10, -9],
+      ninety: [0, -10, -11, 1],
+      oneEighty: [0, -1, +10, +11],
+      twoSeventy: [0, -10, -1, 9]
     },
+
+
 
     {
       Name: 'Eye',
@@ -138,9 +134,7 @@ function movePlayer() {
   ]
 
   const makeShape = (playerIndex) => {
-
     let rando = 0
-
     const randomNum = Math.floor(Math.random()*7)
     for (let i = 0; i < TLZISJ0[0].zero.length; i ++) {
       rando = TLZISJ0[randomNum].zero[i]
@@ -148,7 +142,7 @@ function movePlayer() {
       playerPos.unshift(playerIndex+rando)
       playerPos = playerPos.slice(0,4)
     }
-    playerIndex = playerPos[3]
+    playerIndex = playerPos[0]
     shapeName = TLZISJ0[randomNum].Name
     console.log(shapeName)
     return shapeName
@@ -162,408 +156,355 @@ function movePlayer() {
     const rows =[[],[]]
 
     rows[0] = squares.filter((el, index) =>
-    (index < 200 && index > 189 && el.classList.contains('fixed'))
-  )
-  rows[1] = squares.filter((el, index) =>
-  (index < 190 && index > 179 && el.classList.contains('fixed'))
-)
-rows[2] = squares.filter((el, index) =>
-(index < 180 && index > 169 && el.classList.contains('fixed'))
-)
-rows[3] = squares.filter((el, index) =>
-(index < 170 && index > 159 && el.classList.contains('fixed'))
-)
-rows[4] = squares.filter((el, index) =>
-(index < 160 && index > 149 && el.classList.contains('fixed'))
-)
-rows[5] = squares.filter((el, index) =>
-(index < 150 && index > 139 && el.classList.contains('fixed'))
-)
-rows[6] = squares.filter((el, index) =>
-(index < 140 && index > 129 && el.classList.contains('fixed'))
-)
-rows[7] = squares.filter((el, index) =>
-(index < 130 && index > 119 && el.classList.contains('fixed'))
-)
+      (index < 200 && index > 189 && el.classList.contains('fixed')))
 
-rows[9] = squares.filter((el, index) =>
-(index < 120 && index > 109 && el.classList.contains('fixed'))
-)
-rows[10] = squares.filter((el, index) =>
-(index < 110 && index > 99 && el.classList.contains('fixed'))
-)
-rows[11] = squares.filter((el, index) =>
-(index < 100 && index > 89 && el.classList.contains('fixed'))
-)
-rows[12] = squares.filter((el, index) =>
-(index < 90 && index > 79 && el.classList.contains('fixed'))
-)
-rows[13] = squares.filter((el, index) =>
-(index < 80 && index > 69 && el.classList.contains('fixed'))
-)
-rows[14] = squares.filter((el, index) =>
-(index < 70 && index > 59 && el.classList.contains('fixed'))
-)
-rows[15] = squares.filter((el, index) =>
-(index < 60 && index > 49 && el.classList.contains('fixed'))
-)
-rows[16] = squares.filter((el, index) =>
-(index < 50 && index > 39 && el.classList.contains('fixed'))
-)
-rows[17] = squares.filter((el, index) =>
-(index < 40 && index > 29 && el.classList.contains('fixed'))
-)
-rows[18] = squares.filter((el, index) =>
-(index < 30 && index > 19 && el.classList.contains('fixed'))
-)
-rows[19] = squares.filter((el, index) =>
-(index < 20 && index > 9 && el.classList.contains('fixed'))
-)
-rows[20] = squares.filter((el, index) =>
-(index < 10 && index > 0 && el.classList.contains('fixed'))
-)
-rows[21] = squares.filter((el, index) =>
-(index < 210 && index > 199 && el.classList.contains('fixed'))
-)
+    rows[1] = squares.filter((el, index) =>
+      (index < 190 && index > 179 && el.classList.contains('fixed')))
+
+    rows[2] = squares.filter((el, index) =>
+      (index < 180 && index > 169 && el.classList.contains('fixed')))
+    rows[3] = squares.filter((el, index) =>
+      (index < 170 && index > 159 && el.classList.contains('fixed')))
+    rows[4] = squares.filter((el, index) =>
+      (index < 160 && index > 149 && el.classList.contains('fixed')))
+    rows[5] = squares.filter((el, index) =>
+      (index < 150 && index > 139 && el.classList.contains('fixed')))
+    rows[6] = squares.filter((el, index) =>
+      (index < 140 && index > 129 && el.classList.contains('fixed')))
+    rows[7] = squares.filter((el, index) =>
+      (index < 130 && index > 119 && el.classList.contains('fixed')))
+
+    rows[9] = squares.filter((el, index) =>
+      (index < 120 && index > 109 && el.classList.contains('fixed')))
+    rows[10] = squares.filter((el, index) =>
+      (index < 110 && index > 99 && el.classList.contains('fixed')))
+    rows[11] = squares.filter((el, index) =>
+      (index < 100 && index > 89 && el.classList.contains('fixed')))
+    rows[12] = squares.filter((el, index) =>
+      (index < 90 && index > 79 && el.classList.contains('fixed')))
+    rows[13] = squares.filter((el, index) =>
+      (index < 80 && index > 69 && el.classList.contains('fixed')))
+    rows[14] = squares.filter((el, index) =>
+      (index < 70 && index > 59 && el.classList.contains('fixed')))
+    rows[15] = squares.filter((el, index) =>
+      (index < 60 && index > 49 && el.classList.contains('fixed')))
+    rows[16] = squares.filter((el, index) =>
+      (index < 50 && index > 39 && el.classList.contains('fixed')))
+    rows[17] = squares.filter((el, index) =>
+      (index < 40 && index > 29 && el.classList.contains('fixed')))
+    rows[18] = squares.filter((el, index) =>
+      (index < 30 && index > 19 && el.classList.contains('fixed')))
+    rows[19] = squares.filter((el, index) =>
+      (index < 20 && index > 9 && el.classList.contains('fixed')))
+    rows[20] = squares.filter((el, index) =>
+      (index < 10 && index > 0 && el.classList.contains('fixed')))
+    rows[21] = squares.filter((el, index) =>
+      (index < 210 && index > 199 && el.classList.contains('fixed')))
 
 
 
-rows.forEach((row) => {
-  if(row.length === 10){
+    rows.forEach((row) => {
+      if(row.length === 10){
 
-    console.log('row is full')
-    scoreTracker += 1
-    for(let i = 0; i < squares.length; i++) {
-      if(squares[i].className === 'grid-item fixed') {
-        console.log(squares[i])
-        squares[i+10].classList.add('fixed-two')
-        squares[i].classList.remove('fixed')
-        squares[i].style.backgroundColor= 'white'
-        row = []
-        if (squares[i].className === 'grid-item fixed-two') {
-          scoreTracker += 1
-          console.log('second row')
-          console.log(squares[i])
-          squares[i+10].classList.add('fixed')
-          squares[i].classList.remove('fixed-two')
-          squares[i].style.backgroundColor= 'white'
-          row = []
+        console.log('row is full')
+        scoreTracker += 1
+        for(let i = 0; i < squares.length; i++) {
+          if(squares[i].className === 'grid-item fixed') {
+            console.log(squares[i])
+            squares[i+10].classList.add('fixed-two')
+            squares[i].classList.remove('fixed')
+            squares[i].style.backgroundColor= 'white'
+            row = []
+            if (squares[i].className === 'grid-item fixed-two') {
+              scoreTracker += 1
+              console.log('second row')
+              console.log(squares[i])
+              squares[i+10].classList.add('fixed')
+              squares[i].classList.remove('fixed-two')
+              squares[i].style.backgroundColor= 'white'
+              row = []
 
+            }
+          }
         }
       }
+
+    })
+  }
+
+  let rotateTracker = 90
+
+
+  function rotate90() {
+
+    if (shapeName === 'Tee'){
+      nextPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+
+    } else if (shapeName === 'Elle'){
+      nextPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
+
+    } else if (shapeName === 'Zed'){
+      nextPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
+
+    } else if (shapeName === 'Eye'){
+      nextPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
+
+    } else if (shapeName === 'Ess'){
+      nextPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
+
+
+    } else if (shapeName === 'Jay'){
+      nextPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
+
+
+    }  else if (shapeName === 'Oh'){
+      nextPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
+      nextPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
     }
+    playerIndex = nextPos[0]
+    rotateTracker = 180
+    return nextPos
   }
 
-})
-}
 
-let rotateTracker = 90
+  function rotate180() {
+    if (shapeName === 'Tee'){
+      nextPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
 
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Elle'){
+      nextPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(`new position should be ${nextPos}`)
+    } else if (shapeName === 'Zed'){
+      nextPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Eye'){
+      nextPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Ess'){
+      nextPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
 
-//Need to find a way to get shapename out of makeshape function
-//WORK THIS OUT FIRST THING IN THE MORNING!!!
-function rotate90() {
+    } else if (shapeName === 'Jay'){
+      nextPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
 
-  if (shapeName === 'Tee'){
-    nextPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+    }  else if (shapeName === 'Oh'){
+      nextPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
+      nextPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
 
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Elle'){
-    nextPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
-    // console.log(playerIndex)
-    // console.log(`new position should be ${nextPos}`)
-  } else if (shapeName === 'Zed'){
-    nextPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Eye'){
-    nextPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Ess'){
-    nextPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  } else if (shapeName === 'Jay'){
-    nextPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }  else if (shapeName === 'Oh'){
-    nextPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
-    nextPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }
-  playerIndex = nextPos[0]
-   rotateTracker = 180
-   return nextPos
-}
-
-
-function rotate180() {
-  if (shapeName === 'Tee'){
-    nextPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
-
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Elle'){
-    nextPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(`new position should be ${nextPos}`)
-  } else if (shapeName === 'Zed'){
-    nextPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Eye'){
-    nextPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Ess'){
-    nextPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  } else if (shapeName === 'Jay'){
-    nextPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }  else if (shapeName === 'Oh'){
-    nextPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
-    nextPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }
+    }
     playerIndex = nextPos[0]
     rotateTracker = 270
-     return nextPos
-}
-
-function rotate270() {
-  if (shapeName === 'Tee'){
-    nextPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Elle'){
-    nextPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(`new position should be ${nextPos}`)
-  } else if (shapeName === 'Zed'){
-    nextPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Eye'){
-    nextPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Ess'){
-    nextPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  } else if (shapeName === 'Jay'){
-    nextPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }  else if (shapeName === 'Oh'){
-    nextPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
-    nextPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }
-    playerIndex = nextPos[0]
-   rotateTracker =  360
     return nextPos
-}
-
-function rotate360() {
-
-  if (shapeName === 'Tee'){
-    nextPos[0] = (playerIndex + TLZISJ0[0].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[0].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Elle'){
-    nextPos[0] = (playerIndex + TLZISJ0[1].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[1].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
-    // console.log(playerIndex)
-    // console.log(`new position should be ${nextPos}`)
-  } else if (shapeName === 'Zed'){
-    nextPos[0] = (playerIndex + TLZISJ0[2].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[2].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Eye'){
-    nextPos[0] = (playerIndex + TLZISJ0[3].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[3].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-  } else if (shapeName === 'Ess'){
-    nextPos[0] = (playerIndex + TLZISJ0[4].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[4].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  } else if (shapeName === 'Jay'){
-    nextPos[0] = (playerIndex + TLZISJ0[5].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[5].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
-  }  else if (shapeName === 'Oh'){
-    nextPos[0] = (playerIndex + TLZISJ0[6].zero[0])
-    nextPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
-    nextPos[2] = (playerIndex + TLZISJ0[6].zero[2])
-    nextPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
-    // console.log(playerIndex)
-    // console.log(nextPos)
-
   }
+
+  function rotate270() {
+    if (shapeName === 'Tee'){
+      nextPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Elle'){
+      nextPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(`new position should be ${nextPos}`)
+    } else if (shapeName === 'Zed'){
+      nextPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Eye'){
+      nextPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Ess'){
+      nextPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    } else if (shapeName === 'Jay'){
+      nextPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    }  else if (shapeName === 'Oh'){
+      nextPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
+      nextPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    }
     playerIndex = nextPos[0]
-   rotateTracker = 90
+    rotateTracker =  360
     return nextPos
-}
+  }
+
+  function rotate360() {
+
+    if (shapeName === 'Tee'){
+      nextPos[0] = (playerIndex + TLZISJ0[0].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[0].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Elle'){
+      nextPos[0] = (playerIndex + TLZISJ0[1].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[1].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
+      // console.log(playerIndex)
+      // console.log(`new position should be ${nextPos}`)
+    } else if (shapeName === 'Zed'){
+      nextPos[0] = (playerIndex + TLZISJ0[2].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[2].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Eye'){
+      nextPos[0] = (playerIndex + TLZISJ0[3].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[3].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+    } else if (shapeName === 'Ess'){
+      nextPos[0] = (playerIndex + TLZISJ0[4].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[4].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    } else if (shapeName === 'Jay'){
+      nextPos[0] = (playerIndex + TLZISJ0[5].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[5].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    }  else if (shapeName === 'Oh'){
+      nextPos[0] = (playerIndex + TLZISJ0[6].zero[0])
+      nextPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
+      nextPos[2] = (playerIndex + TLZISJ0[6].zero[2])
+      nextPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
+      // console.log(playerIndex)
+      // console.log(nextPos)
+
+    }
+    playerIndex = nextPos[0]
+    rotateTracker = 90
+    return nextPos
+  }
 
 
+  const rotateShape = () => {
 
-// const newPosFunc = () => {
-//   nextPos = playerPos
-//   newPos = [ squares[nextPos[0]], squares[nextPos[1]],
-//   squares[nextPos[2]], squares[nextPos[3]] ]
-//
-//   if (newPos.some(pos => pos.classList.contains('fixed'))){
-//     console.log('should fix now')
-//     return false
-//   } else {
-//     return true
-//   }
-// }
-
-
-const rotateShape = () => {
-
-  // newPos = [squares[nextPos[0]], squares[nextPos[1]],
-  // squares[nextPos[2]], squares[nextPos[3]] ]
-  // console.log(newPos)
-  // newPosFunc()
-  //
-  // if(newPosFunc()){
-
-  if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+    if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
 
       switch(rotateTracker) {
 
         case 90 :
-        // clear()
-        rotate90()
-        if(newPosFunc()) {
-          clear()
-          playerPos = nextPos
-        }
-
-
-        break
+          rotate90()
+          if(newPosFunc()) {
+            clear()
+            playerPos = nextPos
+          }
+          break
         case 180:
-        rotate180()
-        if(newPosFunc()) {
-          clear()
-          playerPos = nextPos
-        }
+          rotate180()
+          if(newPosFunc()) {
+            clear()
+            playerPos = nextPos
+          }
 
-        break
+          break
         case 270 :
-        rotate270()
-        if(newPosFunc()) {
-          clear()
-          playerPos = nextPos
-        }
+          rotate270()
+          if(newPosFunc()) {
+            clear()
+            playerPos = nextPos
+          }
 
-        break
+          break
         case 360 :
-        rotate360()
-        if(newPosFunc()) {
-          clear()
-          playerPos = nextPos
-        }
+          rotate360()
+          if(newPosFunc()) {
+            clear()
+            playerPos = nextPos
+          }
 
       }
     }
@@ -571,52 +512,44 @@ const rotateShape = () => {
 
 
 
+  function checkBelow(blockIndex){
 
-playerPosAfter = (func) => {
-
-  console.log(playerPos.map(func, playerPos))
-
-
-}
-
-function checkBelow(blockIndex){
-
-  console.log(playerPos)
-  return fixedSquares.includes(blockIndex + 10)
-}
-
-function checkLeft(blockIndex){
-  return fixedSquares.includes(blockIndex - 1)
-}
-
-function checkRight(blockIndex){
-  return fixedSquares.includes(blockIndex + 1)
-}
-
-// //function to check if player pos is same as index of any div with the class fixed
-const spaceCheck = (playerPos) => {
-  function checkLeft(blockIndex){
-    return fixedSquares.includes(blockIndex - 1)
+    console.log(playerPos)
+    return fixedSquares.includes(blockIndex + 10)
   }
 
-  function checkRight(blockIndex){
-    cosole.log(blockIndex)
-    return fixedSquares.includes(blockIndex + 1)
+  // function checkLeft(blockIndex){
+  //   return fixedSquares.includes(blockIndex - 1)
+  // }
+  //
+  // function checkRight(blockIndex){
+  //   return fixedSquares.includes(blockIndex + 1)
+  // }
+
+  // //function to check if player pos is same as index of any div with the class fixed
+  const spaceCheck = (playerPos) => {
+    // function checkLeft(blockIndex){
+    //   return fixedSquares.includes(blockIndex - 1)
+    // }
+    //
+    // function checkRight(blockIndex){
+    //   cosole.log(blockIndex)
+    //   return fixedSquares.includes(blockIndex + 1)
+    // }
+    let checker = true
+    playerPos.forEach(block => {
+      if(checkBelow(block)) checker = false
+    })
+
+    return checker
   }
-  let checker = true
-  playerPos.forEach(block => {
-    if(checkBelow(block)) checker = false
-  })
-
-  return checker
-}
 
 
 
-function left() {
+  function left() {
 
-  if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
-  if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPos))){
+    if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
+      if ((playerIndex % width < width - 1)&&(boardLeftCheck(playerPos))){
         playerPos[0] ++
         playerPos[1] ++
         playerPos[2] ++
@@ -626,19 +559,14 @@ function left() {
   }
 
   function right() {
-      if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
+    if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
 
-        playerPos[0] --
-        playerPos[1] --
-        playerPos[2] --
-        playerPos[3] --
-      }
-
-
+      playerPos[0] --
+      playerPos[1] --
+      playerPos[2] --
+      playerPos[3] --
     }
-
-    makeShape(playerIndex)
-
+  }
 
 
   const nextPosFunc = () => {
@@ -647,8 +575,8 @@ function left() {
   }
 
   const newPosFunc = () => {
-    newPos = [ squares[nextPos[0]], squares[nextPos[1]],
-    squares[nextPos[2]], squares[nextPos[3]] ]
+    const newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+      squares[nextPos[2]], squares[nextPos[3]] ]
 
     if (newPos.some(pos => pos.classList.contains('fixed'))
     || !boardRightCheck(newPos) || !boardLeftCheck(newPos) ){
@@ -670,13 +598,16 @@ function left() {
       squares[playerPos[1]].classList.add('fixed')
       squares[playerPos[2]].classList.add('fixed')
       squares[playerPos[3]].classList.add('fixed')
-      const randomColor = '#'+Math.floor(Math.random()*16777215+0.4).toString(16);
+
+      const randomColor = '#'+Math.floor(Math.random()*16777215+0.4).toString(16)
 
       squares[playerPos[0]].style.backgroundColor = randomColor
       squares[playerPos[1]].style.backgroundColor = randomColor
       squares[playerPos[2]].style.backgroundColor = randomColor
       squares[playerPos[3]].style.backgroundColor = randomColor
+
       fixedSquares = fixedSquares.concat(playerPos)
+
       rowClear()
       winFunction()
       makeShape(14)
@@ -701,8 +632,6 @@ function left() {
     playerIndex = playerPos[0]
     return playerPos
 
-
-
   }
 
   const moveDownAuto = () => moveDown()
@@ -710,19 +639,21 @@ function left() {
   function handleEventListeners(e) {
     switch(e.keyCode) {
       case 32:
-      rotateShape()
-      break
+        rotateShape()
+        break
       case 39:
-      left()
-      break
+        left()
+        break
       case 37:
-      right()
-      break
+        right()
+        break
       case 40:
-      moveDown()
-      break
+        moveDown()
+        break
     }
   }
+
+
 
   function init() {
     const grid = document.querySelector('.grid')
@@ -732,8 +663,6 @@ function left() {
       square.dataset.index = i
       squares.push(square)
       grid.append(square)
-
-
     }
     for (let i = 210; i < 220 ; i ++) {
       squares[i].dataset.row = 0
@@ -746,14 +675,55 @@ function left() {
   }
 
 
-  setInterval(moveDown, 500)
+
+  init()
+
+  makeShape(14)
+
+  const setInterFunc = () =>  {
+    let interval = 0
+    if (scoreTracker === 0) {
+      interval = 700
+    } else if (scoreTracker < 3)  {
+      interval = 500
+    } else {
+      interval = 300
+    }
+
+    return interval
+  }
+
+
+
+  const interval = setInterFunc()
+
+  setInterval(moveDown, `${interval}`)
+
+
+
+
+
+
   setInterval(scoreFunction, 1000)
 
 
+  const reset = () => {
+    scoreTracker = 0
+    score.innerHTML = scoreTracker
+    playerIndex = 14
+    squares.forEach(square=> square.classList.remove('fixed'))
+    squares.forEach(square=> square.classList.remove('fixed-two'))
+    squares.forEach(square=> square.style.backgroundColor = 'white')
+    resetButton.display = 'none'
 
+
+    return makeShape(14)
+
+  }
 
 
   window.addEventListener('keydown', handleEventListeners)
+  resetButton.addEventListener('click', reset)
 
 
 
