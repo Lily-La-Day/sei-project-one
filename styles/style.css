@@ -14,10 +14,11 @@ h2 {
 }
 
 body {
+  background-image: url("/Users/lilykeeling/development/projects/sei-project-one/images/bricks.jpg");
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: HotPink;
+
   font-family: 'Monoton', cursive;
 }
 
