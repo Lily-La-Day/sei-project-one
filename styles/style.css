@@ -98,3 +98,13 @@ div.grid-item.player {
 
   opacity: 1 !important;
 }
+
+.fixed-four {
+  background-color: HotPink;
+  opacity: 1 !important;
+}
+
+.fixed-five {
+  background-color: HotPink;
+  opacity: 1 !important;
+}

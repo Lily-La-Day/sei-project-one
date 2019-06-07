@@ -253,6 +253,16 @@ rows.forEach((row) => {
             squares[i+10].classList.add('fixed-four')
             squares[i].classList.remove('fixed-three')
             row = []
+            if (squares[i].className === 'grid-item fixed-four') {
+              scoreTracker += 1
+              console.log('second row')
+              console.log(squares[i])
+              squares[i+10].classList.add('fixed-five')
+              squares[i].classList.remove('fixed-four')
+              row = []
+
+
+            }
 
           }
         }
@@ -263,7 +273,7 @@ rows.forEach((row) => {
 })
 }
 
-let rotateTracker = 0
+let rotateTracker = 90
 
 
 //Need to find a way to get shapename out of makeshape function
@@ -324,7 +334,7 @@ function rotate90() {
     // console.log(playerPos)
 
   }
-  return rotateTracker = 90
+  return rotateTracker = 180
 }
 
 
@@ -383,8 +393,8 @@ function rotate180() {
     // console.log(playerPos)
 
   }
-    playerIndex = playerPos.sort()[0]
-  return rotateTracker = 180
+    playerIndex = playerPos[0]
+  return rotateTracker = 270
 }
 
 function rotate270() {
@@ -441,8 +451,8 @@ function rotate270() {
     // console.log(playerPos)
 
   }
-    playerIndex = playerPos.sort()[0]
-  return rotateTracker = 270
+    playerIndex = playerPos[0]
+  return rotateTracker =  360
 }
 
 function rotate360() {
@@ -501,32 +511,32 @@ function rotate360() {
 
   }
     playerIndex = playerPos.sort()[0]
-  return rotateTracker = 360
+  return rotateTracker = 90
 }
 
 const rotateShape = (e) => {
   if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
 
       switch(rotateTracker) {
-        case 0 :
-        clear()
-        rotate90()
-        break
+
         case 90 :
         clear()
-        rotate180()
+        rotate90()
+
         break
         case 180:
         clear()
-        rotate270()
+        rotate180()
+
         break
         case 270 :
         clear()
-        rotate360()
+        rotate270()
+
         break
         case 360 :
         clear()
-        rotate90()
+        rotate360()
         break
 
       }
@@ -698,7 +708,7 @@ function left() {
     }
     for (let i = 210; i < 220 ; i ++) {
       squares[i].dataset.row = 0
-      squares[i].style.opacity = 0
+      squares[i].style.display = 'none'
     }
     for (let i = 0; i < 10 ; i ++) {
       squares[i].dataset.row = -1
