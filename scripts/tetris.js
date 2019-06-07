@@ -13,9 +13,10 @@ window.addEventListener('DOMContentLoaded', () => {
   const resetButton = document.querySelector('.reset')
 
   const scoreFunction = () => {
-    // console.log(scoreTracker)
     return score.innerHTML = scoreTracker
   }
+
+  //check functions
 
   const onBoardCheck = (playerPos) => {
     return playerPos.every(pos =>
@@ -43,6 +44,28 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+  const nextPosFunc = () => {
+    nextPos = playerPos.map(pos => pos += width)
+    return nextPos
+  }
+
+  const newPosFunc = () => {
+    const newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+      squares[nextPos[2]], squares[nextPos[3]] ]
+
+    if (newPos.some(pos => pos.classList.contains('fixed'))
+    || !boardRightCheck(newPos) || !boardLeftCheck(newPos) ){
+      console.log('should fix now')
+      return false
+    } else {
+      return true
+    }
+  }
+
+
+//win function
+
   const winFunction = () => {
     const topRow = [...document.querySelectorAll('[data-row="-1"]')].filter(square => square.className === 'grid-item player fixed')
     if (topRow.length > 0){
@@ -61,6 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
     )
   }
 
+//Tetronimos
 
   const TLZISJ0 = [
     {
@@ -77,7 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
       start: [14, 3, 13, 23],
       zero: [0, 10, 20, +21],
       ninety: [0, -1, -2, +8],
-      oneEighty: [0, -10, -20, -19],
+      oneEighty: [0, -10, -20, -21],
       twoSeventy: [0, 1, 2, -8]
     },
 
@@ -133,7 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
   ]
-
+//Function to make shape
   const makeShape = (playerIndex) => {
     let rando = 0
     const randomNum = Math.floor(Math.random()*7)
@@ -150,7 +174,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
+//Clears row and shifts bricks down when row is full
 
   function rowClear() {
     rows[0] = squares.filter((el, index) =>
@@ -169,7 +193,7 @@ window.addEventListener('DOMContentLoaded', () => {
       (index < 140 && index > 129 && el.classList.contains('fixed')))
     rows[7] = squares.filter((el, index) =>
       (index < 130 && index > 119 && el.classList.contains('fixed')))
-      rows[9] = squares.filter((el, index) =>
+    rows[9] = squares.filter((el, index) =>
       (index < 120 && index > 109 && el.classList.contains('fixed')))
     rows[10] = squares.filter((el, index) =>
       (index < 110 && index > 99 && el.classList.contains('fixed')))
@@ -196,12 +220,8 @@ window.addEventListener('DOMContentLoaded', () => {
     rows[21] = squares.filter((el, index) =>
       (index < 210 && index > 199 && el.classList.contains('fixed')))
 
-
-
     rows.forEach((row) => {
       if(row.length === 10){
-
-        // console.log('row is full')
         scoreTracker += 1
         for(let i = 0; i < squares.length; i++) {
           if(squares[i].className === 'grid-item fixed') {
@@ -212,8 +232,6 @@ window.addEventListener('DOMContentLoaded', () => {
             row = []
             if (squares[i].className === 'grid-item fixed-two') {
               scoreTracker += 1
-              // console.log('second row')
-              // console.log(squares[i])
               squares[i+10].classList.add('fixed')
               squares[i].classList.remove('fixed-two')
               squares[i].style.backgroundColor= 'white'
@@ -226,9 +244,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     })
   }
-
+//ridiculous massive rotate functions that could not be refactored without breaking
   let rotateTracker = 90
-
 
   function rotate90() {
 
@@ -291,54 +308,36 @@ window.addEventListener('DOMContentLoaded', () => {
       nextPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
-
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Elle'){
       nextPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(`new position should be ${nextPos}`)
     } else if (shapeName === 'Zed'){
       nextPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Eye'){
       nextPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Ess'){
       nextPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     } else if (shapeName === 'Jay'){
       nextPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }  else if (shapeName === 'Oh'){
       nextPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
       nextPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
       nextPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
       nextPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }
     playerIndex = nextPos[0]
     rotateTracker = 270
@@ -351,53 +350,36 @@ window.addEventListener('DOMContentLoaded', () => {
       nextPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Elle'){
       nextPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(`new position should be ${nextPos}`)
     } else if (shapeName === 'Zed'){
       nextPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Eye'){
       nextPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Ess'){
       nextPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     } else if (shapeName === 'Jay'){
       nextPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }  else if (shapeName === 'Oh'){
       nextPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
       nextPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
       nextPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
       nextPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }
     playerIndex = nextPos[0]
     rotateTracker =  360
@@ -411,53 +393,37 @@ window.addEventListener('DOMContentLoaded', () => {
       nextPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[0].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
     } else if (shapeName === 'Elle'){
       nextPos[0] = (playerIndex + TLZISJ0[1].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[1].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
-      // console.log(playerIndex)
-      // console.log(`new position should be ${nextPos}`)
     } else if (shapeName === 'Zed'){
       nextPos[0] = (playerIndex + TLZISJ0[2].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[2].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-    } else if (shapeName === 'Eye'){
+      } else if (shapeName === 'Eye'){
       nextPos[0] = (playerIndex + TLZISJ0[3].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[3].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
+
     } else if (shapeName === 'Ess'){
       nextPos[0] = (playerIndex + TLZISJ0[4].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[4].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     } else if (shapeName === 'Jay'){
       nextPos[0] = (playerIndex + TLZISJ0[5].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[5].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }  else if (shapeName === 'Oh'){
       nextPos[0] = (playerIndex + TLZISJ0[6].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[6].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
-      // console.log(playerIndex)
-      // console.log(nextPos)
-
     }
     playerIndex = nextPos[0]
     rotateTracker = 90
@@ -465,19 +431,16 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
+//combining rotate functions and checking space
 
   const rotateShape = () => {
     if (playerIndex % width < width - 1
-    && boardLeftCheck(playerPos) &&
-    playerIndex % width > 0 && boardRightCheck(playerPos)) {
+      && boardLeftCheck(playerPos) &&
+      playerIndex % width > 0 && boardRightCheck(playerPos)) {
       if (onBoardCheck(playerPos)) {
-
         switch(rotateTracker) {
-
           case 90 :
             console.log(newPosFunc())
-
             rotate90()
             newPosFunc()
             console.log(nextPos)
@@ -517,8 +480,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
-
+  //Moving left and right
 
   function left() {
 
@@ -535,7 +497,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function right() {
     if ((playerIndex % width > 0)&&(boardRightCheck(playerPos))){
-
       playerPos[0] --
       playerPos[1] --
       playerPos[2] --
@@ -544,23 +505,27 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  const nextPosFunc = () => {
-    nextPos = playerPos.map(pos => pos += width)
-    return nextPos
+  //Moving if there is space
+
+  const moveDownCheck = () => {
+    clear()
+    playerPos[0] += width
+    playerPos[1] += width
+    playerPos[2] += width
+    playerPos[3] += width
+    squares[playerPos[0]].classList.add('player')
+    squares[playerPos[1]].classList.add('player')
+    squares[playerPos[2]].classList.add('player')
+    squares[playerPos[3]].classList.add('player')
+    playerIndex = playerPos[0]
+    return playerPos
+
   }
 
-  const newPosFunc = () => {
-    const newPos = [ squares[nextPos[0]], squares[nextPos[1]],
-      squares[nextPos[2]], squares[nextPos[3]] ]
 
-    if (newPos.some(pos => pos.classList.contains('fixed'))
-    || !boardRightCheck(newPos) || !boardLeftCheck(newPos) ){
-      console.log('should fix now')
-      return false
-    } else {
-      return true
-    }
-  }
+
+//Function to move down or fix if no space
+
 
   const moveDown = () => {
     nextPosFunc()
@@ -590,27 +555,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
-  const moveDownCheck = () => {
-    // console.log(playerPos, nextPos)
-    clear()
-    playerPos[0] += width
-    playerPos[1] += width
-    playerPos[2] += width
-    playerPos[3] += width
-    // console.log(playerPos, nextPos)
-    squares[playerPos[0]].classList.add('player')
-    squares[playerPos[1]].classList.add('player')
-    squares[playerPos[2]].classList.add('player')
-    squares[playerPos[3]].classList.add('player')
-
-
-    playerIndex = playerPos[0]
-    return playerPos
-
-  }
+  //movedown to be on timer
 
   const moveDownAuto = () => moveDown()
+
+
+//event listeners
 
   function handleEventListeners(e) {
     switch(e.keyCode) {
@@ -630,6 +580,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
+//Making the grid
 
   function init() {
     const grid = document.querySelector('.grid')
@@ -659,28 +610,23 @@ window.addEventListener('DOMContentLoaded', () => {
   const setInterFunc = () =>  {
     let interval = 0
     if (scoreTracker === 0) {
-      interval = 2000
+      interval = 1000
     } else if (scoreTracker < 3)  {
       interval = 500
     } else {
       interval = 300
     }
-
     return interval
   }
-
 
 
   const interval = setInterFunc()
 
   setInterval(moveDownAuto, `${interval}`)
 
-
-
-
-
-
   setInterval(scoreFunction, 1000)
+
+  //reset functions
 
 
   const reset = () => {
