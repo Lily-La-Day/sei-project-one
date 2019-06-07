@@ -244,30 +244,11 @@ rows.forEach((row) => {
           scoreTracker += 1
           console.log('second row')
           console.log(squares[i])
-          squares[i+10].classList.add('fixed-three')
+          squares[i+10].classList.add('fixed')
           squares[i].classList.remove('fixed-two')
-          squares[i].classList.remove('fixed')
           squares[i].style.backgroundColor= 'white'
           row = []
-          if (squares[i].className === 'grid-item fixed-three') {
-            scoreTracker += 1
-            console.log('second row')
-            console.log(squares[i])
-            squares[i+10].classList.add('fixed-four')
-            squares[i].classList.remove('fixed-three')
-            row = []
-            if (squares[i].className === 'grid-item fixed-four') {
-              scoreTracker += 1
-              console.log('second row')
-              console.log(squares[i])
-              squares[i+10].classList.add('fixed-five')
-              squares[i].classList.remove('fixed-four')
-              row = []
 
-
-            }
-
-          }
         }
       }
     }
@@ -284,267 +265,311 @@ let rotateTracker = 90
 function rotate90() {
 
   if (shapeName === 'Tee'){
-    playerPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[0].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[0].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[0].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[0].ninety[3])
 
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Elle'){
-    playerPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[1].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[1].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[1].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[1].ninety[3])
     // console.log(playerIndex)
-    // console.log(`new position should be ${playerPos}`)
+    // console.log(`new position should be ${nextPos}`)
   } else if (shapeName === 'Zed'){
-    playerPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[2].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[2].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[2].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[2].ninety[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Eye'){
-    playerPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[3].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[3].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[3].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[3].ninety[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Ess'){
-    playerPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[4].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[4].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[4].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[4].ninety[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   } else if (shapeName === 'Jay'){
-    playerPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[5].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[5].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[5].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[5].ninety[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }  else if (shapeName === 'Oh'){
-    playerPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
-    playerPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
+    nextPos[0] = (playerIndex + TLZISJ0[6].ninety[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[6].ninety[1])
+    nextPos[2] = (playerIndex + TLZISJ0[6].ninety[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[6].ninety[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }
-  return rotateTracker = 180
+  playerIndex = nextPos[0]
+   rotateTracker = 180
+   return nextPos
 }
 
 
 function rotate180() {
   if (shapeName === 'Tee'){
-    playerPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[0].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[0].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[0].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[0].oneEighty[3])
 
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Elle'){
-    playerPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[1].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[1].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[1].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[1].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(`new position should be ${playerPos}`)
+    // console.log(`new position should be ${nextPos}`)
   } else if (shapeName === 'Zed'){
-    playerPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[2].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[2].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[2].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[2].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Eye'){
-    playerPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[3].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[3].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[3].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[3].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Ess'){
-    playerPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[4].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[4].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[4].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[4].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   } else if (shapeName === 'Jay'){
-    playerPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[5].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[5].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[5].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[5].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }  else if (shapeName === 'Oh'){
-    playerPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
-    playerPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
+    nextPos[0] = (playerIndex + TLZISJ0[6].oneEighty[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[6].oneEighty[1])
+    nextPos[2] = (playerIndex + TLZISJ0[6].oneEighty[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[6].oneEighty[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }
-    playerIndex = playerPos[0]
-  return rotateTracker = 270
+    playerIndex = nextPos[0]
+    rotateTracker = 270
+     return nextPos
 }
 
 function rotate270() {
   if (shapeName === 'Tee'){
-    playerPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[0].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[0].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[0].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[0].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Elle'){
-    playerPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[1].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[1].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[1].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[1].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(`new position should be ${playerPos}`)
+    // console.log(`new position should be ${nextPos}`)
   } else if (shapeName === 'Zed'){
-    playerPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[2].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[2].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[2].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[2].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Eye'){
-    playerPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[3].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[3].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[3].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[3].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Ess'){
-    playerPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[4].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[4].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[4].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[4].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   } else if (shapeName === 'Jay'){
-    playerPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[5].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[5].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[5].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[5].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }  else if (shapeName === 'Oh'){
-    playerPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
-    playerPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
+    nextPos[0] = (playerIndex + TLZISJ0[6].twoSeventy[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[6].twoSeventy[1])
+    nextPos[2] = (playerIndex + TLZISJ0[6].twoSeventy[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[6].twoSeventy[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }
-    playerIndex = playerPos[0]
-  return rotateTracker =  360
+    playerIndex = nextPos[0]
+   rotateTracker =  360
+    return nextPos
 }
 
 function rotate360() {
 
   if (shapeName === 'Tee'){
-    playerPos[0] = (playerIndex + TLZISJ0[0].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[0].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[0].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[0].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[0].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[0].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Elle'){
-    playerPos[0] = (playerIndex + TLZISJ0[1].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[1].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[1].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[1].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[1].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[1].zero[3])
     // console.log(playerIndex)
-    // console.log(`new position should be ${playerPos}`)
+    // console.log(`new position should be ${nextPos}`)
   } else if (shapeName === 'Zed'){
-    playerPos[0] = (playerIndex + TLZISJ0[2].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[2].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[2].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[2].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Eye'){
-    playerPos[0] = (playerIndex + TLZISJ0[3].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[3].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[3].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[3].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[3].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
   } else if (shapeName === 'Ess'){
-    playerPos[0] = (playerIndex + TLZISJ0[4].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[4].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[4].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[4].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[4].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[4].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   } else if (shapeName === 'Jay'){
-    playerPos[0] = (playerIndex + TLZISJ0[5].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[5].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[5].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[5].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[5].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[5].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }  else if (shapeName === 'Oh'){
-    playerPos[0] = (playerIndex + TLZISJ0[6].zero[0])
-    playerPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
-    playerPos[2] = (playerIndex + TLZISJ0[6].zero[2])
-    playerPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
+    nextPos[0] = (playerIndex + TLZISJ0[6].zero[0])
+    nextPos[1] = (playerIndex+ TLZISJ0[6].zero[1])
+    nextPos[2] = (playerIndex + TLZISJ0[6].zero[2])
+    nextPos[3] = (playerIndex+ TLZISJ0[6].zero[3])
     // console.log(playerIndex)
-    // console.log(playerPos)
+    // console.log(nextPos)
 
   }
-    playerIndex = playerPos.sort()[0]
-  return rotateTracker = 90
+    playerIndex = nextPos[0]
+   rotateTracker = 90
+    return nextPos
 }
 
-const rotateShape = (e) => {
+
+
+// const newPosFunc = () => {
+//   nextPos = playerPos
+//   newPos = [ squares[nextPos[0]], squares[nextPos[1]],
+//   squares[nextPos[2]], squares[nextPos[3]] ]
+//
+//   if (newPos.some(pos => pos.classList.contains('fixed'))){
+//     console.log('should fix now')
+//     return false
+//   } else {
+//     return true
+//   }
+// }
+
+
+const rotateShape = () => {
+
+  // newPos = [squares[nextPos[0]], squares[nextPos[1]],
+  // squares[nextPos[2]], squares[nextPos[3]] ]
+  // console.log(newPos)
+  // newPosFunc()
+  //
+  // if(newPosFunc()){
+
   if (onBoardCheck(playerPos) && spaceCheck(playerPos)) {
 
       switch(rotateTracker) {
 
         case 90 :
-        clear()
+        // clear()
         rotate90()
+        if(newPosFunc()) {
+          clear()
+          playerPos = nextPos
+        }
+
 
         break
         case 180:
-        clear()
         rotate180()
+        if(newPosFunc()) {
+          clear()
+          playerPos = nextPos
+        }
 
         break
         case 270 :
-        clear()
         rotate270()
+        if(newPosFunc()) {
+          clear()
+          playerPos = nextPos
+        }
 
         break
         case 360 :
-        clear()
         rotate360()
-        break
+        if(newPosFunc()) {
+          clear()
+          playerPos = nextPos
+        }
 
       }
     }
   }
+
+
 
 
 playerPosAfter = (func) => {
@@ -614,8 +639,7 @@ function left() {
 
     makeShape(playerIndex)
 
-  let newPos = [squares[nextPos[0]], squares[nextPos[1]],
-  squares[nextPos[2]], squares[nextPos[3]] ]
+
 
   const nextPosFunc = () => {
     nextPos = playerPos.map(pos => pos += width)
@@ -626,7 +650,8 @@ function left() {
     newPos = [ squares[nextPos[0]], squares[nextPos[1]],
     squares[nextPos[2]], squares[nextPos[3]] ]
 
-    if (newPos.some(pos => pos.classList.contains('fixed'))){
+    if (newPos.some(pos => pos.classList.contains('fixed'))
+    || !boardRightCheck(newPos) || !boardLeftCheck(newPos) ){
       console.log('should fix now')
       return false
     } else {
@@ -645,7 +670,8 @@ function left() {
       squares[playerPos[1]].classList.add('fixed')
       squares[playerPos[2]].classList.add('fixed')
       squares[playerPos[3]].classList.add('fixed')
-      const randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+      const randomColor = '#'+Math.floor(Math.random()*16777215+0.4).toString(16);
+
       squares[playerPos[0]].style.backgroundColor = randomColor
       squares[playerPos[1]].style.backgroundColor = randomColor
       squares[playerPos[2]].style.backgroundColor = randomColor
