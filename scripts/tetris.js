@@ -440,47 +440,34 @@ window.addEventListener('DOMContentLoaded', () => {
       if (onBoardCheck(playerPos)) {
         switch(rotateTracker) {
           case 90 :
-            console.log(newPosFunc())
             rotate90()
-            newPosFunc()
-            console.log(nextPos)
-            if(newPosFunc()) {
-              clear()
-              playerPos = nextPos
-            }
+            clear()
+            playerPos = nextPos
             break
           case 180:
             rotate180()
-            console.log(nextPos)
-            if(newPosFunc()) {
-              clear()
-              playerPos = nextPos
-            }
-
+            clear()
+            playerPos = nextPos
             break
           case 270 :
             rotate270()
             console.log(nextPos)
-            if(newPosFunc()) {
-              clear()
-              playerPos = nextPos
-            }
-
+            clear()
+            playerPos = nextPos
             break
           case 360 :
             rotate360()
             console.log(nextPos)
-            if(newPosFunc()) {
-              clear()
-              playerPos = nextPos
-            }
+            clear()
+            playerPos = nextPos
+
 
         }
       }
     }
   }
 
-  //Moving left and right
+
 
   function left() {
 
@@ -599,18 +586,16 @@ window.addEventListener('DOMContentLoaded', () => {
       squares[i].dataset.row = -1
       squares[i].style.opacity = 0
     }
+
+    makeShape(14)
   }
 
-
-
-  init()
-
-  makeShape(14)
+  //function to set speed, gets faster as score increases.
 
   const setInterFunc = () =>  {
     let interval = 0
     if (scoreTracker === 0) {
-      interval = 1000
+      interval = 800
     } else if (scoreTracker < 3)  {
       interval = 500
     } else {
@@ -640,6 +625,12 @@ window.addEventListener('DOMContentLoaded', () => {
     return makeShape(14)
 
   }
+
+
+
+  init()
+
+
 
 
   window.addEventListener('keydown', handleEventListeners)
