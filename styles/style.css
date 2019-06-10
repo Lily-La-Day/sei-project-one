@@ -1,3 +1,176 @@
-html {
-  background-color: red;
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  align-content: center;
+}
+
+
+
+
+.left {
+
+  justify-content: center;
+  display: flex;
+  height:100%;
+  width: 20%;
+  position: fixed;
+  left: 100px;
+  font-size: 30pt;
+  text-shadow:
+  -2px -3px 0 #000,
+  2px -3px 0 #000,
+  -2px 3px 0 #000,
+  2px 3px 0 #000;
+}
+
+.score-section {
+  text-align: center;
+  right: 100px;
+  width: 20%;
+  margin-right: -20px;
+  position: fixed;
+  align-self: center;
+  justify-content: center;
+  text-shadow:
+  -1px -2px 0 #000,
+  1px -2px 0 #000,
+  -1px 2px 0 #000,
+  1px 2px 0 #000;
+}
+
+
+
+h2 {
+  padding-right: 40px;
+  font-size: 40pt;
+}
+
+body {
+  background-image: url("https://i.ibb.co/f1GWjCV/bricks.jpg");
+  /* background-size: cover; */
+  display: flex;
+  justify-content: center;
+  font-family: 'Monoton', cursive;
+  color: white;
+  height: 100vh;
+}
+
+.reset {
+  all: unset;
+  justify-content: center;
+  align-self: center;
+  margin-left: 70px;
+  display: none;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-top: 0.5em;
+  border: 1px dashed white;
+  text-align: center;
+  align-content: center;
+  font-size: 0.5em
+}
+
+
+div.grid {
+  align-content: space-around;
+  margin-top: 50px;
+  width: 250px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+
+
+
+}
+
+div.grid-item {
+  background-color: white;
+  opacity: 0.3;
+  background-size:cover;
+  width: 25px;
+  height: 25px;
+  border: 0.5px dashed white;
+}
+
+div.grid-item.player {
+  background-color: white !important;
+  opacity: 1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px dashed black;
+}
+
+.fixed {
+  background-color: HotPink;
+  opacity: 1 !important;
+}
+
+.fixed-two {
+  background-color: HotPink;
+  opacity: 1 !important;
+}
+
+.fixed-three {
+  background-color: HotPink;
+
+  opacity: 1 !important;
+}
+
+
+@media only screen  and (min-width : 1500px) {
+
+  div.grid{
+    margin-top: 8em;
+
+
+
+  }
+
+  .reset {
+
+    text-align: center;
+    right: 180px;
+
+    position: relative;
+    align-self: center;
+    justify-content: center;
+
+
+  }
+  .left {
+
+    margin-top: 2em;
+  }
+
+  .score-section {
+    margin-top: 2em;
+  }
+
+
+
+
+
+}
+
+@media only screen  and (max-width : 850px) {
+
+  .left {
+    font-size: 25pt;
+    margin-top: 0.5em;
+
+  }
+
+  h2.score {
+    right: 150px;
+    margin-left: 90px;
+  }
+
+
 }
