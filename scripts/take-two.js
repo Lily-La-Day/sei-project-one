@@ -7,7 +7,7 @@ const startPoint = [5, 0]
 
 let tetronimos = []
 
-const fixedSquares = []
+let fixedSquares = []
 
 
 const init = () => {
@@ -50,30 +50,38 @@ const makeTetronimos = () => {
 }
 
 const makeTetronimo = () => {
+
   const random = Math.floor(Math.random() * tetronimos.length)
-  const tetronimo = tetronimos[random]
+  const shape = tetronimos[random]
+  const center = Math.floor(width / 2)
+  const location = [center, 0]
 
   activated =
   {
-    shape: tetronimo,
-    location: startPoint,
-    position: getPosition(tetronimo, startPoint)
+    shape: shape,
+    location: location,
+    position: getPosition(shape, location)
   }
 
-  console.log('tetromino is', activated.shape)
+  if (makeStop()) {
+    state ='2'
+    document.getElementById('points').innerHTML += ' Game over'
+    clearInterval(timer)
+  }
 
 }
 
 
 const getPosition = (shape, location) => {
   const indeces = []
+
   for(let i = 0; i < shape.length; i++) {
     const x = shape[i][0] + location[0]
     // console.log(shape[i][0], location[0])
     const y = shape[i][1] + location[1]
     // console.log(shape[i][1], location[1])
 
-
+    console.log('position is', x, y)
     const square = document.querySelector('[data-y="' + y + '"][data-x="' + x + '"]')
     indeces.push(square.dataset.index)
 
@@ -85,14 +93,15 @@ const getPosition = (shape, location) => {
 
 
 
+
 const checkSides = () => {
   const squares = activated.shape
   const pos = activated.location
-  const stop = false
+  let stop = false
 
   for(let i = 0; i < squares.length; i++) {
     const square = squares[i]
-    const x = square[0] + pos[0]
+    let x = square[0] + pos[0]
     const y = square[1] + pos[1]
 
     if (direction === 'left')
@@ -101,7 +110,7 @@ const checkSides = () => {
       x++
 
     const space = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-
+    console.log(space)
     if (fixedSquares.indexOf(space.dataset.index) > -1) {
       stop = true
       break
@@ -119,12 +128,12 @@ const checkSides = () => {
   return stop
 }
 
+
+
 const shouldStop = () => {
   const squares = activated.shape
   const pos = activated.location
   let stop = false
-
-
   for(let i = 0; i < squares.length; i++) {
     const square = squares[i]
     const x = square[0] + pos[0]
@@ -135,12 +144,65 @@ const shouldStop = () => {
 
     const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
 
-    if (y == height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
+    if (y === height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
       stop = true
       break
     }
   }
+
+  if (stop) {
+    for(let i = 0; i < squares.length; i++) {
+      const square = squares[i]
+      const x = square[0] + pos[0]
+      const y = square[1] + pos[1]
+
+      const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+      newSquare.dataset.active = '1'
+    }
+
+    fixedSquares = fixedSquares.concat(activated.indexes)
+    makeTetronimo()
+    rowCheck()
+
+  }
+  return stop
 }
+
+function makeStop() {
+  const squares = activated.shape
+  const pos = activated.location
+  let stop = false
+  for(let i = 0; i < squares.length; i++) {
+    const square = squares[i]
+    const x = square[0] + pos[0]
+    let y = square[1] + pos[1]
+
+    if (direction === 'down')
+      y++
+
+    const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+
+    if (y === height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
+      stop = true
+      break
+    }
+
+
+  }
+
+  if (stop) {
+
+    fixedSquares = fixedSquares.concat(activated.indexes)
+    makeTetronimo()
+    rowCheck()
+  }
+
+  return stop
+}
+
+
+
+
 
 const makeShape = () => {
   shouldStop()
@@ -192,6 +254,7 @@ const handlePress = (e) => {
       break
     case 38:
       direction='rotate'
+      rotate()
       break
     case 37:
       direction='left'
@@ -200,8 +263,140 @@ const handlePress = (e) => {
       direction='right'
       break
   }
-  makeShape()
+  if (checkSides()==false)
+    makeShape()
 }
+
+function moveDown(count, start) {
+  for (let i = start-1; i >= 0; i--) {
+    for(let x = 0; x < width; x++) {
+      const y = i + count
+      const space = document.querySelector('[data-x="' + x + '"][data-y="' + i + '"]')
+      const nextsquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+
+      if (space.dataset.state == '1') {
+        nextsquare.style.backgroundColor = space.style.backgroundColor
+        nextsquare.dataset.state = '1'
+        space.style.backgroundColor ='white'
+        space.dataset.state = '0'
+        removeIndex(space.dataset.index)
+        fixedSquares.push(nextsquare.dataset.index)
+      }
+    }
+  }
+}
+
+
+const clearIndex = (index) => {
+  const location = fixedSquares.indexOf(index)
+  fixedSquares.splice(location, 1)
+}
+
+rowCheck = () => {
+  console.log('checking')
+  let count = 0
+  let start = 0
+  for (let y = 0; y < height; y++) {
+    let fixed = true
+    for(let x = 0; x < width; x++) {
+      const space = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+      if (space.dataset.state == '0') {
+        fixed = false
+        console.log(fixed)
+        break
+      }
+    }
+
+    if (fixed) {
+      if (start == 0)
+        start = y
+      console.log(fixed)
+      count++
+
+      // clear out line
+      for(let i = 0; i < width;i++) {
+        const space = document.querySelector('[data-x="' + i + '"][data-y="' + y + '"]')
+        space.dataset.state = '0'
+        // space.style.backgroundColor = 'white'
+        clearIndex(space.dataset.index)
+      }
+    }
+  }
+
+
+
+  if (count > 0) {
+    // points += count
+    moveDown(count, start)
+
+  }
+}
+
+const rotate = () => {
+  const newShape = new Array()
+  const shape = activated.shape
+
+  for(let i = 0; i < shape.length; i++) {
+    const x = shape[i][0]
+    const y = shape[i][1]
+    const newx = (getWidth() - y)
+    const newy = x
+    newShape.push([newx, newy])
+  }
+
+  console.log(shape)
+  console.log(newShape)
+  clear()
+
+  activated.shape = newShape
+  activated.indexes = getPosition(newShape, activated.location)
+}
+
+
+const getHeight = () => {
+  let y = 0
+  // returns the height of current shape
+  // max y found
+  for(let i = 0; i < activated.shape.length; i++) {
+    const square = activated.shape[i]
+    if (square[1] > y)
+      y = square[1]
+  }
+
+  return y
+}
+
+const getWidth = () => {
+  let width = 0
+
+  for(let i = 0; i < activated.shape.length; i++) {
+    var block = activated.shape[i]
+    if (block[0] > width)
+      width = block[0]
+  }
+
+  return width
+}
+
+function step() {
+  if (move==0) {
+    makeTetronimo()
+    makeShape()
+  } else {
+    // first check if next move is possible
+    if (makeStop()) {
+      makeTetronimo()
+      makeShape()
+    } else {
+      clear()
+      makeShape()
+    }
+  }
+  move++
+}
+
+
+
 
 
 
