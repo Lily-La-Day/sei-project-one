@@ -83,8 +83,10 @@ const getPosition = (shape, location) => {
 
 }
 
+
+
 const checkSides = () => {
-  const sqaures = activated.shape
+  const squares = activated.shape
   const pos = activated.location
   const stop = false
 
@@ -117,8 +119,31 @@ const checkSides = () => {
   return stop
 }
 
+const shouldStop = () => {
+  const squares = activated.shape
+  const pos = activated.location
+  let stop = false
+
+
+  for(let i = 0; i < squares.length; i++) {
+    const square = squares[i]
+    const x = square[0] + pos[0]
+    let y = square[1] + pos[1]
+
+    if (direction === 'down')
+      y++
+
+    const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+
+    if (y == height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
+      stop = true
+      break
+    }
+  }
+}
 
 const makeShape = () => {
+  shouldStop()
   const shape = activated.shape
   const location = activated.location
   clear()
@@ -167,7 +192,6 @@ const handlePress = (e) => {
       break
     case 38:
       direction='rotate'
-
       break
     case 37:
       direction='left'
