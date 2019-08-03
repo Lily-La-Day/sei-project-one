@@ -1,7 +1,7 @@
 const height = 20
 const width = 10
 const active = 1 //true
-const direction = ''
+let direction = ''
 const startPoint = [5, 0]
 
 
@@ -39,7 +39,7 @@ const makeTetronimos = () => {
   const eye = [[0,0],[0,1], [0,2], [0,3]]
   const tee = [[0,0], [1,0], [2,0], [1,1]]
   const ess = [[2,0], [1,0], [1,1], [0,1]]
-  const elle = [[2,0], [0, 1], [1, 1], [2,1]]
+  const elle = [[1,2], [1, 0], [1, 1], [2,1]]
   const zed = [[0,0], [1,0], [1,1], [2,1]]
   const jay = [[2,0], [0, 1], [1, 1], [0,1]]
   const oh = [[0, 0], [0, 1], [1, 0], [1, 1]]
@@ -84,15 +84,19 @@ const getPosition = (shape, location) => {
 const makeShape = () => {
   const shape = activated.shape
   const location = activated.location
+  clear()
   switch(direction) {
     case 'down' :
       activated.location[1]++
+      console.log(activated)
       break
     case 'left':
       activated.location[0]--
+      console.log(activated)
       break
     case 'right':
       activated.location[0]++
+      console.log(activated)
       break
   }
   for(let i = 0; i < shape.length; i++) {
@@ -105,8 +109,8 @@ const makeShape = () => {
 }
 
 function clear() {
-  const shape = currentShape.shape
-  const location = currentShape.location
+  const shape = activated.shape
+  const location = activated.location
   for(let i = 0; i < shape.length; i++) {
     const x = shape[i][0] + location[0]
     const y = shape[i][1] + location[1]
@@ -120,19 +124,21 @@ const handlePress = (e) => {
   e.preventDefault()
   console.log(e.keyCode)
   switch(e.keyCode) {
-
-    case '40' :
+    case 40 :
       direction='down'
+      console.log(direction)
       break
-    case '38':
+    case 38:
       direction='rotate'
 
       break
-    case '37':
+    case 37:
       direction='left'
       break
+    case 39:
+      direction='right'
+      break
   }
-
   makeShape()
 }
 
