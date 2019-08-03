@@ -1,10 +1,10 @@
 const height = 20
 const width = 10
-const active = true
+const active = 1 //true
 const direction = ''
 
 
-const tetronimos = new Array()
+let tetronimos = new Array()
 
 const fixedSquares = new Array()
 
@@ -23,7 +23,7 @@ const init = () => {
       square.classList.add('square')
       square.dataset.x = square.dataset.y = y
       square.dataset.index = count
-      square.dataset.active = false
+      square.dataset.active = 1 //false
       row.append(square)
       count ++
     }
@@ -33,6 +33,19 @@ const init = () => {
 
 }
 
+const makeTetronimos = ()=> {
+  const eye = [[0,0], [0,1], [0,2], [0,3]]
+  const tee = [[0,0], [1,0], [2,0], [1,1]]
+  const ess = [[2,0], [1,0], [1,1], [0,1]]
+  const elle = [[2,0], [0, 1], [1, 1], [2,1]]
+  const zed = [[0,0], [1,0], [1,1], [2,1]]
+  const jay = [[2,0], [0, 1], [1, 1], [0,1]]
+  const oh = [[0, 0], [0, 1], [1, 0], [1, 1]]
+  tetronimos = [...eye, tee, elle, jay, oh, jay, zed, ess]
+  console.log(tetronimos)
+}
+
 window.addEventListener('load', function(){
   init()
+  makeTetronimos()
 })
