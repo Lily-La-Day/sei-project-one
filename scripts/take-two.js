@@ -35,16 +35,18 @@ const init = () => {
 
 }
 
+
+
 const makeTetronimos = () => {
   const eye = [[0,0],[0,1], [0,2], [0,3]]
   const tee = [[0,0], [1,0], [2,0], [1,1]]
   const ess = [[2,0], [1,0], [1,1], [0,1]]
-  const elle = [[1,2], [1, 0], [1, 1], [2,1]]
+  const elle = [[0,1], [1, 1], [2, 1], [2,0]]
   const zed = [[0,0], [1,0], [1,1], [2,1]]
-  const jay = [[2,0], [0, 1], [1, 1], [0,1]]
+  const jay = [[0,0], [1, 0], [2, 0], [2,1]]
   const oh = [[0, 0], [0, 1], [1, 0], [1, 1]]
   tetronimos = [eye, tee, elle, jay, oh, jay, zed, ess]
-  console.log(tetronimos)
+  console.log(tetronimos[2])
 }
 
 const makeTetronimo = () => {
@@ -58,7 +60,7 @@ const makeTetronimo = () => {
     position: getPosition(tetronimo, startPoint)
   }
 
-  console.log(activated)
+  console.log('tetromino is', activated.shape)
 
 }
 
@@ -80,6 +82,41 @@ const getPosition = (shape, location) => {
   return indeces
 
 }
+
+const checkSides = () => {
+  const sqaures = activated.shape
+  const pos = activated.location
+  const stop = false
+
+  for(let i = 0; i < squares.length; i++) {
+    const square = squares[i]
+    const x = square[0] + pos[0]
+    const y = square[1] + pos[1]
+
+    if (direction === 'left')
+      x--
+    else if (direction === 'right')
+      x++
+
+    const space = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+
+    if (fixedSquares.indexOf(space.dataset.index) > -1) {
+      stop = true
+      break
+    }
+
+    if (x < 0 && direction=='left') {
+      stop = true
+      break
+    } else if (x == width && direction == 'right') {
+      stop = true
+      break
+    }
+  }
+
+  return stop
+}
+
 
 const makeShape = () => {
   const shape = activated.shape
@@ -114,8 +151,8 @@ function clear() {
   for(let i = 0; i < shape.length; i++) {
     const x = shape[i][0] + location[0]
     const y = shape[i][1] + location[1]
-    const block = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-    block.classList.remove('fixed')
+    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    square.classList.remove('fixed')
 
   }
 }
