@@ -5,9 +5,9 @@ const direction = ''
 const startPoint = [5, 0]
 
 
-let tetronimos = new Array()
+let tetronimos = []
 
-const fixedSquares = new Array()
+const fixedSquares = []
 
 
 const init = () => {
@@ -22,7 +22,8 @@ const init = () => {
     for(let x = 0; x < width; x ++) {
       const square = document.createElement('div')
       square.classList.add('square')
-      square.dataset.x = square.dataset.y = y
+      square.dataset.x = x
+      square.dataset.y = y
       square.dataset.index = count
       square.dataset.active = 1 //false
       row.append(square)
@@ -51,17 +52,94 @@ const makeTetronimo = () => {
   const tetronimo = tetronimos[random]
 
   activated =
-  { shape: tetronimo,
-    location: startPoint
+  {
+    shape: tetronimo,
+    location: startPoint,
+    position: getPosition(tetronimo, startPoint)
   }
 
   console.log(activated)
 
+}
 
 
+const getPosition = (shape, location) => {
+  const indeces = []
+  for(let i = 0; i < shape.length; i++) {
+    const x = shape[i][0] + location[0]
+    // console.log(shape[i][0], location[0])
+    const y = shape[i][1] + location[1]
+    // console.log(shape[i][1], location[1])
 
+
+    const square = document.querySelector('[data-y="' + y + '"][data-x="' + x + '"]')
+    indeces.push(square.dataset.index)
+
+  }
+
+  return indeces
 
 }
+
+const makeShape = () => {
+  const shape = activated.shape
+  const location = activated.location
+  switch(direction) {
+    case 'down' :
+      activated.location[1]++
+      break
+    case 'left':
+      activated.location[0]--
+      break
+    case 'right':
+      activated.location[0]++
+      break
+  }
+  for(let i = 0; i < shape.length; i++) {
+    const x = shape[i][0] + location[0]
+    const y = shape[i][1] + location[1]
+    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    square.classList.add('fixed')
+  }
+  activated.indexes = getPosition(activated.shape, activated.location)
+}
+
+function clear() {
+  const shape = currentShape.shape
+  const location = currentShape.location
+  for(let i = 0; i < shape.length; i++) {
+    const x = shape[i][0] + location[0]
+    const y = shape[i][1] + location[1]
+    const block = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    block.classList.remove('fixed')
+
+  }
+}
+
+const handlePress = (e) => {
+  e.preventDefault()
+  console.log(e.keyCode)
+  switch(e.keyCode) {
+
+    case '40' :
+      direction='down'
+      break
+    case '38':
+      direction='rotate'
+
+      break
+    case '37':
+      direction='left'
+      break
+  }
+
+  makeShape()
+}
+
+
+
+document.addEventListener('keydown', handlePress)
+
 
 
 
@@ -69,4 +147,5 @@ window.addEventListener('load', function(){
   init()
   makeTetronimos()
   makeTetronimo()
+  makeShape()
 })

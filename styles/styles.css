@@ -23,3 +23,7 @@ flex-wrap: nowrap;
   display: flex;
   flex-direction: row;
 }
+
+.fixed {
+  background-color: black;
+}
