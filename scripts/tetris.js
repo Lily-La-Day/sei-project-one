@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-//win function
+  //win function
 
   const winFunction = () => {
     const topRow = [...document.querySelectorAll('[data-row="-1"]')].filter(square => square.className === 'grid-item player fixed')
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
     )
   }
 
-//Tetronimos
+  //Tetronimos
 
   const TLZISJ0 = [
     {
@@ -157,7 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
   ]
-//Function to make shape
+  //Function to make shape
   const makeShape = (playerIndex) => {
     let rando = 0
     const randomNum = Math.floor(Math.random()*7)
@@ -174,7 +174,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
-//Clears row and shifts bricks down when row is full
+  //Clears row and shifts bricks down when row is full
 
   function rowClear() {
     rows[0] = squares.filter((el, index) =>
@@ -244,7 +244,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     })
   }
-//ridiculous massive rotate functions that could not be refactored without breaking
+  //ridiculous massive rotate functions that could not be refactored without breaking
   let rotateTracker = 90
 
   function rotate90() {
@@ -403,7 +403,7 @@ window.addEventListener('DOMContentLoaded', () => {
       nextPos[1] = (playerIndex+ TLZISJ0[2].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[2].zero[2])
       nextPos[3] = (playerIndex+ TLZISJ0[2].zero[3])
-      } else if (shapeName === 'Eye'){
+    } else if (shapeName === 'Eye'){
       nextPos[0] = (playerIndex + TLZISJ0[3].zero[0])
       nextPos[1] = (playerIndex+ TLZISJ0[3].zero[1])
       nextPos[2] = (playerIndex + TLZISJ0[3].zero[2])
@@ -431,7 +431,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-//combining rotate functions and checking space
+  //combining rotate functions and checking space
 
   const rotateShape = () => {
     if (playerIndex % width < width - 1
@@ -511,7 +511,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-//Function to move down or fix if no space
+  //Function to move down or fix if no space
 
 
   const moveDown = () => {
@@ -547,7 +547,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const moveDownAuto = () => moveDown()
 
 
-//event listeners
+  //event listeners
 
   function handleEventListeners(e) {
     switch(e.keyCode) {
@@ -567,7 +567,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
 
-//Making the grid
+  //Making the grid
 
   function init() {
     const grid = document.querySelector('.grid')

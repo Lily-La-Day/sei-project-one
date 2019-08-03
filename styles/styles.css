@@ -1,0 +1,25 @@
+.grid {
+display: flex !important;
+border: solid 1px #ddd;
+font-size: 8pt;
+color: black;
+text-align: center;
+background: white;
+flex-direction: column;
+flex-wrap: nowrap;
+
+}
+
+.square {
+  width: 25px;
+  height: 25px;
+  border: solid 1px #ddd;
+
+  font-size: 8pt;
+  color: black;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
