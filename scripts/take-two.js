@@ -1,15 +1,8 @@
-const height = 15
+const height = 20
 const width = 10
-let active = '1' //true
 let activated = null
 let direction = ''
-const startPoint = [5, 0]
-
-let move = 0
-
-
 let tetronimos = []
-
 let fixedSquares = []
 
 
@@ -36,22 +29,7 @@ const init = () => {
   }
 }
 
-function step() {
-  if (move===0) {
-    makeTetronimo()
-    makeShape()
-  } else {
-    // first check if next move is possible
-    if (makeStop()) {
-      makeTetronimo()
-      makeShape()
-    } else {
-      clear()
-      makeShape()
-    }
-  }
-  move++
-}
+
 
 const makeTetronimo = () => {
 
@@ -213,7 +191,7 @@ const handlePress = (e) => {
 }
 
 const rotate = () => {
-  const nextPos = new Array()
+  const nextPos = []
   const shape = activated.shape
 
   for(let i = 0; i < shape.length; i++) {
@@ -333,29 +311,20 @@ const rowCheck = () => {
         start = y
       console.log(fixed)
       count++
-
-      // clear out line
       for(let i = 0; i < width;i++) {
         const space = document.querySelector('[data-x="' + i + '"][data-y="' + y + '"]')
         space.dataset.active = '0'
         space.style.backgroundColor = 'white'
-
         clearIndex(space.dataset.index)
       }
     }
   }
-
-
-
   if (count > 0) {
     // points += count
     moveDown(count, start)
 
   }
 }
-
-
-
 
 function moveDown(count, start) {
   for (let i = start-1; i >= 0; i--) {
@@ -383,22 +352,7 @@ const clearIndex = (index) => {
   fixedSquares.splice(location, 1)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('keydown', handlePress)
-
-
-
 
 window.addEventListener('load', function(){
   init()
