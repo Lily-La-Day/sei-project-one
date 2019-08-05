@@ -4,8 +4,9 @@ let activated = null
 let direction = ''
 let tetronimos = []
 let fixedSquares = []
+const playing = true
 
-
+//draws grid and sets x and y values that allow us to track grid areas
 const init = () => {
   const grid = document.querySelector('.grid')
   let count = 0
@@ -28,92 +29,7 @@ const init = () => {
     grid.append(row)
   }
 }
-
-
-
-const makeTetronimo = () => {
-
-  const random = Math.floor(Math.random() * tetronimos.length)
-  const randomColor = '#'+Math.floor(Math.random()*16777215+0.4).toString(16)
-  const shape = tetronimos[random]
-  const center = Math.floor(width / 2)
-  const location = [center, 0]
-
-  activated =
-  {
-    shape: shape,
-    location: location,
-    color: randomColor,
-    position: getPosition(shape, location)
-  }
-
-  if (makeStop()) {
-    active ='2'
-    document.getElementById('points').innerHTML += ' Game over'
-
-  }
-
-}
-
-
-
-
-
-const getPosition = (shape, location) => {
-  const indeces = []
-
-  for(let i = 0; i < shape.length; i++) {
-    const x = shape[i][0] + location[0]
-    const y = shape[i][1] + location[1]
-    console.log('position is', x, y)
-    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-    indeces.push(square.dataset.index)
-
-  }
-
-  return indeces
-
-}
-
-const makeShape = () => {
-  shouldStop()
-  const shape = activated.shape
-  const location = activated.location
-  clear()
-  switch(direction) {
-    case 'down' :
-      activated.location[1]++
-      break
-    case 'left':
-      activated.location[0]--
-      break
-    case 'right':
-      activated.location[0]++
-      break
-  }
-  for(let i = 0; i < shape.length; i++) {
-    const x = shape[i][0] + location[0]
-    const y = shape[i][1] + location[1]
-    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-    square.classList.add('fixed')
-    square.style.backgroundColor = activated.color
-  }
-  activated.indexes = getPosition(activated.shape, activated.location)
-}
-
-function clear() {
-  const shape = activated.shape
-  const location = activated.location
-  for(let i = 0; i < shape.length; i++) {
-    const x = shape[i][0] + location[0]
-    const y = shape[i][1] + location[1]
-    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-    square.classList.remove('fixed')
-    square.style.backgroundColor=''
-
-  }
-}
-
+//co-ords for different tetronimo shapes
 const makeTetronimos = () => {
   const eye = [[0,0],[0,1], [0,2], [0,3]]
   const tee = [[0,0], [1,0], [2,0], [1,1]]
@@ -127,32 +43,111 @@ const makeTetronimos = () => {
 }
 
 
+
+//creates a random tetronimo in a random color, and places in middle of top of grid
+const makeTetronimo = () => {
+
+  const random = Math.floor(Math.random() * tetronimos.length)
+  const randomColor = '#'+Math.floor(Math.random()*16777215+0.4).toString(16)
+  const tetronimo = tetronimos[random]
+  const center = Math.floor(width / 2)
+  const area = [center, 0]
+
+  activated =
+  {
+    tetronimo: tetronimo,
+    area: area,
+    color: randomColor,
+    position: getPosition(tetronimo, area)
+  }
+
+  if (makeStop()) {
+    !playing
+  }
+
+}
+
+//gets the current position of active piece
+const getPosition = (tetronimo, area) => {
+  const indeces = []
+  for(let i = 0; i < tetronimo.length; i++) {
+    const x = tetronimo[i][0] + area[0]
+    const y = tetronimo[i][1] + area[1]
+    console.log('position is', x, y)
+    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    indeces.push(square.dataset.index)
+
+  }
+
+  return indeces
+
+}
+
+
+//changes activated area of grid depending on direction of movement
+const moveTetronimo = () => {
+  shouldStop()
+  const tetronimo = activated.tetronimo
+  const area = activated.area
+  clear()
+  switch(direction) {
+    case 'down' :
+      activated.area[1]++
+      break
+    case 'left':
+      activated.area[0]--
+      break
+    case 'right':
+      activated.area[0]++
+      break
+  }
+  for(let i = 0; i < tetronimo.length; i++) {
+    const x = tetronimo[i][0] + area[0]
+    const y = tetronimo[i][1] + area[1]
+    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    square.classList.add('fixed')
+    square.style.backgroundColor = activated.color
+  }
+  activated.indexes = getPosition(activated.tetronimo, activated.area)
+}
+
+//de-activates area of grid
+function clear() {
+  const tetronimo = activated.tetronimo
+  const area = activated.area
+  for(let i = 0; i < tetronimo.length; i++) {
+    const x = tetronimo[i][0] + area[0]
+    const y = tetronimo[i][1] + area[1]
+    const square = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
+    square.classList.remove('fixed')
+    square.style.backgroundColor=''
+
+  }
+}
+
+//determines whether there is grid space for tetronimo to move into
 const shouldStop = () => {
-  const squares = activated.shape
-  const pos = activated.location
+  const squares = activated.tetronimo
+  const pos = activated.area
   let stop = false
   for(let i = 0; i < squares.length; i++) {
     const square = squares[i]
     const x = square[0] + pos[0]
     let y = square[1] + pos[1]
-
-    if (direction === 'down')
-      y++
-
+    if (direction === 'down')  y++
     const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-
     if (y === height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
       stop = true
       break
     }
   }
-
+  //if the piece does not have space to move into the grid areas are set as active,
+  // the piece is fixed and a new tetronimo is generated
   if (stop) {
     for(let i = 0; i < squares.length; i++) {
       const square = squares[i]
       const x = square[0] + pos[0]
       const y = square[1] + pos[1]
-
       const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
       newSquare.dataset.active = '1'
     }
@@ -166,7 +161,7 @@ const shouldStop = () => {
 }
 
 
-
+//function to handle keycodes according to direction or rotation
 const handlePress = (e) => {
   e.preventDefault()
   // console.log(e.keyCode)
@@ -175,56 +170,63 @@ const handlePress = (e) => {
       direction='down'
       // console.log(direction)
       break
-    case 38:
-      direction='rotate'
-      rotate()
-      break
     case 37:
       direction='left'
       break
     case 39:
       direction='right'
       break
+    case 38:
+      direction='rotate'
+      rotate()
+      break
   }
-  if (checkSides() === false)
-    makeShape()
+  if (!checkSides())
+    moveTetronimo()
 }
 
+//rotate function, gets new x, y co-ords using get width function
 const rotate = () => {
   const nextPos = []
-  const shape = activated.shape
-
-  for(let i = 0; i < shape.length; i++) {
-    const x = shape[i][0]
-    const y = shape[i][1]
+  const tetronimo = activated.tetronimo
+  for(let i = 0; i < tetronimo.length; i++) {
+    const x = tetronimo[i][0]
+    const y = tetronimo[i][1]
     const newx = (getWidth() - y)
     const newy = x
     nextPos.push([newx, newy])
   }
-
   clear()
-
-  activated.shape = nextPos
-  activated.indexes = getPosition(nextPos, activated.location)
+  activated.tetronimo = nextPos
+  activated.indexes = getPosition(nextPos, activated.area)
 }
+//
+// const getWidth = () => {
+//
+//   let width = activated.tetronimo.forEach((square) => {
+//     square = activated.tetronimo
+//     if (square[0] > width)
+//       width = square[0]
+//   })
+//   return width
+// }
+
 
 const getWidth = () => {
   let width = 0
-
-  for(let i = 0; i < activated.shape.length; i++) {
-    var block = activated.shape[i]
-    if (block[0] > width)
-      width = block[0]
+  for(let i = 0; i < activated.tetronimo.length; i++) {
+    const square = activated.tetronimo[i]
+    if (square[0] > width)
+      width = square[0]
   }
 
   return width
 }
 
 const checkSides = () => {
-  const squares = activated.shape
-  const pos = activated.location
-  let stop = false
-
+  const squares = activated.tetronimo
+  const pos = activated.area
+  const stop = false
   for(let i = 0; i < squares.length; i++) {
     const square = squares[i]
     let x = square[0] + pos[0]
@@ -238,15 +240,15 @@ const checkSides = () => {
     const space = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
     // console.log(space)
     if (fixedSquares.indexOf(space.dataset.index) > -1) {
-      stop = true
+      stop
       break
     }
 
     if (x < 0 && direction === 'left') {
-      stop = true
+      !stop
       break
     } else if (x === width && direction === 'right') {
-      stop = true
+      !stop
       break
     }
   }
@@ -258,19 +260,15 @@ const checkSides = () => {
 
 
 function makeStop() {
-  const squares = activated.shape
-  const pos = activated.location
+  const squares = activated.tetronimo
+  const pos = activated.area
   let stop = false
   for(let i = 0; i < squares.length; i++) {
     const square = squares[i]
     const x = square[0] + pos[0]
     let y = square[1] + pos[1]
-
-    if (direction === 'down')
-      y++
-
+    if (direction === 'down') y++
     const newSquare = document.querySelector('[data-x="' + x + '"][data-y="' + y + '"]')
-
     if (y === height || fixedSquares.indexOf(newSquare.dataset.index) > -1) {
       stop = true
       break
@@ -280,7 +278,6 @@ function makeStop() {
   }
 
   if (stop) {
-
     fixedSquares = fixedSquares.concat(activated.indexes)
     makeTetronimo()
     rowCheck()
@@ -320,7 +317,6 @@ const rowCheck = () => {
     }
   }
   if (count > 0) {
-    // points += count
     moveDown(count, start)
 
   }
@@ -348,8 +344,8 @@ function moveDown(count, start) {
 
 const clearIndex = (index) => {
   console.log('clearing')
-  const location = fixedSquares.indexOf(index)
-  fixedSquares.splice(location, 1)
+  const area = fixedSquares.indexOf(index)
+  fixedSquares.splice(area, 1)
 }
 
 document.addEventListener('keydown', handlePress)
@@ -358,5 +354,5 @@ window.addEventListener('load', function(){
   init()
   makeTetronimos()
   makeTetronimo()
-  makeShape()
+  moveTetronimo()
 })
