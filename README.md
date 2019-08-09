@@ -156,6 +156,6 @@ In theory I wanted to be regularly checking the length of each row (an array) an
 
  The original game was created with very minimal input from any outside source as I resisted Googling at the outset.
 
-When I returned to the project after finishing the course I did not resist Googling and re-made the game over the course of one day after looking at numerous versions from all over the internet. I ended up using this [turorial](https://www.thatsoftwaredude.com/content/8519/coding-tetris-in-javascript-part-1) but without referencing it as I worked, I read it beforehand, did my best to understand every step and then implemented it myself.
+When I returned to the project after finishing the course I did not resist Googling and re-made the game over the course of one day after looking at numerous versions from all over the internet. I ended up using this [tutorial](https://www.thatsoftwaredude.com/content/8519/coding-tetris-in-javascript-part-1) but without referencing it as I worked, I read it beforehand, did my best to understand every step and then implemented it myself.
 
 This was actually still quite challenging to get right in a day and the version I came out with is far from perfect. It is however much more concise and infinitely cleaner than my original. It is very satisfying to fully understand how "it should have been done" and it was a very heartening experience to look over my code from just 10 weeks ago and realise how far I have come!
