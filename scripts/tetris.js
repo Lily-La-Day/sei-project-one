@@ -97,7 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
 
     {
-      name: 'Elle',     //NOT RIGHT
+      name: 'Elle',  
       start: [14, 3, 13, 23],
       zero: [0, 10, 20, +21],
       ninety: [0, -1, -2, +8],
