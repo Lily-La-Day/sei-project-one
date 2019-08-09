@@ -1,6 +1,5 @@
-# sei-project-one
-
-General Assembly Software Engineering - Project 1
+![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) 
+# General Assembly Software Engineering - Project 1
 
 # Tetris
 
@@ -124,8 +123,33 @@ Implementing a successful row clearing function was the biggest challenge I face
 
 In theory I wanted to be regularly checking the length of each row (an array) and if the length equalled 10 (the width) I wanted to remove the class of 'fixed' from every 'fixed' grid area and reapply it to the grid area plus the width. Thus shifting all fixed squares one row down. The problem (or one of the problems!) that I encountered was in storing the index value before it would have to be used (plus the width). I attempted to store these values temporarily but the methods I tried did not work when put into practice. Ultimately I resorted to a far from satisfactory method of row clearing that involved using two separate "fixed" classes.
 
+```js
+  rows.forEach((row) => {
+      if(row.length === 10){
+        scoreTracker += 1
+        for(let i = 0; i < squares.length; i++) {
+          if(squares[i].className === 'grid-item fixed') {
+            console.log(squares[i])
+            squares[i+10].classList.add('fixed-two')
+            squares[i].classList.remove('fixed')
+            squares[i].style.backgroundColor= 'white'
+            row = []
+            if (squares[i].className === 'grid-item fixed-two') {
+              scoreTracker += 1
+              squares[i+10].classList.add('fixed')
+              squares[i].classList.remove('fixed-two')
+              squares[i].style.backgroundColor= 'white'
+              row = []
 
-<img src="./images/row-clearing.png" width="250" >
+            }
+          }
+        }
+      }
+
+    })
+  }
+  
+ ```
 
 *References:*
 
