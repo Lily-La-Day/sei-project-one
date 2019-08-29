@@ -117,6 +117,8 @@ Nowhere is this more evident than in the code for the rotations of each tetronim
 
 <img src="./images/rotations-long.png" width="500" >
 
+#### Challenges
+
 #### Clearing Rows
 
 Implementing a successful row clearing function was the biggest challenge I faced during this project. And while I understood the theory and logic of how this could be achieved I had enormous difficulty putting this into practice.
@@ -150,6 +152,13 @@ In theory I wanted to be regularly checking the length of each row (an array) an
   }
   
  ```
+*Wins and Key Learnings* 
+
+Despite not being entirely happy with the final version of the game that I produced in the original week I learnt an immense amount due to the number of hours I put in attempting to solve the various problems I faced along the way. I used array methods that I had never had any practical experience before (such as Reduce). I was also very happy with my implementation of a constructor function that existed in one version of my code. I now feel comfortable with using constructors having previously had no experience of this. 
+
+
+
+
 
 *References:*
 
