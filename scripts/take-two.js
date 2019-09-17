@@ -200,16 +200,6 @@ const rotate = () => {
   activated.tetronimo = nextPos
   activated.indexes = getPosition(nextPos, activated.area)
 }
-//
-// const getWidth = () => {
-//
-//   let width = activated.tetronimo.forEach((square) => {
-//     square = activated.tetronimo
-//     if (square[0] > width)
-//       width = square[0]
-//   })
-//   return width
-// }
 
 
 const getWidth = () => {
