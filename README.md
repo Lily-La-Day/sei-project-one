@@ -12,7 +12,7 @@ A Tetris "Clone" built using JavaScript, HTML5 and CSS3.
 
 ## Introduction
 
-It should be emphasised at the outset that I am not very satisfied with the JavaScript code that I produced during this week. I have since returned to Tetris and have re-done it (in a very basic form) to put my mind at rest. The new version can be seen in the JavaScript file "take-two".  While I created it as part of this repo, it was not part of the project so I have left the original code as the source of the live game.
+It should be emphasised at the outset that I am not very satisfied with the JavaScript code that I produced during this week. I have since returned to Tetris and have re-done it (in a very basic form) to put my mind at rest. The new version can be seen in the JavaScript file "take-two".  While I created it as part of this repo, it was not part of the project so I have left the original code as the source of the live game. Which can be played here: https://lily-la-day.github.io/sei-project-one-tetris/
 
 <img src="./images/screenshot.png" width="500" >
 
